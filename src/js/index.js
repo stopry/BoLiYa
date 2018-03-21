@@ -103,3 +103,29 @@ function changTradAmt(type){
   }
   tar.html(num);
 }
+
+//初始化图表
+$(function () {
+  createChart(1004,'ML');
+})
+var chart = null;
+function createChart(proId, kType) {
+  if (kType == "ML") {
+    chart = MinuteChart.createNew(proId);//分时图
+  } else {
+    chart = CandleChart.createNew(proId, kType);//K线图
+  }
+
+  chart.createChart();
+  GlobalAutoChartM();
+  chart.flush()
+}
+//图标自适应屏幕高度
+function GlobalAutoChartM() {
+  var h = $(window).height();
+  var h1 = $('#t_top').height();
+  var h2 = $('#b_bot').height();
+  var ch = h-h1-h2-30;
+  $('#charts').height(ch);
+  chart.setChartHeight(ch-h*0.11);
+}

@@ -29,9 +29,10 @@
 <body>
 
 <div class="box ovhd">
+<div id="t_top">
   <div class="indexHead">
     <div class="con">
-      <img src="./images/logo.png" class="uImg feedBtn" alt="">
+      <img src="./images/logo.png" class="uImg feedBtn" alt="" onclick="openLocal('/html/userCenter.html')">
       <div class="fundsInfo">
         <div class="fundsNum ovhd">
           <span class="numCom fl">7000.00</span>
@@ -43,13 +44,13 @@
           总资产(￥)
         </p>
       </div>
-      <div class="toUc feedBtn">
+      <div class="toUc feedBtn" onclick="openLocal('/html/userCenter.html')">
         用户中心&nbsp; >
       </div>
     </div>
   </div>
   <div class="chartTable">
-    <div class="tableItem lCon active down">
+    <div class="tableItem lCon active down feedBtn">
       <div class="proName">
         <div class="textInfo clear ks-clear">
           <span class="pName">黄金板块</span>
@@ -58,7 +59,7 @@
         <i class="mInfo ks-clear clear"></i>
       </div>
     </div>
-    <div class="tableItem rCon">
+    <div class="tableItem rCon feedBtn">
       <div class="proName">
         <div class="textInfo">
           <span class="pName">黄金板块</span>
@@ -91,24 +92,27 @@
     </table>
   </div>
   <div class="grayBar"></div>
+</div>
   <div id="charts">
 
   </div>
-  <div class="charTypeSel">
-    <div class="con">
-      <div class="flexItem active feedBtn">今日走势</div>
-      <div class="flexItem feedBtn">15分钟K线</div>
-      <div class="flexItem feedBtn">30分钟K线</div>
-      <div class="flexItem feedBtn">60分钟K线</div>
+  <div id="b_bot">
+    <div class="charTypeSel">
+      <div class="con">
+        <div class="flexItem active feedBtn">今日走势</div>
+        <div class="flexItem feedBtn">15分钟K线</div>
+        <div class="flexItem feedBtn">30分钟K线</div>
+        <div class="flexItem feedBtn">60分钟K线</div>
+      </div>
     </div>
-  </div>
-  <div class="idxOprBtn">
-    <div class="btnItem lookUp feedBtn" onclick="showBuyBox();">看涨</div>
-    <div class="btnItem lookDown feedBtn">看跌</div>
-  </div>
-  <div class="timeTips">
-    <p class="timeTCon tc">交易时间：周一~周五8:00~16:00周日4:30~7:00休市结算</p>
-    <p class="timeTConWarm tl">温馨提示：投资有风险，入市需谨慎！</p>
+    <div class="idxOprBtn">
+      <div class="btnItem lookUp feedBtn" onclick="showBuyBox();">看涨</div>
+      <div class="btnItem lookDown feedBtn">看跌</div>
+    </div>
+    <div class="timeTips">
+      <p class="timeTCon tc">交易时间：周一~周五8:00~16:00周日4:30~7:00休市结算</p>
+      <p class="timeTConWarm tl">温馨提示：投资有风险，入市需谨慎！</p>
+    </div>
   </div>
 </div>
 
@@ -185,9 +189,12 @@
   <div class="rect5"></div>
 </div>
 <script src="./js/lib/zepto.js"></script>
+<script src="./js/plugin/echarts.min.js"></script>
 <script src="./js/layer/layer.js"></script>
 <script src="./js/lib/myModule.js"></script>
 <script src="./js/global.js"></script>
+<script src="./js/pro_minute.js"></script>
+<script src="./js/pro_candle.js"></script>
 <script src="./js/index.js"></script>
 <script>
   $(function(){

@@ -461,7 +461,7 @@ $fClr:#8d8d8f;//辅助色
     position: relative;
     width: 100%;
     height: rem(90);
-    line-height: rem(90);
+    line-height: rem(96);
     color: #454545;
     font-size: rem(28);
     text-indent: rem(77);
@@ -819,7 +819,7 @@ $fClr:#8d8d8f;//辅助色
   top:0;
   left: 0;
   .item{
-    transition: all linear 200ms;
+    //transition: all linear 200ms;
     font-family: PF;
     position: absolute;
     text-align: center;
@@ -841,7 +841,7 @@ $fClr:#8d8d8f;//辅助色
       right: rem(17);
     }
     &.active{
-      transition: all linear 200ms;
+      //transition: all linear 200ms;
       font-size: rem(36);
       height: rem(80);
       color: #fff;
@@ -1196,9 +1196,14 @@ $fClr:#8d8d8f;//辅助色
 }
 #charts{
   width: rem(720);
-  height: rem(680);
+  //height: rem(680);
+  height: rem(720);
   margin: 0 auto;
   background: $bgClr;
+}
+#b_bot{
+  position: relative;
+  z-index: 10;
 }
 .charTypeSel{
   width: 100%;
