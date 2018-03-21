@@ -1,0 +1,32 @@
+{
+  "name": "bly",
+  "version": "1.0.0",
+  "description": "BoLiYa Front Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "boliya"
+  ],
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-rev": "^7.1.2",
+    "gulp-rev-collector": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11",
+    "lodash": "^4.17.4",
+    "run": "^1.4.0",
+    "run-sequence": "^1.2.2",
+    "sequence": "^3.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "author": "qq 809746561 auth stopry",
+  "license": "ISC"
+}

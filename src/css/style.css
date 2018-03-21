@@ -1,0 +1,1392 @@
+@charset "UTF-8";
+/*小提示动画start*/
+.week-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(213, 178, 114, 0.85);
+  color: #fff;
+  padding: 9px 0;
+  font-size: 15px;
+  z-index: 999; }
+  .week-alert.alert-show {
+    -webkit-animation: show 2s; }
+    .week-alert.alert-show.success {
+      background-color: rgba(0, 150, 19, 0.85); }
+    .week-alert.alert-show.warm {
+      background-color: rgba(216, 215, 1, 0.85); }
+    .week-alert.alert-show.error {
+      background-color: rgba(168, 3, 9, 0.85); }
+
+@-webkit-keyframes show {
+  0% {
+    -webkit-transform: translateY(-100%); }
+  20% {
+    -webkit-transform: translateY(0); }
+  50% {
+    -webkit-transform: translateY(0); }
+  80% {
+    -webkit-transform: translateY(0); }
+  100% {
+    -webkit-transform: translateY(-100%); } }
+
+/*小提示动画end*/
+/*遮罩层*/
+.alertLayer {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10; }
+
+/*遮罩层*/
+.weui-toast {
+  position: fixed;
+  z-index: 5000;
+  width: 124px;
+  min-height: 124px;
+  top: 180px;
+  left: 50%;
+  margin-left: -62px;
+  background: rgba(17, 17, 17, 0.7);
+  text-align: center;
+  border-radius: 5px;
+  color: #FFFFFF; }
+
+.weui-icon_toast.weui-loading {
+  margin: 30px 0 0;
+  width: 38px;
+  height: 38px;
+  vertical-align: baseline; }
+
+.weui-toast__content {
+  margin: 0 0 15px;
+  font-size: 16px; }
+
+.weui-loading {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+  animation: weuiLoading 1s steps(12, end) infinite;
+  background: transparent url("data:image/svg+xml;charset=utf8, <svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><path fill='none' d='M0 0h100v100H0z'/><rect width='7' height='20' x='46.5' y='40' fill='%23E9E9E9' rx='5' ry='5' transform='translate(0 -30)'/><rect width='7' height='20' x='46.5' y='40' fill='%23989697' rx='5' ry='5' transform='rotate(30 105.98 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%239B999A' rx='5' ry='5' transform='rotate(60 75.98 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23A3A1A2' rx='5' ry='5' transform='rotate(90 65 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23ABA9AA' rx='5' ry='5' transform='rotate(120 58.66 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23B2B2B2' rx='5' ry='5' transform='rotate(150 54.02 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23BAB8B9' rx='5' ry='5' transform='rotate(180 50 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23C2C0C1' rx='5' ry='5' transform='rotate(-150 45.98 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23CBCBCB' rx='5' ry='5' transform='rotate(-120 41.34 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23D2D2D2' rx='5' ry='5' transform='rotate(-90 35 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23DADADA' rx='5' ry='5' transform='rotate(-60 24.02 65)'/><rect width='7' height='20' x='46.5' y='40' fill='%23E2E2E2' rx='5' ry='5' transform='rotate(-30 -5.98 65)'/></svg>") no-repeat;
+  background-size: 100%; }
+
+.weui-mask_transparent {
+  position: fixed;
+  z-index: 1000;
+  width: 1920px !important;
+  top: 0;
+  bottom: 0; }
+
+@-webkit-keyframes weuiLoading {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg); }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg); } }
+
+@keyframes weuiLoading {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg); }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+    transform: rotate3d(0, 0, 1, 360deg); } }
+
+.layerShadow {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  position: fixed; }
+
+.layerShadow2 {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  position: fixed; }
+
+.layerShadow3 {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 16;
+  position: fixed; }
+
+.spinner {
+  -webkit-transition: all linear 300ms;
+  margin: auto;
+  padding-top: 7rem;
+  background: #ffffff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9 !important;
+  text-align: center;
+  font-size: 10px; }
+
+.spinner > div {
+  background-color: #DD0116;
+  height: 26px;
+  width: 10px;
+  display: inline-block;
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out; }
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s; }
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s; }
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s; }
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s; }
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    -webkit-transform: scaleY(1); } }
+
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4); }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1); } }
+
+.spinner.hide {
+  -webkit-transform: scale(0); }
+
+@font-face {
+  font-family: PF;
+  src: url("pingfang.ttf"), url("pingfang.ttf");
+  /* IE9+,可以是具体的实际链接 */ }
+
+.grayBar {
+  width: 100%;
+  height: 0.13333rem;
+  background: #f0f0f0; }
+
+* {
+  max-width: 600px !important;
+  margin: 0 auto; }
+
+@keyframes iFlipy {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    transform: rotateX(0deg); }
+  100% {
+    -webkit-transform: rotateX(360deg);
+    -ms-transform: rotateX(360deg);
+    -o-transform: rotateX(360deg);
+    transform: rotateX(360deg); } }
+
+@-webkit-keyframes iFlipy {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    transform: rotateX(0deg); }
+  100% {
+    -webkit-transform: rotateX(360deg);
+    -ms-transform: rotateX(360deg);
+    -o-transform: rotateX(360deg);
+    transform: rotateX(360deg); } }
+
+.clip.ani {
+  animation: iFlipy .8s ease-in-out forwards;
+  -webkit-animation: iFlipy .8s ease-in-out forwards; }
+
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #aaa; }
+
+input:disabled, input[disabled] {
+  color: #444;
+  -webkit-text-fill-color: #444;
+  -webkit-opacity: 1;
+  opacity: 1; }
+
+/*公共类*/
+.w100 {
+  width: 100%; }
+
+.tl {
+  text-align: left; }
+
+.tr {
+  text-align: right; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+.tc {
+  text-align: center; }
+
+.borderBot:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #DDD;
+  color: #DDD;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  z-index: 2; }
+
+.borderTop:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #f0f0f0;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  z-index: 2; }
+
+.blackBorder:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #222;
+  color: #222;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  z-index: 2; }
+
+.grayBgBar {
+  width: 100%;
+  height: 0.16rem;
+  background: #f4f4f4; }
+
+.borRau5 {
+  border-radius: 5px; }
+
+.feedBtn {
+  cursor: pointer;
+  moz-user-select: -moz-none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.arrow-up {
+  background: none;
+  height: auto;
+  width: 0.33333rem;
+  position: absolute;
+  left: 50%;
+  top: 99%;
+  margin-left: -12px;
+  z-index: 9999; }
+
+.pt-page-moveIconUp {
+  -webkit-animation: moveIconUp ease 1.5s both infinite;
+  animation: moveToBottom ease 1.5s both infinite; }
+
+@-webkit-keyframes moveIconUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    opacity: 0; }
+  50% {
+    -webkit-transform: translateY(0%);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translateY(-100%);
+    opacity: 0; } }
+
+@keyframes moveIconUp {
+  0% {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    opacity: 0; }
+  50% {
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
+    opacity: 1; }
+  100% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    opacity: 0; } }
+
+@-webkit-keyframes moveToBottom {
+  from { }
+  to {
+    -webkit-transform: translateY(100%); } }
+
+@keyframes moveToBottom {
+  from { }
+  to {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%); } }
+
+.noBg {
+  background: none !important; }
+
+.conWrap {
+  margin: 0 auto; }
+
+.layui-layer-btn .layui-layer-btn0 {
+  background: #D5B272 !important;
+  border: none; }
+
+.layui-layer-btn a {
+  background: none !important; }
+
+.layui-layer-title {
+  background: #D5B272 !important;
+  color: #fff !important; }
+
+.layui-layer-loading .layui-layer-loading1 {
+  margin: 0 auto; }
+
+.shadeLayer {
+  display: none; }
+
+.formInput {
+  overflow: hidden;
+  width: 8.93333rem;
+  position: relative;
+  height: 1.06667rem;
+  line-height: 1.06667rem;
+  margin-top: 0.50667rem;
+  background: none; }
+  .formInput .iptTitle {
+    text-align: left;
+    width: 1.73333rem;
+    color: #8d8d8f;
+    font-size: 0.37333rem;
+    font-family: PF;
+    float: left; }
+  .formInput .iptCon {
+    height: 1.06667rem;
+    width: 7.06667rem;
+    text-align: left;
+    font-size: 0.37333rem;
+    color: #fff;
+    font-family: PF;
+    float: right;
+    border: none; }
+  .formInput .leftBtn {
+    text-align: center;
+    position: absolute;
+    width: 2.13333rem;
+    height: 1.06667rem;
+    line-height: 1.06667rem;
+    color: #8d8d8f;
+    font-size: 0.37333rem;
+    font-family: PF;
+    text-decoration: underline;
+    top: 0;
+    right: 0; }
+
+.btn.registBtn {
+  border-radius: 0.08rem;
+  width: 8.93333rem;
+  height: 1.33333rem;
+  font-size: 0.48rem;
+  text-align: center;
+  color: #fff;
+  background: #D5B272;
+  letter-spacing: 0.08rem;
+  font-family: PF;
+  margin: 1.30667rem auto 0.53333rem auto;
+  line-height: 1.33333rem; }
+
+.registForm {
+  width: 8.93333rem;
+  margin-top: 1.73333rem; }
+  .registForm .tipsArea {
+    overflow: hidden;
+    width: 8.93333rem; }
+    .registForm .tipsArea .clickBtn {
+      font-size: 0.37333rem;
+      font-family: PF;
+      float: right;
+      color: #8d8d8f;
+      text-decoration: underline; }
+    .registForm .tipsArea .clickBtnCen {
+      margin-top: 0.53333rem;
+      font-size: 0.37333rem;
+      font-family: PF;
+      text-align: center;
+      color: #8d8d8f;
+      text-decoration: underline; }
+
+.logInLogo {
+  width: 2.13333rem;
+  height: 2.13333rem;
+  background: url("../images/logo.png") no-repeat center;
+  background-size: 100% 100%;
+  margin: 1.86667rem auto 1.6rem auto; }
+
+.userCenterHead {
+  position: relative;
+  background: #404244;
+  width: 100%;
+  height: 4.34667rem; }
+  .userCenterHead .headTop {
+    overflow: hidden;
+    height: 2.13333rem;
+    position: relative;
+    width: 100%; }
+    .userCenterHead .headTop .userImg {
+      width: 1.33333rem;
+      height: 1.33333rem;
+      display: block;
+      float: left;
+      margin: 0.4rem 0 0.4rem 0.4rem; }
+    .userCenterHead .headTop .allFunds {
+      width: 3.06667rem;
+      height: 1.41333rem;
+      margin: 0.46667rem auto 0 auto; }
+      .userCenterHead .headTop .allFunds .fundsCon, .userCenterHead .headTop .allFunds .fundsDesc {
+        text-align: center;
+        font-family: PF; }
+      .userCenterHead .headTop .allFunds .fundsCon {
+        line-height: 0.74667rem;
+        font-size: 0.48rem;
+        font-weight: bold;
+        color: #D5B272; }
+      .userCenterHead .headTop .allFunds .fundsDesc {
+        line-height: 0.53333rem;
+        font-size: 0.4rem;
+        color: #8d8d8f; }
+    .userCenterHead .headTop .eyes {
+      width: 0.66667rem;
+      height: 0.66667rem;
+      position: absolute;
+      top: 0.26667rem;
+      right: 0.4rem;
+      background: url("../images/close_eye.png") no-repeat center;
+      background-size: 100% 100%; }
+      .userCenterHead .headTop .eyes.active {
+        background: url("../images/open_eye.png") no-repeat center;
+        background-size: 100% 100%; }
+  .userCenterHead .headBot {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 2.21333rem; }
+    .userCenterHead .headBot .botItem {
+      width: 50%;
+      height: 2.21333rem;
+      overflow: hidden;
+      text-align: center; }
+      .userCenterHead .headBot .botItem .fCon {
+        font-size: 0.34667rem;
+        font-family: PF;
+        color: #fff;
+        line-height: 0.56rem;
+        margin-top: 0.26667rem; }
+      .userCenterHead .headBot .botItem .fDesc {
+        font-family: PF;
+        font-size: 0.37333rem;
+        color: #8d8d8f;
+        line-height: 0.72rem; }
+  .userCenterHead .tipsBanner {
+    height: 1.06667rem;
+    width: 9.57333rem;
+    background: url("../images/tips_bg.png") no-repeat center;
+    background-size: 100% 100%;
+    left: 0.21333rem;
+    bottom: -0.53333rem;
+    position: absolute;
+    color: #fff;
+    font-family: PF;
+    line-height: 1.06667rem; }
+    .userCenterHead .tipsBanner .tipsCon {
+      width: 6.8rem;
+      height: 1.06667rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 0 auto;
+      font-size: 0.32rem; }
+
+.userCenterCen {
+  width: 100%;
+  height: 2.21333rem;
+  background: #fff; }
+  .userCenterCen .oprArea {
+    overflow: hidden;
+    width: 7.2rem;
+    height: 0.74667rem;
+    margin: 1.04rem auto 0 auto; }
+    .userCenterCen .oprArea .item {
+      overflow: hidden;
+      color: #454545;
+      font-size: 0.37333rem;
+      text-align: left;
+      font-family: PF;
+      box-sizing: border-box;
+      width: 50%;
+      height: 0.74667rem;
+      line-height: 0.74667rem; }
+      .userCenterCen .oprArea .item .oprDesc {
+        text-indent: 0.69333rem; }
+      .userCenterCen .oprArea .item:nth-child(1) {
+        border-right: 1px solid #eee; }
+      .userCenterCen .oprArea .item .oprIocn {
+        vertical-align: middle; }
+      .userCenterCen .oprArea .item .oprIocn img {
+        margin-top: -0.08rem;
+        width: 0.72rem;
+        height: 0.72rem; }
+        .userCenterCen .oprArea .item .oprIocn img.rIcon {
+          margin-left: 1.14667rem; }
+
+.userCenterBot {
+  width: 100%;
+  background: #fff;
+  margin-top: 0.13333rem; }
+  .userCenterBot .selItem {
+    position: relative;
+    width: 100%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    color: #454545;
+    font-size: 0.37333rem;
+    text-indent: 1.02667rem;
+    text-align: left; }
+    .userCenterBot .selItem .leftIcon {
+      width: 0.4rem;
+      height: 0.4rem;
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem; }
+    .userCenterBot .selItem.zjmx {
+      background: url("../images/funds_detail.png") no-repeat 0.26667rem;
+      background-size: 0.48rem 0.48rem; }
+    .userCenterBot .selItem.cpjl {
+      background: url("../images/recoder.png") no-repeat 0.26667rem;
+      background-size: 0.48rem 0.48rem; }
+    .userCenterBot .selItem.tgzq {
+      background: url("../images/promote_icon.png") no-repeat 0.26667rem;
+      background-size: 0.48rem 0.48rem; }
+    .userCenterBot .selItem.xgmm {
+      background: url("../images/change_pwd.png") no-repeat 0.26667rem;
+      background-size: 0.48rem 0.48rem; }
+    .userCenterBot .selItem.tcdl {
+      background: url("../images/exit_load.png") no-repeat 0.26667rem;
+      background-size: 0.48rem 0.48rem; }
+
+.resetPwd {
+  margin-top: 0.66667rem; }
+  .resetPwd .registBtn {
+    margin-top: 0.93333rem; }
+  .resetPwd .formInput {
+    margin-top: 0.06667rem; }
+    .resetPwd .formInput .iptCon {
+      color: #454545; }
+    .resetPwd .formInput .iptTitle.confirmPwd {
+      font-size: 0.26667rem; }
+
+.cashHeader {
+  height: 2.66667rem;
+  background: #404244;
+  text-align: center; }
+  .cashHeader .allFunds {
+    margin-top: 0.64rem; }
+  .cashHeader .allFunds, .cashHeader .fundsDesc {
+    color: #D5B272;
+    font-size: 0.45333rem;
+    font-family: PF;
+    line-height: 0.66667rem;
+    font-weight: bold; }
+  .cashHeader .fundsDesc {
+    font-size: 0.4rem;
+    line-height: 0.61333rem;
+    color: #8d8d8f; }
+
+.cashCenter {
+  width: 100%;
+  height: 3.46667rem;
+  background: #fff; }
+  .cashCenter .wrap {
+    width: 8.82667rem;
+    overflow: hidden;
+    margin: 0 auto; }
+    .cashCenter .wrap .tle {
+      font-size: 0.45333rem;
+      height: 1.25333rem;
+      line-height: 1.25333rem;
+      color: #454545;
+      text-align: left;
+      font-family: PF; }
+    .cashCenter .wrap .input {
+      border: none;
+      width: 100%;
+      height: 1.32rem;
+      background: #f0f0f0;
+      border-radius: 0.06667rem;
+      font-size: 0.37333rem;
+      color: #454545;
+      text-indent: 0.26667rem; }
+    .cashCenter .wrap .tleBot {
+      height: 0.88rem;
+      text-align: right;
+      font-family: PF;
+      line-height: 0.88rem;
+      font-size: 0.37333rem;
+      color: #454545; }
+
+.bindMobile {
+  height: 1.06667rem;
+  width: 8.93333rem;
+  color: #8d8d8f;
+  font-size: 0.30667rem;
+  text-align: left;
+  line-height: 1.06667rem;
+  margin: 0.02667rem auto; }
+
+.bankLogo {
+  width: 2.66667rem;
+  height: 1.06667rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right; }
+  .bankLogo img {
+    height: 100%; }
+
+.selBankBox {
+  display: none;
+  position: fixed;
+  width: 8rem;
+  height: 9.94667rem;
+  z-index: 11;
+  left: 0.85333rem; }
+  .selBankBox.active {
+    display: block; }
+  .selBankBox .selBankWrap {
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.08rem;
+    height: 8.32rem; }
+    .selBankBox .selBankWrap .selBankList {
+      width: 100%;
+      height: 7.73333rem;
+      overflow: auto;
+      margin-top: 0.26667rem; }
+      .selBankBox .selBankWrap .selBankList .bankListItem {
+        width: 100%;
+        overflow: hidden;
+        height: 1.14667rem;
+        line-height: 1.14667rem;
+        font-size: 0.37333rem;
+        color: #000; }
+        .selBankBox .selBankWrap .selBankList .bankListItem .bankPic {
+          margin-left: 0.26667rem;
+          height: 1.14667rem; }
+          .selBankBox .selBankWrap .selBankList .bankListItem .bankPic img {
+            height: 0.74667rem; }
+        .selBankBox .selBankWrap .selBankList .bankListItem .bankName {
+          letter-spacing: 2px;
+          text-align: right;
+          margin-right: 0.26667rem; }
+        .selBankBox .selBankWrap .selBankList .bankListItem:nth-child(odd) {
+          background: #eee; }
+  .selBankBox .closeThis {
+    margin-top: 0.50667rem;
+    width: 100%;
+    text-align: center; }
+    .selBankBox .closeThis .closeBtn {
+      height: 1.06667rem;
+      width: 1.06667rem; }
+
+.provList {
+  transform: translateX(100%); }
+  .provList.active {
+    transform: translateX(0); }
+
+.cityList {
+  transform: translateX(100%); }
+  .cityList.active {
+    transform: translateX(0); }
+
+.bankList {
+  transform: translateX(100%); }
+  .bankList.active {
+    transform: translateX(0); }
+  .bankList .listItem img {
+    height: 18px;
+    margin-right: 5px;
+    vertical-align: middle; }
+
+.areaList {
+  transition: all linear 300ms;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 13;
+  background: #fff; }
+  .areaList .closeThis {
+    height: 40px;
+    line-height: 40px;
+    background: #454545;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -2px 2px 2px rgba(0, 0, 0, 0.1); }
+  .areaList .listDesc {
+    height: 40px;
+    line-height: 40px;
+    background: #eee;
+    color: #888;
+    font-size: 12px;
+    width: 100%;
+    text-indent: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd; }
+  .areaList .listWrap {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 100px; }
+    .areaList .listWrap .listItem:last-child {
+      margin-bottom: 100px; }
+    .areaList .listWrap .listItem {
+      text-indent: 25px;
+      font-size: 14px;
+      color: #454545;
+      padding: 8px 0; }
+      .areaList .listWrap .listItem .icon-right {
+        color: #ddd;
+        float: right;
+        margin-right: 0.4rem; }
+      .areaList .listWrap .listItem:before {
+        position: absolute;
+        left: 20px;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        content: '';
+        height: 1px;
+        background: #eee; }
+
+.rechargeHeader {
+  position: relative; }
+  .rechargeHeader .eyes {
+    width: 0.66667rem;
+    height: 0.66667rem;
+    position: absolute;
+    top: 0.26667rem;
+    right: 0.4rem;
+    background: url("../images/close_eye.png") no-repeat center;
+    background-size: 100% 100%; }
+    .rechargeHeader .eyes.active {
+      background: url("../images/open_eye.png") no-repeat center;
+      background-size: 100% 100%; }
+
+.rechargeCenter {
+  height: auto; }
+
+.moneySelBox {
+  width: 8.82667rem;
+  margin: 0 auto;
+  overflow: hidden; }
+  .moneySelBox .item {
+    width: 4rem;
+    height: 1.29333rem;
+    line-height: 1.29333rem;
+    box-sizing: border-box;
+    font-family: PF;
+    font-size: 0.42667rem;
+    text-align: center;
+    float: left;
+    margin-bottom: 0.53333rem;
+    background: #f0f0f0;
+    border-radius: 0.06667rem; }
+    .moneySelBox .item:nth-child(odd) {
+      margin-right: 0.8rem; }
+    .moneySelBox .item.active {
+      border: 1px solid #D5B272;
+      color: #D5B272;
+      background: #fff; }
+
+.rechargeBot {
+  width: 8.82667rem;
+  height: auto;
+  margin: 0 auto; }
+  .rechargeBot .wrap {
+    width: 100%; }
+  .rechargeBot .cashTypeSel {
+    background: url("../images/bank_logo.png") no-repeat left;
+    background-size: 0.93333rem auto;
+    height: 0.93333rem;
+    font-size: 0.4rem;
+    color: #454545;
+    text-align: left;
+    text-indent: 1.12rem;
+    line-height: 0.93333rem;
+    font-family: PF;
+    margin-bottom: 0.34667rem; }
+    .rechargeBot .cashTypeSel .selIdon {
+      width: 2rem;
+      height: 0.93333rem;
+      float: right;
+      border-radius: 0.06667rem;
+      background: #D5B272 url("../images/check.png") no-repeat center;
+      background-size: 0.48rem auto; }
+
+.tableHeader {
+  width: 100%;
+  height: 1.33333rem;
+  overflow: hidden;
+  background: #404244;
+  position: fixed;
+  top: 0;
+  left: 0; }
+  .tableHeader .item {
+    transition: all linear 200ms;
+    font-family: PF;
+    position: absolute;
+    text-align: center;
+    width: 2.90667rem;
+    float: left;
+    font-size: 0.37333rem;
+    line-height: 0.69333rem;
+    background: #f0f0f0;
+    bottom: 0;
+    border-top-left-radius: 0.06667rem;
+    border-top-right-radius: 0.06667rem; }
+    .tableHeader .item:nth-child(1) {
+      left: 0.22667rem; }
+    .tableHeader .item:nth-child(2) {
+      left: 3.53333rem; }
+    .tableHeader .item:nth-child(3) {
+      right: 0.22667rem; }
+    .tableHeader .item.active {
+      transition: all linear 200ms;
+      font-size: 0.48rem;
+      height: 1.06667rem;
+      color: #fff;
+      line-height: 1.06667rem;
+      background: #D5B272; }
+
+.tableBody {
+  font-family: PF;
+  overflow: hidden;
+  width: 9.6rem;
+  margin: 0 auto;
+  padding-top: 1.46667rem;
+  padding-bottom: 0.13333rem; }
+  .tableBody .item {
+    position: relative;
+    width: 100%;
+    height: 2.29333rem; }
+    .tableBody .item.cash .type {
+      background: url("../images/cash_detail.png") no-repeat center;
+      background-size: 100% 100%; }
+    .tableBody .item.cash .rightInfo .money {
+      color: #D5B272; }
+    .tableBody .item.rch .type {
+      background: url("../images/recharge_detail.png") no-repeat center;
+      background-size: 100% 100%; }
+    .tableBody .item .type {
+      position: absolute;
+      width: 0.8rem;
+      height: 0.8rem;
+      left: 0.21333rem;
+      top: 0.77333rem; }
+    .tableBody .item .main {
+      float: left;
+      margin-left: 1.41333rem;
+      margin-top: 0.37333rem; }
+      .tableBody .item .main .tle {
+        color: #454545;
+        font-size: 0.34667rem;
+        line-height: 0.48rem; }
+      .tableBody .item .main .fee {
+        color: #949597;
+        line-height: 0.37333rem; }
+      .tableBody .item .main .order {
+        color: #949597;
+        line-height: 0.37333rem; }
+      .tableBody .item .main .date {
+        color: #949597;
+        line-height: 0.37333rem; }
+    .tableBody .item .rightInfo {
+      float: right;
+      margin-top: 0.32rem;
+      text-align: right; }
+      .tableBody .item .rightInfo .money {
+        font-weight: bold;
+        left: 0.6rem;
+        line-height: 0.65333rem;
+        font-size: 0.48rem;
+        color: #454545; }
+      .tableBody .item .rightInfo .status {
+        line-height: 0.53333rem;
+        color: #454545;
+        font-size: 0.34667rem;
+        margin-top: 0.4rem; }
+      .tableBody .item .rightInfo.active .money {
+        color: #D5B272; }
+  .tableBody .bodyWrap {
+    display: none; }
+    .tableBody .bodyWrap.active {
+      display: block; }
+
+.tableBody.stock {
+  font-family: PF; }
+  .tableBody.stock .bodyWrap .item {
+    height: auto; }
+    .tableBody.stock .bodyWrap .item.add .top .proType .profit {
+      background: #D5B272; }
+    .tableBody.stock .bodyWrap .item.add .top .money {
+      color: #D5B272; }
+    .tableBody.stock .bodyWrap .item.rde .top .proType .profit {
+      background: #cc5656; }
+    .tableBody.stock .bodyWrap .item.rde .top .money {
+      color: #454545; }
+    .tableBody.stock .bodyWrap .item .top {
+      height: 1.06667rem;
+      overflow: hidden;
+      position: relative; }
+      .tableBody.stock .bodyWrap .item .top .proType {
+        color: #545454;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 0.37333rem;
+        line-height: 1.06667rem;
+        width: 3.12rem;
+        float: left; }
+        .tableBody.stock .bodyWrap .item .top .proType .profit {
+          font-size: 0.26667rem;
+          color: #fff;
+          width: 0.4rem;
+          height: 0.4rem;
+          line-height: 0.4rem;
+          text-align: center;
+          border-radius: 50%;
+          display: inline-block; }
+      .tableBody.stock .bodyWrap .item .top .money {
+        font-size: 0.42667rem;
+        text-align: right;
+        line-height: 1.06667rem;
+        position: absolute;
+        top: 0;
+        font-weight: bold;
+        right: 0; }
+      .tableBody.stock .bodyWrap .item .top .openBtn {
+        color: #848587;
+        font-size: 0.29333rem;
+        line-height: 1.06667rem;
+        margin: 0 auto;
+        text-align: center;
+        width: 3.49333rem; }
+        .tableBody.stock .bodyWrap .item .top .openBtn .icon-shang {
+          display: none; }
+        .tableBody.stock .bodyWrap .item .top .openBtn .iconfont {
+          font-size: 0.24rem; }
+    .tableBody.stock .bodyWrap .item .verObj {
+      color: #848587;
+      font-size: 0.29333rem;
+      line-height: 0.37333rem;
+      width: 100%;
+      height: auto;
+      overflow: hidden; }
+      .tableBody.stock .bodyWrap .item .verObj .item {
+        padding-bottom: 0.4rem;
+        width: 30%;
+        overflow: hidden;
+        float: left; }
+        .tableBody.stock .bodyWrap .item .verObj .item:nth-child(2) {
+          width: 50%; }
+        .tableBody.stock .bodyWrap .item .verObj .item:last-child {
+          width: 20%; }
+        .tableBody.stock .bodyWrap .item .verObj .item table {
+          width: 100%; }
+          .tableBody.stock .bodyWrap .item .verObj .item table tr {
+            height: 0.45333rem; }
+            .tableBody.stock .bodyWrap .item .verObj .item table tr td:nth-child(1) {
+              text-align: right; }
+            .tableBody.stock .bodyWrap .item .verObj .item table tr.dateInfo {
+              display: none;
+              text-align: right; }
+              .tableBody.stock .bodyWrap .item .verObj .item table tr.dateInfo td span {
+                width: 1.06667rem;
+                overflow: visible;
+                white-space: nowrap;
+                display: block; }
+
+.indexHead {
+  font-family: PF;
+  width: 100%;
+  height: 2.13333rem;
+  overflow: hidden;
+  background: #404244; }
+  .indexHead .con {
+    position: relative;
+    height: 1.38667rem;
+    width: 9.54667rem;
+    margin: 0.33333rem auto; }
+    .indexHead .con .uImg {
+      height: 1.36rem;
+      width: 1.36rem;
+      display: block;
+      float: left; }
+    .indexHead .con .fundsInfo {
+      overflow: hidden;
+      height: 1.36rem;
+      float: left;
+      margin-left: 0.26667rem; }
+      .indexHead .con .fundsInfo .fundsNum {
+        font-size: 0.48rem;
+        color: #D5B272;
+        line-height: 0.72rem; }
+        .indexHead .con .fundsInfo .fundsNum i {
+          width: 0.53333rem;
+          height: 0.53333rem;
+          background: url("../images/open_eye.png") no-repeat center;
+          background-size: 100% 100%;
+          margin-top: 0.06667rem;
+          margin-left: 0.24rem; }
+          .indexHead .con .fundsInfo .fundsNum i.close {
+            background: url("../images/close_eye.png") no-repeat center;
+            background-size: 100% 100%; }
+      .indexHead .con .fundsInfo .fundsMs {
+        font-size: 0.4rem;
+        color: #89898b;
+        line-height: 0.66667rem; }
+    .indexHead .con .toUc {
+      float: right;
+      line-height: 1.38667rem;
+      font-size: 0.4rem;
+      color: #89898b;
+      text-align: right; }
+
+.chartTable {
+  font-family: PF;
+  position: relative;
+  width: 100%;
+  height: 0.8rem;
+  background: #404244; }
+  .chartTable .tableItem {
+    position: absolute;
+    bottom: 0;
+    width: 3.97333rem;
+    height: 0.56rem;
+    line-height: 0.56rem;
+    color: #454545;
+    background: #f0f0f0;
+    border-top-left-radius: 0.06667rem;
+    border-top-right-radius: 0.06667rem;
+    overflow: hidden; }
+    .chartTable .tableItem:nth-child(1) {
+      left: 0.74667rem; }
+    .chartTable .tableItem:nth-child(2) {
+      right: 0.74667rem; }
+    .chartTable .tableItem.down .proName .mInfo {
+      background: url("../images/down_icon.png") no-repeat center;
+      background-size: 0.66667rem 0.66667rem; }
+    .chartTable .tableItem.active {
+      background: #D5B272;
+      line-height: 0.8rem;
+      color: #fff;
+      height: 0.8rem; }
+      .chartTable .tableItem.active .proName .textInfo {
+        display: inline-block; }
+        .chartTable .tableItem.active .proName .textInfo .pName {
+          font-size: 0.34667rem; }
+        .chartTable .tableItem.active .proName .textInfo .pInfo {
+          font-size: 0.45333rem; }
+    .chartTable .tableItem .proName {
+      vertical-align: middle;
+      height: 100%;
+      text-align: center; }
+      .chartTable .tableItem .proName .textInfo {
+        overflow: hidden;
+        height: 100%;
+        display: inline-block; }
+        .chartTable .tableItem .proName .textInfo .pName {
+          font-size: 0.34667rem; }
+      .chartTable .tableItem .proName .mInfo {
+        display: inline-block;
+        width: 0.66667rem;
+        height: 100%;
+        background: url("../images/up_icon.png") no-repeat center;
+        background-size: 0.66667rem 0.66667rem; }
+
+.indexProIndex {
+  font-family: PF; }
+  .indexProIndex table {
+    text-align: center;
+    width: 9.6rem;
+    height: 0.74667rem;
+    line-height: 0.74667rem;
+    font-size: 0.32rem;
+    color: #8d8d8f; }
+    .indexProIndex table td {
+      width: 25%; }
+      .indexProIndex table td span.detail {
+        color: #454545;
+        font-weight: bold; }
+
+#charts {
+  width: 9.6rem;
+  height: 9.06667rem;
+  margin: 0 auto;
+  background: #404244; }
+
+.charTypeSel {
+  width: 100%;
+  height: 0.93333rem; }
+  .charTypeSel .con {
+    width: 9.6rem;
+    height: 0.66667rem;
+    line-height: 0.66667rem;
+    color: #454545;
+    background: #f0f0f0;
+    font-size: 0.29333rem;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 0.26667rem; }
+    .charTypeSel .con .flexItem {
+      width: 25%;
+      float: left; }
+      .charTypeSel .con .flexItem.active {
+        -webkit-transform: translateY(-0.26667rem);
+        height: 0.93333rem;
+        line-height: 0.93333rem;
+        border-top-left-radius: 0.06667rem;
+        border-top-right-radius: 0.06667rem;
+        color: #fff;
+        background: #D5B272;
+        font-size: 0.34667rem; }
+
+.idxOprBtn {
+  width: 8.50667rem;
+  margin: 0.26667rem auto;
+  height: 0.90667rem;
+  line-height: 0.90667rem;
+  font-size: 0.50667rem;
+  letter-spacing: 0.05333rem;
+  text-align: center;
+  color: #fff;
+  font-family: PF; }
+  .idxOprBtn .btnItem {
+    border-radius: 0.08rem;
+    width: 3.96rem;
+    height: 0.90667rem;
+    background: #cc6660;
+    float: left; }
+    .idxOprBtn .btnItem.lookDown {
+      float: right;
+      background: #4fac90; }
+
+.timeTips {
+  font-family: PF;
+  color: #8d8d8f;
+  font-size: 0.24rem;
+  width: 9.6rem;
+  margin: 0 auto; }
+
+.tipsAlert {
+  display: none;
+  font-family: PF;
+  width: 8.50667rem;
+  height: 5.14667rem;
+  margin: 0 auto;
+  background: #fff;
+  z-index: 11;
+  position: fixed;
+  border-radius: 0.08rem; }
+  .tipsAlert .con {
+    width: 100%;
+    height: 100%;
+    position: relative; }
+    .tipsAlert .con .linDang {
+      position: absolute;
+      top: -0.68rem;
+      width: 1.36rem;
+      height: 1.36rem;
+      left: 3.57333rem; }
+    .tipsAlert .con .closeIcon {
+      width: 0.64rem;
+      height: 0.64rem;
+      top: -0.32rem;
+      position: absolute;
+      right: -0.32rem; }
+    .tipsAlert .con .textCon {
+      color: #222;
+      font-size: 0.34667rem;
+      line-height: 0.56rem;
+      text-align: justify;
+      padding-top: 0.82667rem;
+      padding-bottom: 0.26667rem;
+      padding-left: 0.4rem;
+      padding-right: 0.4rem; }
+
+.lookUpDownOpr {
+  font-family: PF;
+  -webkit-transition: all ease 200ms;
+  -webkit-transform: translateY(100%);
+  width: 100%;
+  height: 10.29333rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 11;
+  background: none; }
+  .lookUpDownOpr.active {
+    -webkit-transform: translateY(0); }
+  .lookUpDownOpr .con {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden; }
+    .lookUpDownOpr .con .changeTable {
+      height: 0.8rem;
+      width: 8.50667rem;
+      margin: 0 auto;
+      position: relative; }
+      .lookUpDownOpr .con .changeTable .item {
+        position: absolute;
+        bottom: 0;
+        border-top-left-radius: 0.08rem;
+        border-top-right-radius: 0.08rem;
+        letter-spacing: 0.05333rem;
+        width: 3.96rem;
+        height: 0.56rem;
+        line-height: 0.56rem;
+        font-size: 0.37333rem;
+        text-align: center;
+        background: #f0f0f0;
+        color: #454545; }
+        .lookUpDownOpr .con .changeTable .item:nth-child(1) {
+          left: 0; }
+        .lookUpDownOpr .con .changeTable .item:nth-child(2) {
+          right: 0; }
+        .lookUpDownOpr .con .changeTable .item img {
+          height: 0.53333rem; }
+        .lookUpDownOpr .con .changeTable .item.active {
+          height: 0.8rem;
+          line-height: 0.8rem;
+          color: #fff;
+          font-size: 0.48rem;
+          background: #D5B272; }
+    .lookUpDownOpr .con .oprCon {
+      overflow: hidden;
+      width: 100%;
+      height: 9.49333rem;
+      background: #fff; }
+      .lookUpDownOpr .con .oprCon .selArea {
+        margin-top: 0.64rem;
+        width: 100%;
+        height: 0.90667rem;
+        line-height: 0.90667rem;
+        font-size: 0.37333rem;
+        color: #454545;
+        text-align: center;
+        overflow: hidden; }
+        .lookUpDownOpr .con .oprCon .selArea .selDesc {
+          width: 2.4rem;
+          float: left;
+          text-align: right; }
+        .lookUpDownOpr .con .oprCon .selArea .selItem {
+          font-weight: bold;
+          border-radius: 0.08rem;
+          float: left;
+          box-sizing: border-box;
+          height: 0.90667rem;
+          width: 2rem;
+          background: #f0f0f0;
+          text-align: center;
+          margin-left: 0.48rem; }
+          .lookUpDownOpr .con .oprCon .selArea .selItem.active {
+            background: none;
+            color: #D5B272;
+            border: 1px solid #D5B272; }
+      .lookUpDownOpr .con .oprCon .orderNumTips {
+        width: 9.6rem;
+        line-height: 0.8rem;
+        color: #8d8d8f;
+        text-align: right;
+        font-size: 0.34667rem;
+        margin: 0 auto; }
+      .lookUpDownOpr .con .oprCon .ticketSel {
+        margin: 0 auto;
+        width: 9.6rem;
+        height: 0.93333rem;
+        line-height: 0.93333rem;
+        color: #454545;
+        text-align: center; }
+        .lookUpDownOpr .con .oprCon .ticketSel .theTips {
+          width: 7.54667rem; }
+        .lookUpDownOpr .con .oprCon .ticketSel .selItem {
+          width: 1.98667rem;
+          height: 0.93333rem;
+          border-radius: 0.08rem;
+          background: #f0f0f0 url("../images/uncheck.png") no-repeat center;
+          background-size: 0.53333rem auto; }
+          .lookUpDownOpr .con .oprCon .ticketSel .selItem.active {
+            background: #D5B272 url("../images/check.png") no-repeat center;
+            background-size: 0.53333rem auto; }
+      .lookUpDownOpr .con .oprCon .oprBtn {
+        margin: 1.33333rem auto 0 auto;
+        width: 8.50667rem;
+        height: 0.90667rem;
+        line-height: 0.90667rem;
+        font-size: 0.50667rem;
+        letter-spacing: 0.05333rem;
+        text-align: center; }
+        .lookUpDownOpr .con .oprCon .oprBtn .item {
+          width: 3.94667rem;
+          border-radius: 0.08rem;
+          background: #f0f0f0;
+          color: #454545; }
+          .lookUpDownOpr .con .oprCon .oprBtn .item.active {
+            background: #D5B272;
+            color: #fff; }
+      .lookUpDownOpr .con .oprCon .botTips {
+        margin: 0 auto;
+        width: 9.6rem;
+        text-align: left;
+        color: #8d8d8f;
+        font-size: 0.26667rem;
+        line-height: 0.90667rem; }

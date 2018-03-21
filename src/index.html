@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BoLiYa</title>
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit"/>
+  <meta name="force-rendering" content="webkit"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="full-screen" content="yes"/>
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="360-fullscreen" content="true"/>
+  <meta name="screen-orientation" content=""/>
+  <meta name="x5-orientation" content="">
+  <meta name="browsermode" content="application">
+  <meta name="x5-page-mode" content="app">
+  <script src="./js/plugin/flexible.css.js"></script>
+  <script src="./js/plugin/flexible.ios.js"></script>
+  <link href="./css/swiper.min.css" rel="stylesheet">
+  <link href="./css/reset.css" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="box ovhd">
+  <div class="indexHead">
+    <div class="con">
+      <img src="./images/logo.png" class="uImg feedBtn" alt="">
+      <div class="fundsInfo">
+        <div class="fundsNum ovhd">
+          <span class="numCom fl">7000.00</span>
+          <i class="imgEye fl feedBtn">
+
+          </i>
+        </div>
+        <p class="fundsMs">
+          总资产(￥)
+        </p>
+      </div>
+      <div class="toUc feedBtn">
+        用户中心&nbsp; >
+      </div>
+    </div>
+  </div>
+  <div class="chartTable">
+    <div class="tableItem lCon active down">
+      <div class="proName">
+        <div class="textInfo clear ks-clear">
+          <span class="pName">黄金板块</span>
+          <span class="pInfo">25125</span>
+        </div>
+        <i class="mInfo ks-clear clear"></i>
+      </div>
+    </div>
+    <div class="tableItem rCon">
+      <div class="proName">
+        <div class="textInfo">
+          <span class="pName">黄金板块</span>
+          <span class="pInfo">25125</span>
+        </div>
+        <i class="mInfo"></i>
+      </div>
+    </div>
+  </div>
+  <div class="indexProIndex">
+    <table>
+      <tr>
+        <td>
+          昨收:
+          <span class="detail">2469</span>
+        </td>
+        <td>
+          昨收:
+          <span class="detail">2469</span>
+        </td>
+        <td>
+          昨收:
+          <span class="detail">2469</span>
+        </td>
+        <td>
+          昨收:
+          <span class="detail">2469</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="grayBar"></div>
+  <div id="charts">
+
+  </div>
+  <div class="charTypeSel">
+    <div class="con">
+      <div class="flexItem active feedBtn">今日走势</div>
+      <div class="flexItem feedBtn">15分钟K线</div>
+      <div class="flexItem feedBtn">30分钟K线</div>
+      <div class="flexItem feedBtn">60分钟K线</div>
+    </div>
+  </div>
+  <div class="idxOprBtn">
+    <div class="btnItem lookUp feedBtn" onclick="showBuyBox();">看涨</div>
+    <div class="btnItem lookDown feedBtn">看跌</div>
+  </div>
+  <div class="timeTips">
+    <p class="timeTCon tc">交易时间：周一~周五8:00~16:00周日4:30~7:00休市结算</p>
+    <p class="timeTConWarm tl">温馨提示：投资有风险，入市需谨慎！</p>
+  </div>
+</div>
+
+<div class="tipsAlert">
+  <div class="con">
+    <img src="./images/clock_icon.png" class="linDang" alt="">
+    <img src="./images/close_icon.png" class="closeIcon feedBtn"  alt="">
+    <div class="textCon">
+      <p>
+        关于交易所该产品退市通知：
+      </p>
+      <p style="text-indent: 2em;">
+        尊敬的各位投资者和各级代理商，为了更好的服务金融市场，本产品即将进行升级版本调试，经金融办相关领导决定，自2018年3月12日起旧版本暂进入退市流程，请投资者及时出金，出金功能一切正常，感谢投资者和各级代理商的支持与信任！
+      </p>
+    </div>
+  </div>
+</div>
+<div class="lookUpDownOpr">
+  <div class="con">
+    <div class="changeTable">
+      <div class="item fl active feedBtn">
+        <img src="./images/up_icon.png" alt="">
+        看涨&nbsp;
+      </div>
+      <div class="item fr feedBtn">
+        <img src="./images/down_icon.png" alt="">
+        看跌&nbsp;
+      </div>
+    </div>
+    <div class="oprCon">
+      <div class="selArea earnestSel">
+        <div class="selDesc">
+          合约定金:
+        </div>
+        <div class="selItem active feedBtn">100</div>
+        <div class="selItem feedBtn">1000</div>
+        <div class="selItem feedBtn">5000</div>
+      </div>
+      <div class="selArea stopSel">
+        <div class="selDesc">
+          止盈/止损点:
+        </div>
+        <div class="selItem active feedBtn">4</div>
+        <div class="selItem feedBtn">7</div>
+        <div class="selItem feedBtn">10</div>
+      </div>
+      <div class="selArea">
+        <div class="selDesc">
+          数量:
+        </div>
+        <div class="selItem feedBtn" onclick="changTradAmt(!1);">-</div>
+        <div class="selItem" id="nums" style="background: none;color: #e1b567;font-size: 16px;font-weight: bold;">1</div>
+        <div class="selItem feedBtn" onclick="changTradAmt(1);">+</div>
+      </div>
+      <div class="orderNumTips">最大下单数：10</div>
+      <div class="ticketSel ovhd">
+        <div class="theTips fl">用券交易：共 <span class="ticketNum">99</span>张可用，一次最多使用一张</div>
+        <div class="selItem feedBtn fr"></div>
+      </div>
+      <div class="oprBtn">
+        <div class="item fl feedBtn">取消</div>
+        <div class="item active fr feedBtn">确定</div>
+      </div>
+      <div class="botTips">温馨提示：收盘对于未成交的订单将自动平仓，合约定金全额返还</div>
+    </div>
+  </div>
+</div>
+<!--加载小动画-->
+<div class="spinner" id="spinner">
+  <div class="rect1"></div>
+  <div class="rect2"></div>
+  <div class="rect3"></div>
+  <div class="rect4"></div>
+  <div class="rect5"></div>
+</div>
+<script src="./js/lib/zepto.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/lib/myModule.js"></script>
+<script src="./js/global.js"></script>
+<script src="./js/index.js"></script>
+<script>
+  $(function(){
+    $("#spinner").remove();
+  });
+</script>
+</body>
+</html>
