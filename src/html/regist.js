@@ -1,9 +1,96 @@
 
-
 $(function () {
   init();
 });
 
-function init() {
+var registData = {
+  mobile:'',
+  wxAct:'',
+  password:'',
+  prtCode:'',
+  verCode:''
+};
 
+function init() {
+  var timer = 90;
+  var interVal = null;
+  $('#getVerCode').click(function () {
+    getVerCode();
+  });
+
+  //获取验证码
+  function getVerCode() {
+    var mobile = $.trim($('#mobile').val());
+    if(!mobile){
+      showTips('请输入手机号');
+      return;
+    }else if(!validate.checkMobile(mobile)){
+      showTips('手机号格式有误');
+      return;
+    }
+    if(!canGetVcode){
+      showTips('请稍后再试');
+      return;
+    }
+    ajaxHelper.get(getUrl('sms/sendRegSms'),{"mobile":mobile},function(res){
+      if(!res.success){
+        showTips(res.msg)
+      }else {
+        vCodeCount("#getVerCode",interVal,timer);
+        showTips('验证码发送成功');
+      }
+    })
+  }
 }
+
+function resetForm(){
+  $('#mobile').val('');
+  $('#wxAct').val('');
+  $('#password').val('');
+  $('#prtCode').val('');
+  $('#verCode').val('');
+};
+
+//提交数据
+function subData() {
+  var mobile = $.trim($('#mobile').val());
+  var wxAct = $.trim($('#wxAct').val());
+  var password = $.trim($('#password').val());
+  var prtCode = $.trim($('#prtCode').val());
+  var verCode = $.trim($('#verCode').val());
+  if(!mobile){
+    showTips('请输入手机号')
+    return;
+  }else if(!wxAct){
+    showTips('请输入微信号');
+    return;
+  }else if(!password){
+    showTips('请输入登录密码')
+    return;
+  }else if(!verCode){
+    showTips('请输短信验证码')
+    return;
+  }else if(!validate.checkMobile(mobile)){
+    showTips('请输入正确的手机号码')
+    return;
+  }
+  registData.mobile = mobile;
+  registData.wxAct = wxAct;
+  registData.password = password;
+  registData.prtCode = prtCode;
+  registData.verCode = verCode;
+
+  ajaxHelper.post(getUrl('regist'),registData,function (res) {
+    if(res.success){
+      showTips('注册成功','success');
+      resetForm();
+      oauth.setToken(res.obj.accessToken);
+      setTimeout(function () {
+        openLocal('/index.html');
+      },2000);
+    }else{
+      showTips(res.msg);
+    }
+  })
+}
+

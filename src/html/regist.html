@@ -31,24 +31,24 @@
   <div class="registForm conWrap ovhd">
     <div class="formInput blackBorder">
       <div class="iptTitle">手机号</div>
-      <input class="iptCon" type="text" placeholder="请输入手机号"/>
+      <input class="iptCon" type="text" id="mobile" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入手机号"/>
     </div>
     <div class="formInput blackBorder">
       <div class="iptTitle">微信号</div>
-      <input class="iptCon" type="text" placeholder="请输入微信号"/>
+      <input class="iptCon" type="text" id="wxAct" placeholder="请输入微信号"/>
     </div>
     <div class="formInput blackBorder">
       <div class="iptTitle">密码</div>
-      <input class="iptCon" type="text" placeholder="请输入登录密码"/>
+      <input class="iptCon" type="password" id="password" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入登录密码"/>
     </div>
     <div class="formInput blackBorder">
       <div class="iptTitle">推荐码</div>
-      <input class="iptCon" type="text" placeholder="请输入推荐码(可选)"/>
+      <input class="iptCon" type="text" id="prtCode" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入推荐码(可选)"/>
     </div>
     <div class="formInput blackBorder">
       <div class="iptTitle">验证码</div>
-      <input class="iptCon" type="text" placeholder="请输入手验证码"/>
-      <div class="leftBtn feedBtn">获取验证码</div>
+      <input class="iptCon" type="text" id="verCode" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入手验证码"/>
+      <div class="leftBtn feedBtn" id="getVerCode">获取验证码</div>
     </div>
     <div class="btn feedBtn registBtn" onclick="openLocal('/html/logIn.html')">
       立即注册
