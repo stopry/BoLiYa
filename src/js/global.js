@@ -698,13 +698,18 @@ var FormUtil = {
   }
 };
 var validate = {
-  checkMobile: function (str) { //手机正则
-    var re = /^(13[0-9]|15[0-9]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
-    if (re.test(str)) {
+  //验证中文姓名
+  checkChinaName:function (name) {
+    var re = /^([\u4E00-\u9FFF]|\w){3,11}$/;
+    if (re.test(name)) {
       return true;
     } else {
       return false;
     }
+  },
+  checkMobile: function (str) { //手机正则
+    var re = /^(13[0-9]|15[0-9]|17[013678]|18[0-9]|14[57])[0-9]{8}$/;
+    /^([\u4E00-\u9FFF]|\w){3,11}$/
   },
   checkPwd: function (pwd) { //密码正则,由字母开头
     var re = /^[a-zA-Z][a-zA-Z0-9_]{5,19}$/;
