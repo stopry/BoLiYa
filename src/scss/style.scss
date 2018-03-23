@@ -811,6 +811,7 @@ $fClr:#8d8d8f;//辅助色
 }
 //资金明细
 .tableHeader{
+  z-index: 8;
   width: 100%;
   height: rem(100);
   overflow: hidden;

@@ -30,19 +30,19 @@
   <header class="cashHeader ovhd w10 rechargeHeader">
 
     <div class="allFunds">6000.00</div>
-    <div class="fundsDesc">可提现金额(¥)</div>
+    <div class="fundsDesc">总资产(¥)</div>
     <div data-isShow="1" class="eyes feedBtn active"></div>
   </header>
   <div class="cashCenter ovhd rechargeCenter">
     <div class="wrap">
-      <div class="tle">提现金额</div>
-      <div class="moneySelBox">
+      <div class="tle">充值金额</div>
+      <div class="moneySelBox" id="moneySelBox">
         <div class="item active feedBtn">4998</div>
         <div class="item feedBtn">2998</div>
         <div class="item feedBtn">1998</div>
         <div class="item feedBtn">998</div>
       </div>
-      <input class="input" type="text" placeholder="请输入提现金额"/>
+      <input class="input" type="text" id="rchMoney" value="4998" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入提现金额"/>
       <div class="tleBot"> <span class="fee"></span></div>
     </div>
   </div>

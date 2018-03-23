@@ -14,6 +14,18 @@ function init() {
   earnestSel();
   stopSel();
   ticketSel();
+
+  // $(".imgEye").click(function () {
+  //   $(this).toggleClass('active');
+  //   var isHide = $(this).hasClass('active');
+  //   if(!isHide){
+  //     $(".showMoney").hide();
+  //     $(".hideMoney").show();
+  //   }else{
+  //     $(".showMoney").show();
+  //     $(".hideMoney").hide();
+  //   }
+  // });
 }
 
 //商品类型切换
