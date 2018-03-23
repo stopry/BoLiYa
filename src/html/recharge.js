@@ -10,6 +10,17 @@ var rchData = {
 
 function init() {
 
+  $(".eyes").click(function () {
+    $(this).toggleClass('active');
+    var isHide = $(this).hasClass('active');
+    if(!isHide){
+      $(".showMoney").hide();
+      $(".hideMoney").show();
+    }else{
+      $(".showMoney").show();
+      $(".hideMoney").hide();
+    }
+  });
 }
 
 //金额数量选择

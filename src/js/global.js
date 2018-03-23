@@ -8,8 +8,8 @@ apiHost = 'http://api.zjiayuan.com';
 //跳转脚本
 function openLocal(uri) {
   uri = uri||'/';
-  // window.location.href = uri;
-  window.location.href = '/BoLiYa/src'+uri;
+  window.location.href = uri;
+  // window.location.href = '/BoLiYa/src'+uri;
 }
 //判断是否是pc
 function isPc() {

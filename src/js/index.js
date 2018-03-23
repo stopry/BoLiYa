@@ -4,6 +4,13 @@ $(function () {
 
 //页面初始化方法
 function init() {
+
+  var h = $(window).height();
+  var h1 = $('#t_top').height();
+  var h2 = $('#b_bot').height();
+  var ch = h-h1-h2-30;
+  $('#charts').height(ch);
+
   changeProType();
   changeChartType();
   objVerticalCenter('.tipsAlert');
@@ -15,17 +22,17 @@ function init() {
   stopSel();
   ticketSel();
 
-  // $(".imgEye").click(function () {
-  //   $(this).toggleClass('active');
-  //   var isHide = $(this).hasClass('active');
-  //   if(!isHide){
-  //     $(".showMoney").hide();
-  //     $(".hideMoney").show();
-  //   }else{
-  //     $(".showMoney").show();
-  //     $(".hideMoney").hide();
-  //   }
-  // });
+  $(".imgEye").click(function () {
+    $(this).toggleClass('close');
+    var isHide = $(this).hasClass('close');
+    if(isHide){
+      $(".showMoney").hide();
+      $(".hideMoney").show();
+    }else{
+      $(".showMoney").show();
+      $(".hideMoney").hide();
+    }
+  });
 }
 
 //商品类型切换
@@ -127,7 +134,6 @@ function createChart(proId, kType) {
   } else {
     chart = CandleChart.createNew(proId, kType);//K线图
   }
-
   chart.createChart();
   GlobalAutoChartM();
   chart.flush()
@@ -138,6 +144,5 @@ function GlobalAutoChartM() {
   var h1 = $('#t_top').height();
   var h2 = $('#b_bot').height();
   var ch = h-h1-h2-30;
-  $('#charts').height(ch);
-  chart.setChartHeight(ch-h*0.11);
+  chart.setChartHeight(ch-h*0.08);
 }

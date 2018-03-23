@@ -31,7 +31,8 @@ var MinuteChart = {
         grid: [{
           left: '1%',
           right: '1%',
-          top: '8%',
+          top: '5%',
+          bottom:'5%',
           height: '249px'
         }],
         xAxis: {
@@ -162,7 +163,8 @@ var MinuteChart = {
         grid:[{
           left: '1%',
           right: '1%',
-          top: '8%',
+          top: '5%',
+          bottom:'5%',
           height: h
         }]
       });

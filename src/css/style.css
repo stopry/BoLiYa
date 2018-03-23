@@ -1078,6 +1078,9 @@ input:disabled, input[disabled] {
         font-size: 0.48rem;
         color: #D5B272;
         line-height: 0.72rem; }
+        .indexHead .con .fundsInfo .fundsNum .numCom .showMoney, .indexHead .con .fundsInfo .fundsNum .numCom .hideMoney {
+          width: 1.86667rem;
+          display: inline-block; }
         .indexHead .con .fundsInfo .fundsNum i {
           width: 0.53333rem;
           height: 0.53333rem;
@@ -1129,6 +1132,8 @@ input:disabled, input[disabled] {
       color: #fff;
       height: 0.8rem; }
       .chartTable .tableItem.active .proName .textInfo {
+        height: 0.8rem;
+        line-height: 0.8rem;
         display: inline-block; }
         .chartTable .tableItem.active .proName .textInfo .pName {
           font-size: 0.34667rem; }
@@ -1139,8 +1144,9 @@ input:disabled, input[disabled] {
       height: 100%;
       text-align: center; }
       .chartTable .tableItem .proName .textInfo {
+        line-height: 0.56rem;
         overflow: hidden;
-        height: 100%;
+        height: 0.56rem;
         display: inline-block; }
         .chartTable .tableItem .proName .textInfo .pName {
           font-size: 0.34667rem; }

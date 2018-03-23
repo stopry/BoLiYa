@@ -1077,6 +1077,12 @@ $fClr:#8d8d8f;//辅助色
         font-size: rem(36);
         color: $priClr;
         line-height: rem(54);
+        .numCom{
+          .showMoney,.hideMoney{
+            width: rem(140);
+            display: inline-block;
+          }
+        }
         i{
           width: rem(40);
           height: rem(40);
@@ -1142,6 +1148,8 @@ $fClr:#8d8d8f;//辅助色
       .proName {
         //margin-top: rem(-18);
         .textInfo {
+          height: rem(60);
+          line-height: rem(60);
           display: inline-block;
           .pName {
             font-size: rem(26);
@@ -1156,9 +1164,9 @@ $fClr:#8d8d8f;//辅助色
       vertical-align: middle;
       height: 100%;
       .textInfo{
+        line-height: rem(42);
         overflow: hidden;
-        //padding-bottom: rem(20);
-        height: 100%;
+        height: rem(42);
         display: inline-block;
         .pName{
           font-size: rem(26);
