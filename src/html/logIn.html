@@ -33,13 +33,13 @@
   <div class="registForm conWrap ovhd logIn">
     <div class="formInput blackBorder">
       <div class="iptTitle">手机号</div>
-      <input class="iptCon" type="text" id="mobile" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " name="mobile" placeholder="请输入手机号"/>
+      <input class="iptCon" type="text" id="mobile" value="13855418476" autocomplete="off" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " name="mobile" placeholder="请输入手机号"/>
     </div>
     <div class="formInput blackBorder">
       <div class="iptTitle">密码</div>
-      <input class="iptCon" type="password" id="password" name="password" placeholder="请输入登录密码"/>
+      <input class="iptCon" value="123456" type="password" id="password" autocomplete="off" name="password" placeholder="请输入登录密码"/>
     </div>
-    <div class="btn feedBtn registBtn" onclick="openLocal('/index.html')">
+    <div class="btn feedBtn registBtn" onclick="subData()">
       登录
     </div>
     <div class="tipsArea">

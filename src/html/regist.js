@@ -59,19 +59,21 @@ function subData() {
   var prtCode = $.trim($('#prtCode').val());
   var verCode = $.trim($('#verCode').val());
   if(!mobile){
-    showTips('请输入手机号')
+    showTips('请输入手机号');
     return;
   }else if(!wxAct){
     showTips('请输入微信号');
     return;
   }else if(!password){
-    showTips('请输入登录密码')
+    showTips('请输入登录密码');
     return;
   }else if(!verCode){
-    showTips('请输短信验证码')
+    showTips('请输短信验证码');
     return;
+  }else if(!prtCode){
+    showTips('请输入推荐码');
   }else if(!validate.checkMobile(mobile)){
-    showTips('请输入正确的手机号码')
+    showTips('请输入正确的手机号码');
     return;
   }
   registData.mobile = mobile;
@@ -80,13 +82,21 @@ function subData() {
   registData.prtCode = prtCode;
   registData.verCode = verCode;
 
-  ajaxHelper.post(getUrl('regist'),registData,function (res) {
+  var subData = {
+    "mobile": registData.mobile,
+    "nickname": registData.wxAct,
+    "pwd": registData.password,
+    "tjCode": registData.prtCode,
+    "vcode": registData.verCode
+  };
+
+  ajaxHelper.post(getUrl('oauth/regist'),subData,function (res) {
+    console.log(res);
     if(res.success){
       showTips('注册成功','success');
       resetForm();
-      oauth.setToken(res.obj.accessToken);
       setTimeout(function () {
-        openLocal('/index.html');
+        openLocal('/logIn.html');
       },2000);
     }else{
       showTips(res.msg);

@@ -20,3 +20,7 @@ function init() {
     showTips('请输入手机号');
   })
 }
+
+function getUserInfo() {
+
+};

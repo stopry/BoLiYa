@@ -10,9 +10,6 @@ var logInData = {
   password:''
 };
 function init() {
-  $(".registBtn").click(function () {
-    showTips('请输入手机号');
-  })
 
 }
 
@@ -29,7 +26,16 @@ function subData() {
   }
   logInData.mobile = mobile;
   logInData.password = password;
-  ajaxHelper.post(getUrl('oauth/token'),logInData,function (res) {
+  var subData = {
+    "captchaCode": " ",
+    "captchaValue": " ",
+    "clientId": "098f6bcd4621d373cade4e832627b4f6",
+    "login_channel": " ",
+    "password": logInData.password,
+    "userName": logInData.mobile
+  };
+  ajaxHelper.post(getUrl('oauth/token'),subData,function (res) {
+    console.log(res);
     if(res.success){
       if (typeof localStorage === 'object') {
         try {
