@@ -36,7 +36,7 @@
     <div class="wrap">
       <div class="tle">提现金额</div>
       <input class="input" type="text" id="money" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入提现金额"/>
-      <div class="tleBot">手续费 <span class="fee">6.0</span>元</div>
+      <div class="tleBot">手续费 <span class="fee" id="fee">0.0</span>元</div>
     </div>
   </div>
   <div class="grayBar"></div>
@@ -45,7 +45,7 @@
       <div class="iptTitle">银 行</div>
       <div class="iptCon selCashBank" id="bankName">请选择银行</div>
       <div class="bankLogo">
-        <img src="../images/bank_logo.png" alt="">
+        <img src="../images/bank_logo.png" id="bankLogo" alt="">
       </div>
     </div>
     <div class="formInput borderBot">
@@ -59,19 +59,19 @@
     </div>
     <div class="formInput borderBot">
       <div class="iptTitle">卡 号</div>
-      <input class="iptCon" id="cardNum" onkeyup="formatBankNo(this)" onkeydown="formatBankNo(this)" type="text" placeholder="请输入银行卡号"/>
+      <input class="iptCon" id="cardNum" autocomplete="off"  onkeyup="formatBankNo(this)" onkeydown="formatBankNo(this)" type="text" placeholder="请输入银行卡号"/>
     </div>
     <div class="formInput borderBot">
       <div class="iptTitle confirmPwd">持卡人姓名</div> <!--confirmPwd name-->
-      <input class="iptCon" type="text" id="name" placeholder="请输入持卡人姓名"/>
+      <input class="iptCon" type="text" autocomplete="off"  id="name" placeholder="请输入持卡人姓名"/>
     </div>
     <div class="formInput borderBot">
       <div class="iptTitle">身份证号</div>
-      <input class="iptCon" type="text" id="idCard" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入持卡人身份证号"/>
+      <input class="iptCon" autocomplete="off"  type="text" id="idCard" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入持卡人身份证号"/>
     </div>
     <div class="formInput borderBot">
       <div class="iptTitle ">验证码</div> <!--confirmPwd-->
-      <input class="iptCon" id="verCode" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入短信验证码"/>
+      <input class="iptCon" id="verCode" autocomplete="off" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入短信验证码"/>
       <div class="leftBtn feedBtn" id="getVerCode">获取验证码</div>
     </div>
   </div>
@@ -213,6 +213,7 @@
   <select id="s_county" name="s_county"></select>
 </div>
 <script src="../js/lib/zepto.js"></script>
+<script src="../js/layer/layer.js"></script>
 <script src="../js/lib/myModule.js"></script>
 <script src="../js/global.js"></script>
 <script src="../js/plugin/area.js"></script>

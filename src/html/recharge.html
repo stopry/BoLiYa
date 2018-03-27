@@ -29,7 +29,7 @@
 <div class="box ovhd" style="background: #fff">
   <header class="cashHeader ovhd w10 rechargeHeader">
 
-    <div class="allFunds"><span class="showMoney">7000.00</span> <span class="hideMoney" style="display: none">****</span></div>
+    <div class="allFunds"><span class="showMoney" id="showMoney">0.00</span> <span class="hideMoney" style="display: none">****</span></div>
     <div class="fundsDesc">总资产(¥)</div>
     <div data-isShow="1" class="eyes feedBtn active"></div>
   </header>
@@ -60,7 +60,7 @@
 <div class="bindMobile">
   <span class="mobile"> </span>
 </div>
-<div class="btn feedBtn registBtn" STYLE="margin-top: 0">
+<div class="btn feedBtn registBtn" onclick="subData();" STYLE="margin-top: 0">
   立即充值
 </div>
 <div class="tipsArea" style="margin-bottom: 45px">
@@ -68,6 +68,7 @@
 </div>
 
 <script src="../js/lib/zepto.js"></script>
+<script src="../js/layer/layer.js"></script>
 <script src="../js/lib/myModule.js"></script>
 <script src="../js/global.js"></script>
 <script src="./recharge.js"></script>

@@ -35,3 +35,13 @@ function getUserInfo() {
     }
   })
 };
+
+//推出登录
+function exitLogIn() {
+  layer.confirm('确认退出登录吗', {
+    btn: ['确认'] //按钮
+  }, function () {
+    oauth.clean();
+    location.href = '/html/login.html';
+  });
+}

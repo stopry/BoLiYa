@@ -146,7 +146,7 @@ function init() {
       // showTips('银行卡号格式有误');
     }else{
       var subData = {
-        "bankCode": "gsyh",
+        "bankCode": "string",
         "bankName": cashDatas.bank,
         "branch": "string",
         "cardId": cashDatas.idCard,
@@ -158,13 +158,11 @@ function init() {
         "province": cashDatas.prov,
         "vcode": cashDatas.verCode
       };
-      ajaxHelper.post(getUrl('oauth/token'),subData,function (res) {
+      ajaxHelper.post(getUrl('tran/withdrawByBank'),subData,function (res) {
         if(res.success){
-          oauth.clean();
-          resetForm();
-          showTips('登陆成功','success');
+          showTips('成功','success');
           setTimeout(function () {
-            openLocal('/html/logIn.html');
+            renderPage();
           },2000);
         }else{
           showTips(res.msg);
@@ -225,6 +223,21 @@ function getBindInfo() {
         cashDatas.prov = obj.province;
         $("#city").html(obj.city);
         cashDatas.city = obj.city;
+        $('#cardNum').val(obj.cardNo).keyup();
+        $('#idCard').val(obj.cardId);
+        $('#name').val(obj.name);
+        $("#money").val('');
+        $("#verCode").val('');
+        cashDatas.bank = obj.bankName;
+        $("#bankName").html(obj.bankName);
+        $(".selBankList .bankListItem").each(function () {
+          var bName = $(this).find('.bankName').html();
+          if(bName==obj.bankName){
+            var imgSrc = $(this).find('img').attr('src');
+            console.log(imgSrc);
+            $("#bankLogo").attr('src',imgSrc).css('width','100%').css('height','auto');
+          }
+        });
       }
     }
   })
@@ -274,3 +287,4 @@ function getVerCode() {
     })
   }
 }
+

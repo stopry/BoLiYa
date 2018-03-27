@@ -38,11 +38,11 @@ function subData() {
   }else if(newpwd!==newpwdt){
     showTips('两次新密码不一样');
   }else{
-    ajaxHelper.post(getUrl('oauth/token'),logInData,function (res) {
+    ajaxHelper.post(getUrl('tran/security/updatePwd'),resetData,function (res) {
       if(res.success){
         oauth.clean();
         resetForm();
-        showTips('登陆成功','success');
+        showTips('修改成功','success');
         setTimeout(function () {
           openLocal('/html/logIn.html');
         },2000);

@@ -9,7 +9,7 @@ var rchData = {
 };
 
 function init() {
-
+  renderPage();
   $(".eyes").click(function () {
     $(this).toggleClass('active');
     var isHide = $(this).hasClass('active');
@@ -21,12 +21,14 @@ function init() {
       $(".hideMoney").hide();
     }
   });
+  selMoneyAmt();
 }
 
 //金额数量选择
 function selMoneyAmt(){
   $("#moneySelBox .item").click(function () {
     var num = $(this).html();
+    $(this).addClass('active').siblings('.item').removeClass('active');
     $("#rchMoney").val(num);
     rchData.rchMoney = num;
   });
@@ -42,10 +44,22 @@ function subData() {
   if(!rchMoney){
     showTips('请输入充值金额')
   }else{
-
+    showTips('页面跳转中,请稍等...');
   }
 }
 
 function renderPage(){
-
+  resetForm();
+  getUserInfo();
 }
+
+function getUserInfo() {
+  ajaxHelper.get(getUrl('tran/acct/get'),null,function (res) {
+    if(!res.success){
+      showTips(res.msg);
+    }else{
+      var obj = res.obj;
+      $("#showMoney").html((obj.balance).toFixed(2));//账户余额
+    }
+  })
+};
