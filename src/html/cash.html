@@ -29,7 +29,7 @@
 <body style="background: #F0F0F0;">
 <div class="box ovhd" style="background: #fff">
   <header class="cashHeader ovhd w10">
-    <div class="allFunds">6000.00</div>
+    <div class="allFunds" id="keyong">6000.00</div>
     <div class="fundsDesc">可提现金额(¥)</div>
   </header>
   <div class="cashCenter ovhd">
@@ -52,8 +52,8 @@
       <div class="iptTitle">省份城市</div> <!--confirmPwd-->
       <div class="iptCon address toSelArea" id="address">
         <div class="areaWrap fl">
-          <span class="provice">省份</span>
-          <span class="city">城市</span>
+          <span class="provice" id="provice">省份</span>
+          <span class="city" id="city">城市</span>
         </div>
       </div>
     </div>
@@ -72,13 +72,13 @@
     <div class="formInput borderBot">
       <div class="iptTitle ">验证码</div> <!--confirmPwd-->
       <input class="iptCon" id="verCode" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入短信验证码"/>
-      <div class="leftBtn feedBtn">获取验证码</div>
+      <div class="leftBtn feedBtn" id="getVerCode">获取验证码</div>
     </div>
   </div>
 
 </div>
 <div class="bindMobile">
-  已验证手机号: <span class="mobile">138****8476</span>
+  已验证手机号: <span class="mobile" id="bindMobile">138****8476</span>
 </div>
 <div class="btn feedBtn registBtn" id="confirm" STYLE="margin-top: 0">
   立即提现

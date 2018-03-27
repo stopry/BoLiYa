@@ -50,7 +50,7 @@ function subData() {
         }
       }
       showTips('登陆成功','success');
-      oauth.setToken(res.obj.accessToken);
+      oauth.setToken(res.obj.access_token);
       setTimeout(function () {
         openLocal('/index.html');
       },2000);

@@ -31,18 +31,18 @@
     <div class="headTop blackBorder">
       <img src="../images/logo.png" class="userImg feedBtn" id="userImg" alt="">
       <div class="allFunds">
-        <div class="fundsCon"><span class="showMoney">7000.00</span> <span class="hideMoney" style="display: none">****</span> </div>
+        <div class="fundsCon"><span class="showMoney" id="all_money">0.00</span> <span class="hideMoney" style="display: none">****</span> </div>
         <div class="fundsDesc">总资产(￥)</div>
       </div>
       <div data-isShow="1" class="eyes feedBtn active"></div>
     </div>
     <div class="headBot">
       <div class="botItem fl">
-        <p class="fCon">￥60000</p>
+        <p class="fCon">￥<span id="keyong">0.00</span></p>
         <p class="fDesc">可用保证金</p>
       </div>
       <div class="botItem fr">
-        <p class="fCon">￥60000</p>
+        <p class="fCon">￥<span id="zhanyong">0.00</span></p>
         <p class="fDesc">占用保证金</p>
       </div>
     </div>
@@ -95,6 +95,7 @@
 </div>
 
 <script src="../js/lib/zepto.js"></script>
+<script src="../js/layer/layer.js"></script>
 <script src="../js/lib/myModule.js"></script>
 <script src="../js/global.js"></script>
 <script src="./userCenter.js"></script>

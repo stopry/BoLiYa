@@ -1,4 +1,5 @@
 
+var bindMobile = null;
 //表单数据
 var cashDatas = {
   money: null,//提现金额
@@ -144,7 +145,20 @@ function init() {
     }else if(!CheckBankNo(cashDatas.cardNum)){
       // showTips('银行卡号格式有误');
     }else{
-      ajaxHelper.post(getUrl('oauth/token'),logInData,function (res) {
+      var subData = {
+        "bankCode": "gsyh",
+        "bankName": cashDatas.bank,
+        "branch": "string",
+        "cardId": cashDatas.idCard,
+        "cardNo": cashDatas.cardNum,
+        "channel": "13632473925",
+        "city": cashDatas.city,
+        "money": cashDatas.money,
+        "name": cashDatas.name,
+        "province": cashDatas.prov,
+        "vcode": cashDatas.verCode
+      };
+      ajaxHelper.post(getUrl('oauth/token'),subData,function (res) {
         if(res.success){
           oauth.clean();
           resetForm();
@@ -194,5 +208,69 @@ function formatBankNo (BankNo){
 }
 //初始化页面
 function renderPage(){
+  getUserInfo();
+  getBindInfo();
+  getVerCode();
+}
 
+//获取账户绑定信息
+function getBindInfo() {
+  ajaxHelper.get(getUrl('tran/acct/getBank'),null,function (res) {
+    if(!res.success){
+      showTips(res.msg);
+    }else{
+      var obj = res.obj;
+      if(obj.cardNo!=null&&obj.branchBank!=null){
+        $("#provice").html(obj.province);
+        cashDatas.prov = obj.province;
+        $("#city").html(obj.city);
+        cashDatas.city = obj.city;
+      }
+    }
+  })
+};
+//获取用户信息
+function getUserInfo() {
+  ajaxHelper.get(getUrl('tran/acct/get'),null,function (res) {
+    if(!res.success){
+      showTips(res.msg);
+    }else{
+      var obj = res.obj;
+      $("#keyong").html((obj.usableDeposit).toFixed(2));//可用保证金
+      bindMobile = obj.mobile;
+      $("#bindMobile").html(bindMobile);
+    }
+  })
+};
+//获取验证码
+function getVerCode() {
+  var timer = 90;
+  var interVal = null;
+  $('#getVerCode').click(function () {
+    getVerCode();
+  });
+
+  //获取验证码
+  function getVerCode() {
+    // var mobile = $.trim($('#bindMobile').val());
+    // if(!mobile){
+    //   showTips('请输入手机号');
+    //   return;
+    // }else if(!validate.checkMobile(mobile)){
+    //   showTips('手机号格式有误');
+    //   return;
+    // }
+    if(!canGetVcode){
+      showTips('请稍后再试');
+      return;
+    }
+    ajaxHelper.get(getUrl('tran/sms/sendWithdrawsSms'),null,function(res){
+      if(!res.success){
+        showTips(res.msg)
+      }else {
+        vCodeCount("#getVerCode",interVal,timer);
+        showTips('验证码发送成功');
+      }
+    })
+  }
 }
