@@ -2,16 +2,37 @@ $(function () {
   init();
 });
 
+var indexInterval = null;//定时器
+
+//建仓信息
+var openDatas = {
+  "amount": 1,//购买数量
+  "buySell": "1",//买入卖出
+  "depositType": "0",//押金方式
+  "goodsCode": "HSAG10",//商品码
+  "goodsType": "HSAG",//商品类型
+  "nowPrice": 0,//当前价格
+  "stopPoint": "5"//止盈止损点
+};
+//清空建仓数据
+function clearOpenData() {
+  for(key in openDatas){
+    openDatas[key]=null;
+  }
+  console.log(openDatas);
+}
+
 //页面初始化方法
 function init() {
-
-  getUserInfo();
 
   var h = $(window).height();
   var h1 = $('#t_top').height();
   var h2 = $('#b_bot').height();
   var ch = h-h1-h2-30;
   $('#charts').height(ch);
+
+  clearOpenData();
+  loadData();
 
   changeProType();
   changeChartType();
@@ -40,15 +61,21 @@ function init() {
 //商品类型切换
 function changeProType() {
   $(".chartTable .tableItem").click(function () {
+    if($(this).hasClass('active')) return;
     $(this).addClass('active').siblings('.tableItem').removeClass('active');
     var proType = $(this).attr('goodsType');
     curPro = proType;
+    createChart(curPro,chartType);
   });
 }
 //图表类型切换
 function changeChartType() {
   $(".charTypeSel .flexItem").click(function () {
+    if($(this).hasClass('active')) return;
     $(this).addClass('active').siblings('.flexItem').removeClass('active');
+    var cType = $(this).attr('id');
+    chartType = cType;
+    createChart(curPro,chartType);
   })
 }
 
@@ -61,9 +88,18 @@ function hideTipsAlert() {
   showLayerBlack(!1);
 }
 //显示购买弹框
-function showBuyBox(){
+function showBuyBox(type){//type 看涨看跌
+  openDatas.buySell = type;
+  initBuyBox();
   showLayerBlack(1);
   $('.lookUpDownOpr').addClass('active');
+  if(type){
+    $(".changeTable .item").eq(0).addClass('active');
+    $(".changeTable .item").eq(1).removeClass('active');
+  }else{
+    $(".changeTable .item").eq(0).removeClass('active');
+    $(".changeTable .item").eq(1).addClass('active');
+  }
 }
 function hideBuyBox() {
   showLayerBlack(!1);
@@ -74,22 +110,27 @@ function hideBuyBox() {
 function changeBuyType() {
   $(".changeTable .item").click(function () {
     $(this).addClass('active').siblings('.item').removeClass('active');
+    var lookUpDown = $(this).index()?0:1;//买涨1  买跌 0
+    openDatas.buySell = lookUpDown;
   });
 }
 
 
 //合约定金选择
 function earnestSel(){
-  $('.earnestSel .selItem').click(function () {
+  $(document).on('click','.earnestSel .selItem',function () {
     var val = $(this).html();
     $(this).addClass('active').siblings('.selItem').removeClass('active');
+    var goodsCode = $(this).attr('id');
+    openDatas.goodsCode = goodsCode;
   });
 }
 //止盈止损选择
 function stopSel(){
-  $('.stopSel .selItem').click(function () {
+  $(document).on('click','.stopSel .selItem',function () {
     var val = $(this).html();
     $(this).addClass('active').siblings('.selItem').removeClass('active');
+    openDatas.stopPoint = val;
   });
 }
 
@@ -125,26 +166,57 @@ function changTradAmt(type){
     num--
   }
   tar.html(num);
+  openDatas.amount = num;
 }
 
-//初始化图表
-$(function () {
-  createChart(1004,'ML');
-})
+
+//加载信息
+function loadData() {
+  getProInfo();
+  getUserInfo();
+  createChart(curPro,chartType);
+  getIndexUserInfo();
+  setInterval(function () {
+    getIndexUserInfo();
+  },1000*999);
+}
+
 var chart = null;
+var chartType = "ML";//默认分时图
+//k线图有  15  30  60
 function createChart(proId, kType) {
   if (kType == "ML") {
     chart = MinuteChart.createNew(proId);//分时图
   } else {
     chart = CandleChart.createNew(proId, kType);//K线图
   }
+  clearInterval(indexInterval);
   chart.createChart();
+  updateChart();
   GlobalAutoChartM();
-  chart.flush()
 }
-var curPro = null;
+var curPro = 'HSAG';//商品类型 默认为黄金
+
+//更新图表
+function updateChart(){
+  indexInterval = setInterval(function () {
+    if(chartType=='ML'){//分时图
+      ajaxHelper.get(getUrl('quotation/getTLine'),{goodsType:curPro},function (res) {
+        if(res.success&&res.obj){
+          chart.flush(res.obj);
+        }
+      },false)
+    }else{
+      ajaxHelper.get(getUrl('quotation/getKLine'),{goodsType:curPro,chartType:chartType},function (res) {
+        if(res.success&&res.obj){
+          chart.flush(res.obj);
+        }
+      },false)
+    }
+  },1000*999);
+}
+
 var proInfo = [];
-getIndexUserInfo();
 //获取主页用户信息 -用户展示
 function getIndexUserInfo(){
   ajaxHelper.get(getUrl('tran/acct/getMianInfo'),null,function (res) {
@@ -152,7 +224,6 @@ function getIndexUserInfo(){
       showTips(res.msg);
     }else{
       var obj = res.obj;
-      console.log(obj);
       var Au = obj.proTypeList[0];
       var Cu = obj.proTypeList[1];
       $("#Au").find('.pName').html(Au.name);
@@ -167,9 +238,9 @@ function getIndexUserInfo(){
         $("#Au").addClass('down');
       }
       if(Cu.upOrDown>0){
-        $("#Cu").addClass('down');
-      }else{
         $("#Cu").removeClass('down');
+      }else{
+        $("#Cu").addClass('down');
       }
       var totalInfo = obj.totalInfo;
       $("#zuoshou").html(totalInfo.yeClosePrice);
@@ -177,9 +248,67 @@ function getIndexUserInfo(){
       $("#zuigao").html(totalInfo.highPrice);
       $("#zuidi").html(totalInfo.lowPrice);
     }
+  },false);
+};
+//初始化看涨看跌框
+function initBuyBox(goodsType) {
+  curPro = goodsType?goodsType:curPro;
+  $(".selArea.earnestSel .selItem").eq(0).addClass('active').siblings('.selItem').removeClass('active');
+  $(".selArea.stopSel .selItem").eq(0).addClass('active').siblings('.selItem').removeClass('active');
+  $("#nums").html(1);
+  $("#selTicket").removeClass('active');
+
+  var curProInfo;
+  for(var i = 0;i<proInfo.length;i++){
+    if(proInfo[i].goodsType==curPro){
+      curProInfo = proInfo[i];
+      break;
+    }
+  }
+
+  var list = curProInfo.list;
+  var spList = curProInfo.spList;
+
+  for(var j = 0;j<list.length;j++){
+    $(".selArea.earnestSel .selItem").eq(j).attr('id',list[j].code).html(list[j].clientDepositFee);
+    $(".selArea.stopSel .selItem").eq(j).attr('id',spList[j]).html(spList[j]);
+  }
+
+  openDatas.goodsCode = list[0].code;
+  openDatas.goodsType = curPro;
+  openDatas.stopPoint = spList[0];
+  openDatas.nowPrice = curProInfo.point;
+  openDatas.amount = curProInfo.minLot;
+
+
+  console.log(curProInfo);
+
+}
+
+//确认建仓？
+function conFirmTips() {
+  layer.confirm('确认建仓吗？', {
+    btn: ['确认'] //按钮
+  }, function () {
+    subOpenData();
   });
 }
-//更新界面信息
+
+//提交建仓信息
+function subOpenData() {
+  layer.close(layer.index);
+  console.log(openDatas);
+  ajaxHelper.post(getUrl('tran/position/open'),openDatas,function (res) {
+    if(!res.success){
+      showTips(res.msg);
+    }else{
+      showTips('建仓成功','success');
+      hideBuyBox();
+    }
+  })
+}
+
+//更新界面信息(取消)
 function updatePageInfo(goodsType){
   curPro = goodsType?goodsType:curPro;
   ajaxHelper.get(getUrl('tran/infoTimer/getInfoTimer'),{goodsType:curPro},function (res) {
@@ -191,10 +320,10 @@ function updatePageInfo(goodsType){
       $("#jinkai").html(totalInfo.toOpenPrice);
       $("#zuigao").html(totalInfo.highPrice);
       $("#zuidi").html(totalInfo.lowPrice);
-
     }
   });
 };
+
 
 
 //获取商品信息
@@ -213,7 +342,7 @@ function getProInfo(){
   })
 };
 
-//图标自适应屏幕高度
+//图表自适应屏幕高度
 function GlobalAutoChartM() {
   var h = $(window).height();
   var h1 = $('#t_top').height();

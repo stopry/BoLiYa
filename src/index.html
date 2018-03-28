@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>BoLiYa</title>
+  <title>伯利亚</title>
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
   <meta name="description" content="" />
   <meta name="keywords" content="" />
@@ -25,6 +25,7 @@
   <link href="./css/swiper.min.css" rel="stylesheet">
   <link href="./css/reset.css" rel="stylesheet">
   <link href="./css/style.css" rel="stylesheet">
+  <script src="js/pro_candle.js"></script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
       <img src="./images/logo.png" id="userImg" class="uImg feedBtn" alt="" style="background: #ccc;border-radius: 50%;overflow: hidden;" onclick="openLocal('/html/userCenter.html')">
       <div class="fundsInfo">
         <div class="fundsNum ovhd">
-          <div class="numCom fl ovhd"><span class="showMoney" id="all_money">7000.00</span> <span class="hideMoney" style="display: none">****</span></div>
+          <div class="numCom fl ovhd"><span class="showMoney" id="all_money">0.00</span> <span class="hideMoney" style="display: none">****</span></div>
           <i class="imgEye fl feedBtn">
 
           </i>
@@ -99,15 +100,15 @@
   <div id="b_bot">
     <div class="charTypeSel">
       <div class="con">
-        <div class="flexItem active feedBtn">今日走势</div>
-        <div class="flexItem feedBtn">15分钟K线</div>
-        <div class="flexItem feedBtn">30分钟K线</div>
-        <div class="flexItem feedBtn">60分钟K线</div>
+        <div class="flexItem active feedBtn" id="ML">今日走势</div>
+        <div class="flexItem feedBtn" id="15">15分钟K线</div>
+        <div class="flexItem feedBtn" id="30">30分钟K线</div>
+        <div class="flexItem feedBtn" id="60">60分钟K线</div>
       </div>
     </div>
     <div class="idxOprBtn">
-      <div class="btnItem lookUp feedBtn" onclick="showBuyBox();">看涨</div>
-      <div class="btnItem lookDown feedBtn">看跌</div>
+      <div class="btnItem lookUp feedBtn" onclick="showBuyBox(1);">看涨</div>
+      <div class="btnItem lookDown feedBtn" onclick="showBuyBox(0)">看跌</div>
     </div>
     <div class="timeTips">
       <p class="timeTCon tc">交易时间：周一~周五8:00~16:00周日4:30~7:00休市结算</p>
@@ -147,17 +148,17 @@
         <div class="selDesc">
           合约定金:
         </div>
-        <div class="selItem active feedBtn">100</div>
-        <div class="selItem feedBtn">1000</div>
-        <div class="selItem feedBtn">5000</div>
+        <div class="selItem active feedBtn">0</div>
+        <div class="selItem feedBtn">0</div>
+        <div class="selItem feedBtn">0</div>
       </div>
       <div class="selArea stopSel">
         <div class="selDesc">
           止盈/止损点:
         </div>
-        <div class="selItem active feedBtn">4</div>
-        <div class="selItem feedBtn">7</div>
-        <div class="selItem feedBtn">10</div>
+        <div class="selItem active feedBtn">0</div>
+        <div class="selItem feedBtn">0</div>
+        <div class="selItem feedBtn">0</div>
       </div>
       <div class="selArea">
         <div class="selDesc">
@@ -170,11 +171,11 @@
       <div class="orderNumTips">最大下单数：10</div>
       <div class="ticketSel ovhd">
         <div class="theTips fl">用券交易：共 <span class="ticketNum">99</span>张可用，一次最多使用一张</div>
-        <div class="selItem feedBtn fr"></div>
+        <div class="selItem feedBtn fr" id="selTicket"></div>
       </div>
       <div class="oprBtn">
-        <div class="item fl feedBtn">取消</div>
-        <div class="item active fr feedBtn">确定</div>
+        <div class="item fl feedBtn" onclick="hideBuyBox()">取消</div>
+        <div class="item active fr feedBtn" onclick="conFirmTips()">确定</div>
       </div>
       <div class="botTips">温馨提示：收盘对于未成交的订单将自动平仓，合约定金全额返还</div>
     </div>

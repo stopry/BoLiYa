@@ -2,7 +2,7 @@
  * Created by Alvis on 2017/7/28.
  * K线图
  */
-var GlobalAutoChart;
+// var GlobalAutoChart;
 var CandleChart = {
   createNew: function (id, type) {
     var candleChart = {};
@@ -25,18 +25,18 @@ var CandleChart = {
         d.push(rawData[i].openPrice) //开盘价
         d.push(rawData[i].closePrice) //收盘价
         d.push(rawData[i].lowPrice) //最低价
-        d.push(rawData[i].heightPrice) //最高价
-        d.push(rawData[i].changePrice) //涨跌额
-        d.push(rawData[i].changeRate * 100 + '%') //涨跌幅
-        d.push(rawData[i].tranVolume)//成交量
+        d.push(rawData[i].highPrice) //最高价
+        //d.push(rawData[i].changePrice) //涨跌额
+        //d.push(rawData[i].changeRate * 100 + '%') //涨跌幅
+        //d.push(rawData[i].tranVolume)//成交量
         categoryData.push(fomat(rawData[i].klTime));
         values.push(d);
-        volumes1.push(rawData[i].tranVolume);
-        if (rawData[i].changePrice <= 0) {
-          volumes2.push(0);
-        } else {
-          volumes2.push(rawData[i].tranVolume);
-        }
+        // volumes1.push(rawData[i].tranVolume);
+        // if (rawData[i].changePrice <= 0) {
+        //   volumes2.push(0);
+        // } else {
+        //   volumes2.push(rawData[i].tranVolume);
+        // }
       }
       if (categoryData.length < 20) {
         var da = new Date(categoryData[categoryData.length - 1]);
@@ -60,7 +60,7 @@ var CandleChart = {
           textStyle: {
             color: '#B6B6B6'
           },
-          top: -5,
+          top: 5,
         },
         tooltip: {
           trigger: 'axis',
@@ -91,9 +91,9 @@ var CandleChart = {
                 str += "收盘价:" + data[2] + "<br>";
                 str += "最低价:" + data[3] + "<br>";
                 str += "最高价:" + data[4] + "<br>";
-                str += "涨跌额:<em style=\"color: " + color + "\">" + data[5] + "</em><br>";
-                str += "涨跌幅:<em style=\"color: " + color + "\">" + data[6] + "</em><br>";
-                str += "成交量:" + data[7] + "<br>";
+                // str += "涨跌额:<em style=\"color: " + color + "\">" + data[5] + "</em><br>";
+                // str += "涨跌幅:<em style=\"color: " + color + "\">" + data[6] + "</em><br>";
+                // str += "成交量:" + data[7] + "<br>";
               }
             });
             return str;
@@ -106,9 +106,9 @@ var CandleChart = {
         },
         grid: [{
           left: '1%',
-          right: 1,
-          bottom: '15%',
-          top: 20,
+          right: '1%',
+          top: '8%',
+          bottom:'8%',
           // height: '249px'
         }]
         ,
@@ -235,6 +235,7 @@ var CandleChart = {
           left: '1%',
           right: '1%',
           top: '8%',
+          bottom:'8%',
           height: h
         }]
       });
@@ -245,9 +246,9 @@ var CandleChart = {
       candleChart.chart = echarts.init(document.getElementById('charts'));
       if (!candleChart.data) {
         //从服务器获数据
-        ajaxHelper.get("/market/getCandleList", {
-          "proId": candleChart.id,
-          "kType": candleChart.type
+        ajaxHelper.get(getUrl('quotation/getKLineList'), {
+          "goodsType": candleChart.id,
+          "chartType": candleChart.type
         }, function (ret) {
           if (!ret.success) {
             console.info('查询数据失败...');
@@ -269,7 +270,7 @@ var CandleChart = {
 
           }
           candleChart.chart.setOption(candleChart.option);
-          GlobalAutoChart();
+          // if(typeof(GlobalAutoChartM)==='function')GlobalAutoChartM();
           candleChart.isInit = true;
         }, false);
       } else {
@@ -287,10 +288,10 @@ var CandleChart = {
       val.push(data.openPrice) //开盘价
       val.push(data.closePrice) //收盘价
       val.push(data.lowPrice) //最低价
-      val.push(data.heightPrice) //最高价
-      val.push(data.changePrice) //涨跌额
-      val.push(data.changeRate + '%') //涨跌幅
-      val.push(data.tranVolume)//成交量
+      val.push(data.highPrice) //最高价
+      // val.push(data.changePrice) //涨跌额
+      // val.push(data.changeRate + '%') //涨跌幅
+      // val.push(data.tranVolume)//成交量
       candleChart.data.values[len - 1] = val;
       candleChart.option.series[0].data = candleChart.data.values;
       candleChart.option.series[1].data = candleChart.calculateMA(5);
