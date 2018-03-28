@@ -32,10 +32,10 @@
 <div id="t_top">
   <div class="indexHead">
     <div class="con">
-      <img src="./images/logo.png" class="uImg feedBtn" alt="" onclick="openLocal('/html/userCenter.html')">
+      <img src="./images/logo.png" id="userImg" class="uImg feedBtn" alt="" style="background: #ccc;border-radius: 50%;overflow: hidden;" onclick="openLocal('/html/userCenter.html')">
       <div class="fundsInfo">
         <div class="fundsNum ovhd">
-          <div class="numCom fl ovhd"><span class="showMoney">7000.00</span> <span class="hideMoney" style="display: none">****</span></div>
+          <div class="numCom fl ovhd"><span class="showMoney" id="all_money">7000.00</span> <span class="hideMoney" style="display: none">****</span></div>
           <i class="imgEye fl feedBtn">
 
           </i>
@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="chartTable">
-    <div class="tableItem lCon active down feedBtn">
+    <div class="tableItem lCon active down feedBtn" id="Au">
       <div class="proName">
         <div class="textInfo">
           <span class="pName">黄金板块</span>
@@ -59,10 +59,10 @@
         <i class="mInfo"></i>
       </div>
     </div>
-    <div class="tableItem rCon feedBtn">
+    <div class="tableItem rCon feedBtn" id="Cu">
       <div class="proName">
         <div class="textInfo">
-          <span class="pName">黄金板块</span>
+          <span class="pName">铜板块</span>
           <span class="pInfo">25125</span>
         </div>
         <i class="mInfo"></i>
@@ -74,19 +74,19 @@
       <tr>
         <td>
           昨收:
-          <span class="detail">2469</span>
+          <span class="detail" id="zuoshou">0</span>
         </td>
         <td>
-          昨收:
-          <span class="detail">2469</span>
+          今开:
+          <span class="detail" id="jinkai">0</span>
         </td>
         <td>
-          昨收:
-          <span class="detail">2469</span>
+          最高:
+          <span class="detail" id="zuigao">0</span>
         </td>
         <td>
-          昨收:
-          <span class="detail">2469</span>
+          最低:
+          <span class="detail" id="zuidi">0</span>
         </td>
       </tr>
     </table>
