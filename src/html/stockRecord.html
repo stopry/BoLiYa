@@ -29,15 +29,16 @@
 <body>
 <div class="box ovhd" style="background: #fff">
   <div class="tableHeader">
-    <div class="item active feedBtn">
-      全部
-    </div>
-    <div class="item feedBtn">
-      收益
-    </div>
-    <div class="item feedBtn">
-      亏损
-    </div>
+    <div class="listTitle">操盘记录</div>
+    <!--<div class="item active feedBtn">-->
+      <!--全部-->
+    <!--</div>-->
+    <!--<div class="item feedBtn">-->
+      <!--收益-->
+    <!--</div>-->
+    <!--<div class="item feedBtn">-->
+      <!--亏损-->
+    <!--</div>-->
   </div>
   <div class="tableBody stock">
     <div class="bodyWrap all active">
@@ -203,103 +204,261 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="bodyWrap in">
-      <div class="item borderBot rch add">
-        <div class="top">
-          <div class="proType">
-            <span>商品：铜版块</span>
-            <i class="profit">赚</i>
-          </div>
-          <div class="openBtn feedBtn">
-            <i class="icon iconfont icon-xia">展开查看∨</i>
-            <i class="icon iconfont icon-shang">收起∧</i>
-          </div>
-          <div class="money">
-            +1000
-          </div>
-        </div>
-        <div class="verObj">
-          <div class="item" style="overflow: visible">
-            <table>
-              <tr>
-                <td>数量：</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>建仓价：</td>
-                <td>1998</td>
-              </tr>
-              <tr>
-                <td>平仓价：</td>
-                <td>2018</td>
-              </tr>
-              <tr class="dateInfo">
-                <td>创建时间：</td>
-                <td>
-                  <span>
-                    2018-01-12 12：03：22
-                  </span>
-                </td>
-              </tr>
-              <tr class="dateInfo" >
-                <td>创建时间：</td>
-                <td>
-                  <span>
-                    2018-01-12 12：03：22
-                  </span>
-                </td>
-              </tr>
-            </table>
-          </div>
-          <div class="item">
-            <table>
-              <tr>
-                <td>定金：</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>平仓类型：</td>
-                <td>止损</td>
-              </tr>
-              <tr>
-                <td>止盈止损点数：</td>
-                <td>4（看涨）</td>
-              </tr>
-            </table>
-          </div>
-          <div class="item">
-            <table>
-              <tr>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colspan="2">手续费：2</td>
-                <!--<td>12.00</td>-->
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bodyWrap out">
       <div class="item borderBot cash rde">
         <div class="top">
           <div class="proType">
             <span>商品：铜版块</span>
-            <i class="profit">赚</i>
+            <i class="profit">亏</i>
           </div>
           <div class="openBtn feedBtn">
             <i class="icon iconfont icon-xia">展开查看∨</i>
             <i class="icon iconfont icon-shang">收起∧</i>
           </div>
           <div class="money">
-            +1000
+            -1000
+          </div>
+        </div>
+        <div class="verObj">
+          <div class="item" style="overflow: visible">
+            <table>
+              <tr>
+                <td>数量：</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>建仓价：</td>
+                <td>1998</td>
+              </tr>
+              <tr>
+                <td>平仓价：</td>
+                <td>2018</td>
+              </tr>
+              <tr class="dateInfo">
+                <td>创建时间：</td>
+                <td>
+                  <span>
+                    2018-01-12 12：03：22
+                  </span>
+                </td>
+              </tr>
+              <tr class="dateInfo" >
+                <td>创建时间：</td>
+                <td>
+                  <span>
+                    2018-01-12 12：03：22
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="item">
+            <table>
+              <tr>
+                <td>定金：</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>平仓类型：</td>
+                <td>止损</td>
+              </tr>
+              <tr>
+                <td>止盈止损点数：</td>
+                <td>4（看涨）</td>
+              </tr>
+            </table>
+          </div>
+          <div class="item">
+            <table>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2">手续费：2</td>
+                <!--<td>12.00</td>-->
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="item borderBot cash rde">
+        <div class="top">
+          <div class="proType">
+            <span>商品：铜版块</span>
+            <i class="profit">亏</i>
+          </div>
+          <div class="openBtn feedBtn">
+            <i class="icon iconfont icon-xia">展开查看∨</i>
+            <i class="icon iconfont icon-shang">收起∧</i>
+          </div>
+          <div class="money">
+            -1000
+          </div>
+        </div>
+        <div class="verObj">
+          <div class="item" style="overflow: visible">
+            <table>
+              <tr>
+                <td>数量：</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>建仓价：</td>
+                <td>1998</td>
+              </tr>
+              <tr>
+                <td>平仓价：</td>
+                <td>2018</td>
+              </tr>
+              <tr class="dateInfo">
+                <td>创建时间：</td>
+                <td>
+                  <span>
+                    2018-01-12 12：03：22
+                  </span>
+                </td>
+              </tr>
+              <tr class="dateInfo" >
+                <td>创建时间：</td>
+                <td>
+                  <span>
+                    2018-01-12 12：03：22
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="item">
+            <table>
+              <tr>
+                <td>定金：</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>平仓类型：</td>
+                <td>止损</td>
+              </tr>
+              <tr>
+                <td>止盈止损点数：</td>
+                <td>4（看涨）</td>
+              </tr>
+            </table>
+          </div>
+          <div class="item">
+            <table>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2">手续费：2</td>
+                <!--<td>12.00</td>-->
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="item borderBot cash rde">
+        <div class="top">
+          <div class="proType">
+            <span>商品：铜版块</span>
+            <i class="profit">亏</i>
+          </div>
+          <div class="openBtn feedBtn">
+            <i class="icon iconfont icon-xia">展开查看∨</i>
+            <i class="icon iconfont icon-shang">收起∧</i>
+          </div>
+          <div class="money">
+            -1000
+          </div>
+        </div>
+        <div class="verObj">
+          <div class="item" style="overflow: visible">
+            <table>
+              <tr>
+                <td>数量：</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>建仓价：</td>
+                <td>1998</td>
+              </tr>
+              <tr>
+                <td>平仓价：</td>
+                <td>2018</td>
+              </tr>
+              <tr class="dateInfo">
+                <td>创建时间：</td>
+                <td>
+                  <span>
+                    2018-01-12 12：03：22
+                  </span>
+                </td>
+              </tr>
+              <tr class="dateInfo" >
+                <td>创建时间：</td>
+                <td>
+                  <span>
+                    2018-01-12 12：03：22
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="item">
+            <table>
+              <tr>
+                <td>定金：</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>平仓类型：</td>
+                <td>止损</td>
+              </tr>
+              <tr>
+                <td>止盈止损点数：</td>
+                <td>4（看涨）</td>
+              </tr>
+            </table>
+          </div>
+          <div class="item">
+            <table>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2">手续费：2</td>
+                <!--<td>12.00</td>-->
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="item borderBot cash rde">
+        <div class="top">
+          <div class="proType">
+            <span>商品：铜版块</span>
+            <i class="profit">亏</i>
+          </div>
+          <div class="openBtn feedBtn">
+            <i class="icon iconfont icon-xia">展开查看∨</i>
+            <i class="icon iconfont icon-shang">收起∧</i>
+          </div>
+          <div class="money">
+            -1000
           </div>
         </div>
         <div class="verObj">
@@ -370,10 +529,177 @@
         </div>
       </div>
     </div>
+    <!--<div class="bodyWrap in">-->
+      <!--<div class="item borderBot rch add">-->
+        <!--<div class="top">-->
+          <!--<div class="proType">-->
+            <!--<span>商品：铜版块</span>-->
+            <!--<i class="profit">赚</i>-->
+          <!--</div>-->
+          <!--<div class="openBtn feedBtn">-->
+            <!--<i class="icon iconfont icon-xia">展开查看∨</i>-->
+            <!--<i class="icon iconfont icon-shang">收起∧</i>-->
+          <!--</div>-->
+          <!--<div class="money">-->
+            <!--+1000-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="verObj">-->
+          <!--<div class="item" style="overflow: visible">-->
+            <!--<table>-->
+              <!--<tr>-->
+                <!--<td>数量：</td>-->
+                <!--<td>1</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>建仓价：</td>-->
+                <!--<td>1998</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>平仓价：</td>-->
+                <!--<td>2018</td>-->
+              <!--</tr>-->
+              <!--<tr class="dateInfo">-->
+                <!--<td>创建时间：</td>-->
+                <!--<td>-->
+                  <!--<span>-->
+                    <!--2018-01-12 12：03：22-->
+                  <!--</span>-->
+                <!--</td>-->
+              <!--</tr>-->
+              <!--<tr class="dateInfo" >-->
+                <!--<td>创建时间：</td>-->
+                <!--<td>-->
+                  <!--<span>-->
+                    <!--2018-01-12 12：03：22-->
+                  <!--</span>-->
+                <!--</td>-->
+              <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+          <!--<div class="item">-->
+            <!--<table>-->
+              <!--<tr>-->
+                <!--<td>定金：</td>-->
+                <!--<td>100</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>平仓类型：</td>-->
+                <!--<td>止损</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>止盈止损点数：</td>-->
+                <!--<td>4（看涨）</td>-->
+              <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+          <!--<div class="item">-->
+            <!--<table>-->
+              <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td></td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td></td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td colspan="2">手续费：2</td>-->
+                <!--&lt;!&ndash;<td>12.00</td>&ndash;&gt;-->
+              <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="bodyWrap out">-->
+      <!--<div class="item borderBot cash rde">-->
+        <!--<div class="top">-->
+          <!--<div class="proType">-->
+            <!--<span>商品：铜版块</span>-->
+            <!--<i class="profit">赚</i>-->
+          <!--</div>-->
+          <!--<div class="openBtn feedBtn">-->
+            <!--<i class="icon iconfont icon-xia">展开查看∨</i>-->
+            <!--<i class="icon iconfont icon-shang">收起∧</i>-->
+          <!--</div>-->
+          <!--<div class="money">-->
+            <!--+1000-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="verObj">-->
+          <!--<div class="item" style="overflow: visible">-->
+            <!--<table>-->
+              <!--<tr>-->
+                <!--<td>数量：</td>-->
+                <!--<td>1</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>建仓价：</td>-->
+                <!--<td>1998</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>平仓价：</td>-->
+                <!--<td>2018</td>-->
+              <!--</tr>-->
+              <!--<tr class="dateInfo">-->
+                <!--<td>创建时间：</td>-->
+                <!--<td>-->
+                  <!--<span>-->
+                    <!--2018-01-12 12：03：22-->
+                  <!--</span>-->
+                <!--</td>-->
+              <!--</tr>-->
+              <!--<tr class="dateInfo" >-->
+                <!--<td>创建时间：</td>-->
+                <!--<td>-->
+                  <!--<span>-->
+                    <!--2018-01-12 12：03：22-->
+                  <!--</span>-->
+                <!--</td>-->
+              <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+          <!--<div class="item">-->
+            <!--<table>-->
+              <!--<tr>-->
+                <!--<td>定金：</td>-->
+                <!--<td>100</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>平仓类型：</td>-->
+                <!--<td>止损</td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td>止盈止损点数：</td>-->
+                <!--<td>4（看涨）</td>-->
+              <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+          <!--<div class="item">-->
+            <!--<table>-->
+              <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td></td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td></td>-->
+                <!--<td></td>-->
+              <!--</tr>-->
+              <!--<tr>-->
+                <!--<td colspan="2">手续费：2</td>-->
+                <!--&lt;!&ndash;<td>12.00</td>&ndash;&gt;-->
+              <!--</tr>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </div>
 
 <script src="../js/lib/zepto.js"></script>
+<script src="../js/layer/layer.js"></script>
 <script src="../js/lib/myModule.js"></script>
 <script src="../js/global.js"></script>
 <script src="./stockRecord.js"></script>

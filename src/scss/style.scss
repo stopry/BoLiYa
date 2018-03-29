@@ -1465,3 +1465,13 @@ $fClr:#8d8d8f;//辅助色
     }
   }
 }
+.tableHeader{
+  .listTitle{
+    letter-spacing: rem(4);
+    line-height: rem(100);
+    color: $priClr;
+    font-size: rem(32);
+    text-align: center;
+    font-weight: bold;
+  }
+}

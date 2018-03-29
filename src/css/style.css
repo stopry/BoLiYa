@@ -1399,3 +1399,11 @@ input:disabled, input[disabled] {
         color: #8d8d8f;
         font-size: 0.26667rem;
         line-height: 0.90667rem; }
+
+.tableHeader .listTitle {
+  letter-spacing: 0.05333rem;
+  line-height: 1.33333rem;
+  color: #D5B272;
+  font-size: 0.42667rem;
+  text-align: center;
+  font-weight: bold; }

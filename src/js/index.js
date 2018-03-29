@@ -24,7 +24,7 @@ function clearOpenData() {
 
 //页面初始化方法
 function init() {
-
+  clipAni();
   var h = $(window).height();
   var h1 = $('#t_top').height();
   var h2 = $('#b_bot').height();
@@ -178,7 +178,7 @@ function loadData() {
   getIndexUserInfo();
   setInterval(function () {
     getIndexUserInfo();
-  },1000*999);
+  },1000);
 }
 
 var chart = null;
@@ -213,7 +213,7 @@ function updateChart(){
         }
       },false)
     }
-  },1000*999);
+  },1000);
 }
 
 var proInfo = [];
@@ -361,4 +361,29 @@ function getUserInfo() {
       $("#all_money").html((obj.balance).toFixed(2));
     }
   })
+};
+//clip动画
+function clipAni() {
+  function ani(arr) {
+    var l = arr.length;
+    for(var i = 0;i<l;i++){
+      $(arr[i]).removeClass("ani");
+    }
+    setTimeout(function () {
+      for(var k = 0;k<l;k++){
+        $(arr[k]).addClass("ani");
+      }
+    },2000);
+  }
+  setInterval(function () {
+    var arr = [
+      "#hjbk",
+      "#tbk",
+      "#zuoshou",
+      "#jinkai",
+      "#zuigao",
+      "#zuidi",
+    ];
+    ani(arr);
+  },5000);
 };
