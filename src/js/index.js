@@ -1,9 +1,9 @@
 $(function () {
   init();
 });
-
+var orderListInterval = null;//刷新当前持仓定时器
 var indexInterval = null;//定时器
-
+GlobalselObj = null;
 //建仓信息
 var openDatas = {
   "amount": 1,//购买数量
@@ -19,6 +19,7 @@ function clearOpenData() {
   for(key in openDatas){
     openDatas[key]=null;
   }
+  openDatas.depositType = '0';//默认支付方式为合约定金
   console.log(openDatas);
 }
 
@@ -39,6 +40,7 @@ function init() {
   objVerticalCenter('.tipsAlert');
   changeBuyType();
   $(document).on('click','.layerShadow2',function () {
+    hideCiChang();
     hideBuyBox();
   });
   earnestSel();
@@ -56,6 +58,20 @@ function init() {
       $(".hideMoney").hide();
     }
   });
+
+  //显示当前持仓
+  $('#order_list_icon').click(function () {
+    showCiChang();
+    getHoldList();
+    orderListInterval = setInterval(function () {
+      getHoldList();
+    },1000*5);
+  });
+  //关闭当前持仓
+  $('.closeCiChang').click(function () {
+    hideCiChang();
+    clearInterval(orderListInterval);
+  })
 }
 
 //商品类型切换
@@ -119,8 +135,11 @@ function changeBuyType() {
 //合约定金选择
 function earnestSel(){
   $(document).on('click','.earnestSel .selItem',function () {
+    GlobalselObj = $(this);
     var val = $(this).html();
     $(this).addClass('active').siblings('.selItem').removeClass('active');
+    openDatas.depositType = '0';
+    $('#selTicket').removeClass('active');
     var goodsCode = $(this).attr('id');
     openDatas.goodsCode = goodsCode;
   });
@@ -139,11 +158,18 @@ function ticketSel() {
   $('.ticketSel .selItem').click(function () {
     var num = parseInt($('.ticketNum').html());
     var isSel = $(this).hasClass('active');
+
     if(num>0){
       if(isSel){
         $(this).removeClass('active');
+        openDatas.depositType = '0';
+        GlobalselObj&&GlobalselObj.addClass('active');
       }else{
         $(this).addClass('active');
+        openDatas.depositType = '1';//用代金券交易
+        var selObj = $('.earnestSel .selItem.active');
+        GlobalselObj = selObj;
+        selObj.removeClass('active');
       }
     }else{
       showTips('您没有多余的交易券','warm');
@@ -178,7 +204,7 @@ function loadData() {
   getIndexUserInfo();
   setInterval(function () {
     getIndexUserInfo();
-  },1000);
+  },1000*5);
 }
 
 var chart = null;
@@ -213,7 +239,7 @@ function updateChart(){
         }
       },false)
     }
-  },1000);
+  },1000*5);
 }
 
 var proInfo = [];
@@ -232,6 +258,7 @@ function getIndexUserInfo(){
       $("#Cu").find('.pInfo').html(Cu.point);
       $("#Au").attr('goodsType',Au.goodsType);
       $("#Cu").attr('goodsType',Cu.goodsType);
+      $(".ticketNum").html(obj.userInfo.djj);
       if(Au.upOrDown>0){
         $("#Au").removeClass('down');
       }else{
@@ -281,6 +308,7 @@ function initBuyBox(goodsType) {
   openDatas.amount = curProInfo.minLot;
 
 
+
   console.log(curProInfo);
 
 }
@@ -300,7 +328,7 @@ function subOpenData() {
   console.log(openDatas);
   ajaxHelper.post(getUrl('tran/position/open'),openDatas,function (res) {
     if(!res.success){
-      showTips(res.msg);
+      showTips(res.msg,'error');
     }else{
       showTips('建仓成功','success');
       hideBuyBox();
@@ -341,6 +369,61 @@ function getProInfo(){
     }
   })
 };
+function showCiChang() {
+  showLayerBlack(1);
+  $('.nowChiCang').show();
+}
+function hideCiChang() {
+  showLayerBlack(!1);
+  $('.nowChiCang').hide();
+}
+//获取当前持仓列表
+function getHoldList() {
+  ajaxHelper.get(getUrl('tran/position/getCurrPositionlist'),{goodsType:curPro},function (res) {
+    if(!res.success){
+      showTips(res.msg);
+    }else{
+      if(res.obj&&res.obj.length){
+        var html = '';
+        for(var i = 0;i<res.obj.length;i++){
+          var item = res.obj[i];
+          var lookType = item.buySell=='1'?'看涨':'看跌';
+          var name = item.name;
+          var amt = item.amount;
+          var openPrice = item.openPrice;
+          var _class = item.buySell=='1'?'up':'down';
+          var dj = item.depositType=='0'?item.depositFee:'交易券';
+          var ys = item.financialGrossProfit>0?'止盈':'止损';
+          html+='<tr>' +
+            '      <td>' +
+            '        <span class="type_t type t '+_class+'">'+lookType+'</span>' +
+            '        <p class="proNmae_t b">'+name+'</p>' +
+            '      </td>' +
+            '      <td>' +
+            '        <span class="amountCon_t t">'+amt+'</span>' +
+            '        <p class="amountCon_t b">数量</p>' +
+            '      </td>' +
+            '      <td>' +
+            '        <span class="amountCon_t t">'+openPrice+'</span>' +
+            '        <p class="amountCon_t b">建仓价</p>' +
+            '      </td>' +
+            '      <td>' +
+            '        <span class="amountCon_t t">'+dj+'</span>' +
+            '        <p class="amountCon_t b">定金</p>' +
+            '      </td>' +
+            '      <td>' +
+            '        <span class="amountCon_t t">'+ys+'</span>' +
+            '        <p class="amountCon_t b">止盈止损</p>' +
+            '      </td>' +
+            '    </tr>'
+        }
+        $('.nowChiCang table').html(html);
+      }else{
+
+      }
+    }
+  },false)
+}
 
 //图表自适应屏幕高度
 function GlobalAutoChartM() {

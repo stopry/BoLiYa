@@ -1185,7 +1185,11 @@ $fClr:#8d8d8f;//辅助色
     }
   }
 }
+#t_top{
+  background: #404244;
+}
 .indexProIndex{
+  background: #fff;
   font-family: PF;
   table{
     text-align: center;
@@ -1473,5 +1477,79 @@ $fClr:#8d8d8f;//辅助色
     font-size: rem(32);
     text-align: center;
     font-weight: bold;
+  }
+}
+//当前持仓
+.nowChiCang{
+  .closeCiChang{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: rem(70);
+    line-height: rem(70);
+    background:#404244;
+    color: #fff;
+    font-size: rem(28);
+    letter-spacing: rem(2);
+    text-align: center;
+    width: 100%;
+  }
+  position: fixed;
+  z-index: 19;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  height: rem(400);
+  &.hide{
+    display: none;
+  }
+  width: 100%;
+  overflow-y: auto;
+  .noList{
+    text-align: center;
+    height: rem(150);
+    line-height: rem(150);
+    font-size: rem(26);
+    color: #bbb;
+  }
+  //max-height: rem(140);
+  table{
+    margin-bottom: rem(90);
+    width: 100%;
+    td{
+      width: 20%;
+      padding: rem(5);
+      text-align: center;
+      border: 1px solid #eee;
+      box-sizing: border-box;
+      font-size: rem(20);
+      .type.down{
+        color: #fff;
+        background: #cc6660;
+        border-radius: 3px;
+        padding: rem(0) rem(8);
+        &.up{
+          background: #4fac90;
+        }
+      }
+      .t{
+        color: #555;
+      }
+      .b{
+        color: #777;
+      }
+    }
+  }
+}
+#order_list_icon{
+  position: fixed;
+  z-index: 10;
+  width: rem(60);
+  height: rem(60);
+  bottom: rem(20);
+  right: rem(20);
+  img{
+    width: 100%;
+    height: 100%;
   }
 }

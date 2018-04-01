@@ -15,7 +15,7 @@ function init() {
     var _index = $(this).index();
     listType = _index+1;
     $('.tableBody .bodyWrap').eq(_index).addClass('active').siblings('.bodyWrap').removeClass('active');
-  })
+  });
   toggle();
   getData();
   //到达底部
@@ -34,25 +34,42 @@ function init() {
     isLoading = true;
     //模拟加载数据
     ajaxHelper.get(getUrl('tran/position/getHisPositionlist'),{pageNum:pageNum},function (res) {
-      // if(!res.success){
-      //   showTips(res.msg);
-      // }else{
+      if(!res.success){
+        showTips(res.msg);
+      }else{
       var list = res.obj;
-      // if(list&&list.length){
-      var html = ''
-      for(var i = 0;i<10;i++){
-        html += '<div class="item borderBot rch add">'+
+      // console.log(list);
+      if(list&&list.length){
+      var html = '';
+      for(var i = 0;i<list.length;i++){
+        var item = list[i];
+
+        var _class = item.financialGrossProfit>0?'add':'rde';
+        var _statuCon = item.financialGrossProfit>0?'赚':'亏';
+        var _money = item.financialGrossProfit;
+        var _amount = item.amount;
+        var _dj = item.depositType=='0'?item.depositFee:'交易券';
+        var _openPrice = item.openPrice;
+        var _closePrice = item.closePrice;
+        var _closeType = item.financialGrossProfit>0?'止盈':'止损';
+        var point = item.stopProfitLoss;
+        var lookType = item.buySell=='1'?'看涨':'看跌';
+        var chrFee = item.financialCharge;//手续费
+        var createTime = new Date(item.createTime).Format('yyyy/MM/dd hh:mm:ss');//创建时间
+        var closeTime = new Date(item.closeTime).Format('yyyy/MM/dd hh:mm:ss');//平仓时间
+
+        html += '<div class="item borderBot rch '+_class+'">'+
           '<div class="top">'+
           '<div class="proType">'+
-          '<span>商品：铜版块</span>'+
-        '<i class="profit">赚</i>'+
+          '<span>商品：'+item.name+'</span>'+
+        '<i class="profit">'+_statuCon+'</i>'+
           '</div>'+
           '<div class="openBtn feedBtn">'+
           '<i class="icon iconfont icon-xia">展开查看∨</i>'+
         '<i class="icon iconfont icon-shang">收起∧</i>'+
         '</div>'+
         '<div class="money">'+
-          '+1000'+
+          _money+
           '</div>'+
           '</div>'+
           '<div class="verObj">'+
@@ -60,29 +77,29 @@ function init() {
           '<table>'+
           '<tr>'+
           '<td>数量：</td>'+
-        '<td>1</td>'+
+        '<td>'+_amount+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>建仓价：</td>'+
-        '<td>1998</td>'+
+        '<td>'+_openPrice+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>平仓价：</td>'+
-        '<td>2018</td>'+
+        '<td>'+_closePrice+'</td>'+
         '</tr>'+
         '<tr class="dateInfo">'+
           '<td>创建时间：</td>'+
         '<td>'+
         '<span>'+
-        '2018-01-12 12：03：22'+
+        createTime+
         '</span>'+
         '</td>'+
         '</tr>'+
         '<tr class="dateInfo" >'+
-          '<td>创建时间：</td>'+
+          '<td>平仓时间：</td>'+
         '<td>'+
         '<span>'+
-        '2018-01-12 12：03：22'+
+        closeTime+
         '</span>'+
         '</td>'+
         '</tr>'+
@@ -92,15 +109,15 @@ function init() {
           '<table>'+
           '<tr>'+
           '<td>定金：</td>'+
-        '<td>100</td>'+
+        '<td>'+_dj+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>平仓类型：</td>'+
-        '<td>止损</td>'+
+        '<td>'+_closeType+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>止盈止损点数：</td>'+
-        '<td>4（看涨）</td>'+
+        '<td>'+point+'（'+lookType+'）</td>'+
         '</tr>'+
         '</table>'+
         '</div>'+
@@ -115,7 +132,7 @@ function init() {
           '<td></td>'+
           '</tr>'+
           '<tr>'+
-          '<td colspan="2">手续费：2</td>'+
+          '<td colspan="2">手续费：'+chrFee+'</td>'+
         '<!--<td>12.00</td>-->'+
         '</tr>'+
         '</table>'+
@@ -126,8 +143,8 @@ function init() {
       $('.tableBody .bodyWrap').append(html);
       pageNum++;
       isLoading = false;
-      // }
-      // }
+      }
+      }
     })
   }
 
