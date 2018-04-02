@@ -737,14 +737,18 @@ input:disabled, input[disabled] {
       width: 1.06667rem; }
 
 .provList {
-  transform: translateX(100%); }
+  transform: translateX(100%);
+  opacity: 0; }
   .provList.active {
-    transform: translateX(0); }
+    transform: translateX(0);
+    opacity: 1; }
 
 .cityList {
-  transform: translateX(100%); }
+  transform: translateX(100%);
+  opacity: 0; }
   .cityList.active {
-    transform: translateX(0); }
+    transform: translateX(0);
+    opacity: 1; }
 
 .bankList {
   transform: translateX(100%); }
@@ -1473,3 +1477,6 @@ input:disabled, input[disabled] {
   #order_list_icon img {
     width: 100%;
     height: 100%; }
+
+body {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); }

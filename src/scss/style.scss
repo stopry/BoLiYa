@@ -652,14 +652,18 @@ $fClr:#8d8d8f;//辅助色
 //地区选择列表
 .provList{
   transform: translateX(100%);
+  opacity: 0;
   &.active{
     transform: translateX(0);
+    opacity: 1;
   }
 }
 .cityList{
   transform: translateX(100%);
+  opacity: 0;
   &.active{
     transform: translateX(0);
+    opacity: 1;
   }
 }
 .bankList{
@@ -1552,4 +1556,7 @@ $fClr:#8d8d8f;//辅助色
     width: 100%;
     height: 100%;
   }
+}
+body{
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
 }

@@ -3,6 +3,41 @@ $(function () {
   FastClick.attach(document.body);
   _Z.ui.feedbtn('.feedBtn');
   $('input:not([autocomplete]),textarea:not([autocomplete]),select:not([autocomplete])').attr('autocomplete', 'off');
+
+  function autoFooterHeader(){
+    var winWidth = $(window).width();
+    var fwidth = 600;
+    var left = (winWidth-fwidth)/2;
+    $(".nowChiCang ").css("left",left+'px');
+    $(".lookUpDownOpr").css("left",left+'px');
+    $("#order_list_icon").css("right",left+20+'px');
+    $("#layer").css("left",left+'px');
+    $(".closeCiChang").css("left",left+'px');
+    $(".tableHeader").css("left",left+'px');
+    $(".areaList").css("left",left+'px');
+    $("#searchHistory").css("left",left+'px');
+  }
+  function setFont() {
+    var _winW = $(window).width();
+    if(_winW>640){
+      $('html').css('font-size','60px');
+    }
+  }
+
+  function setHF(){
+    if(isPc()){
+      setFont();
+      $(window).resize(function () {
+        setFont()
+      });
+      autoFooterHeader();
+      $(window).resize(function(){
+        autoFooterHeader();
+      })
+    }
+  }
+  setHF();
+
 });
 apiHost = 'http://api.zjiayuan.com';
 //跳转脚本
