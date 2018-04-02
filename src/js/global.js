@@ -258,7 +258,8 @@ var ajaxHelper = {
           layer.confirm('亲爱的玩家，您尚未登陆', {
             btn: ['去登录'] //按钮
           }, function () {
-            location.href = '/html/login.html';
+            openLocal('/html/logIn.html');
+            // location.href = '/html/logIn.html';
           });
         }
         callback && callback(result);
@@ -273,7 +274,8 @@ var ajaxHelper = {
           layer.confirm('亲爱的玩家，您尚未登陆', {
             btn: ['去登录'] //按钮
           }, function () {
-            location.href = '/html/login.html';
+            openLocal('/html/logIn.html');
+            // location.href = '/html/logIn.html';
           });
         } else {
           showTips('网络错误','error');
@@ -323,7 +325,8 @@ var ajaxHelper = {
           layer.confirm('亲爱的玩家，您尚未登陆', {
             btn: ['去登录'] //按钮
           }, function () {
-            location.href = '/html/login.html';
+            openLocal('/html/logIn.html');
+            // location.href = '/html/logIn.html';
           });
         }
         callback && callback(result);
@@ -337,7 +340,8 @@ var ajaxHelper = {
           layer.confirm('亲爱的玩家，您尚未登陆', {
             btn: ['去登录'] //按钮
           }, function () {
-            location.href = '/html/login.html';
+            openLocal('/html/logIn.html');
+            // location.href = '/html/logIn.html';
           });
         } else {
           showTips('网络错误','error');

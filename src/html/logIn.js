@@ -18,11 +18,14 @@ function subData() {
   var mobile = $.trim($('#mobile').val());
   var password = $.trim($('#password').val());
   if(!mobile){
-    showTips('请输入手机号')
+    showTips('请输入手机号');
+    return;
   }else if(!password){
-    showTips('请输入登录密码')
+    showTips('请输入登录密码');
+    return;
   }else if(!validate.checkMobile(mobile)){
     showTips('请输入正确的手机号码')
+    return;
   }
   logInData.mobile = mobile;
   logInData.password = password;
