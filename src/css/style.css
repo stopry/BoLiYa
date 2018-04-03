@@ -176,11 +176,6 @@
 .spinner.hide {
   -webkit-transform: scale(0); }
 
-@font-face {
-  font-family: PF;
-  src: url("pingfang.ttf"), url("pingfang.ttf");
-  /* IE9+,可以是具体的实际链接 */ }
-
 .grayBar {
   width: 100%;
   height: 0.13333rem;
@@ -460,6 +455,12 @@ input:disabled, input[disabled] {
   background-size: 100% 100%;
   margin: 1.86667rem auto 1.6rem auto; }
 
+#userImg {
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ddd url("../images/default_user_pic.png") no-repeat center;
+  background-size: 100% 100%; }
+
 .userCenterHead {
   position: relative;
   background: #404244;
@@ -471,11 +472,15 @@ input:disabled, input[disabled] {
     position: relative;
     width: 100%; }
     .userCenterHead .headTop .userImg {
+      border-radius: 50%;
+      overflow: hidden;
       width: 1.33333rem;
       height: 1.33333rem;
       display: block;
       float: left;
-      margin: 0.4rem 0 0.4rem 0.4rem; }
+      margin: 0.4rem 0 0.4rem 0.4rem;
+      background: #ccc url("../images/default_user_pic.png") no-repeat center;
+      background-size: 100% 100%; }
     .userCenterHead .headTop .allFunds {
       width: 3.06667rem;
       height: 1.41333rem;
@@ -878,7 +883,8 @@ input:disabled, input[disabled] {
 .tableHeader {
   z-index: 8;
   width: 100%;
-  height: 1.33333rem;
+  height: 1.06667rem;
+  line-height: 1.06667rem;
   overflow: hidden;
   background: #404244;
   position: fixed;
@@ -924,7 +930,7 @@ input:disabled, input[disabled] {
       background: url("../images/cash_detail.png") no-repeat center;
       background-size: 100% 100%; }
     .tableBody .item.cash .rightInfo .money {
-      color: #D5B272; }
+      color: #CC6660; }
     .tableBody .item.rch .type {
       background: url("../images/recharge_detail.png") no-repeat center;
       background-size: 100% 100%; }
@@ -960,7 +966,7 @@ input:disabled, input[disabled] {
         left: 0.6rem;
         line-height: 0.65333rem;
         font-size: 0.48rem;
-        color: #454545; }
+        color: #4FAC90; }
       .tableBody .item .rightInfo .status {
         line-height: 0.53333rem;
         color: #454545;
@@ -978,13 +984,13 @@ input:disabled, input[disabled] {
   .tableBody.stock .bodyWrap .item {
     height: auto; }
     .tableBody.stock .bodyWrap .item.add .top .proType .profit {
-      background: #D5B272; }
+      background: #CC6660; }
     .tableBody.stock .bodyWrap .item.add .top .money {
-      color: #D5B272; }
+      color: #CC6660; }
     .tableBody.stock .bodyWrap .item.rde .top .proType .profit {
-      background: #cc5656; }
+      background: #4FAC90; }
     .tableBody.stock .bodyWrap .item.rde .top .money {
-      color: #454545; }
+      color: #4FAC90; }
     .tableBody.stock .bodyWrap .item .top {
       height: 1.06667rem;
       overflow: hidden;
@@ -1002,10 +1008,15 @@ input:disabled, input[disabled] {
           font-size: 0.26667rem;
           color: #fff;
           width: 0.4rem;
-          height: 0.4rem;
-          line-height: 0.4rem;
+          height: 0.37333rem;
+          vertical-align: middle;
+          line-height: 0.37333rem;
           text-align: center;
           border-radius: 50%;
+          overflow: hidden;
+          margin-left: 0.05333rem;
+          padding-top: 0.05333rem;
+          margin-top: -0.05333rem;
           display: inline-block; }
       .tableBody.stock .bodyWrap .item .top .money {
         font-size: 0.42667rem;
@@ -1062,7 +1073,32 @@ input:disabled, input[disabled] {
   width: 100%;
   height: 2.13333rem;
   overflow: hidden;
-  background: #404244; }
+  background: #404244;
+  position: relative; }
+  .indexHead .recCashBtn {
+    position: absolute;
+    z-index: 7;
+    font-family: PF;
+    width: 3.06667rem;
+    height: 0.53333rem;
+    font-size: 0.32rem;
+    text-align: center;
+    font-weight: bold;
+    line-height: 0.53333rem;
+    top: 1.18667rem;
+    left: 4rem; }
+    .indexHead .recCashBtn .btnItem {
+      border-radius: 0.06667rem;
+      width: 1.46667rem;
+      box-sizing: border-box; }
+      .indexHead .recCashBtn .btnItem.rch {
+        border: 1px solid #CC6660;
+        color: #CC6660;
+        float: left; }
+      .indexHead .recCashBtn .btnItem.cash {
+        border: 1px solid #4FAC90;
+        color: #4FAC90;
+        float: right; }
   .indexHead .con {
     position: relative;
     height: 1.38667rem;
@@ -1083,7 +1119,11 @@ input:disabled, input[disabled] {
         color: #D5B272;
         line-height: 0.72rem; }
         .indexHead .con .fundsInfo .fundsNum .numCom .showMoney, .indexHead .con .fundsInfo .fundsNum .numCom .hideMoney {
-          width: 1.86667rem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          font-weight: bold;
+          width: 2.4rem;
           display: inline-block; }
         .indexHead .con .fundsInfo .fundsNum i {
           width: 0.53333rem;
@@ -1098,7 +1138,7 @@ input:disabled, input[disabled] {
       .indexHead .con .fundsInfo .fundsMs {
         font-size: 0.4rem;
         color: #89898b;
-        line-height: 0.66667rem; }
+        line-height: 0.48rem; }
     .indexHead .con .toUc {
       float: right;
       line-height: 1.38667rem;
@@ -1148,6 +1188,7 @@ input:disabled, input[disabled] {
       height: 100%;
       text-align: center; }
       .chartTable .tableItem .proName .textInfo {
+        font-weight: bold;
         line-height: 0.56rem;
         overflow: hidden;
         height: 0.56rem;
@@ -1240,7 +1281,8 @@ input:disabled, input[disabled] {
   font-family: PF;
   color: #8d8d8f;
   font-size: 0.24rem;
-  width: 9.6rem;
+  width: 8.50667rem;
+  text-align: left;
   margin: 0 auto; }
 
 .tipsAlert {
@@ -1284,7 +1326,7 @@ input:disabled, input[disabled] {
   -webkit-transition: all ease 200ms;
   -webkit-transform: translateY(100%);
   width: 100%;
-  height: 10.29333rem;
+  height: 9.89333rem;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -1385,7 +1427,7 @@ input:disabled, input[disabled] {
             background: #D5B272 url("../images/check.png") no-repeat center;
             background-size: 0.53333rem auto; }
       .lookUpDownOpr .con .oprCon .oprBtn {
-        margin: 1.33333rem auto 0 auto;
+        margin: 0.8rem auto 0 auto;
         width: 8.50667rem;
         height: 0.90667rem;
         line-height: 0.90667rem;
@@ -1410,23 +1452,23 @@ input:disabled, input[disabled] {
 
 .tableHeader .listTitle {
   letter-spacing: 0.05333rem;
-  line-height: 1.33333rem;
+  line-height: 1.06667rem;
+  vertical-align: middle;
   color: #D5B272;
   font-size: 0.42667rem;
   text-align: center;
   font-weight: bold; }
 
 .nowChiCang {
-  position: fixed;
-  z-index: 19;
+  box-sizing: border-box;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2) inset;
   background: #fff;
   bottom: 0;
   left: 0;
-  height: 5.33333rem;
+  max-height: 2.66667rem;
   width: 100%;
   overflow-y: auto; }
   .nowChiCang .closeCiChang {
-    position: fixed;
     left: 0;
     bottom: 0;
     height: 0.93333rem;
@@ -1437,8 +1479,6 @@ input:disabled, input[disabled] {
     letter-spacing: 0.02667rem;
     text-align: center;
     width: 100%; }
-  .nowChiCang.hide {
-    display: none; }
   .nowChiCang .noList {
     text-align: center;
     height: 2rem;
@@ -1446,7 +1486,6 @@ input:disabled, input[disabled] {
     font-size: 0.34667rem;
     color: #bbb; }
   .nowChiCang table {
-    margin-bottom: 1.2rem;
     width: 100%; }
     .nowChiCang table td {
       width: 20%;
@@ -1455,12 +1494,13 @@ input:disabled, input[disabled] {
       border: 1px solid #eee;
       box-sizing: border-box;
       font-size: 0.26667rem; }
-      .nowChiCang table td .type.down {
-        color: #fff;
-        background: #cc6660;
+      .nowChiCang table td .type_t {
+        color: #fff !important;
         border-radius: 3px;
         padding: 0rem 0.10667rem; }
-        .nowChiCang table td .type.down.up {
+        .nowChiCang table td .type_t.up {
+          background: #cc6660; }
+        .nowChiCang table td .type_t.down {
           background: #4fac90; }
       .nowChiCang table td .t {
         color: #555; }
@@ -1468,6 +1508,7 @@ input:disabled, input[disabled] {
         color: #777; }
 
 #order_list_icon {
+  display: none;
   position: fixed;
   z-index: 10;
   width: 0.8rem;

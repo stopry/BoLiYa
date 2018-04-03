@@ -54,7 +54,7 @@ function init() {
               '<p class="tle">'+_title+'</p>'+
               '<p class="fee">手续费：<span>'+(item.charge).toFixed(2)+'</span></p>'+
             '<p class="order">订单号：<span>'+item.orderId+'</span></p>'+
-            '<p class="date">日<i style="opacity: 0">0</i> 期：<span>'+date+'</span></p>'+
+            '<p class="date">日<i style="opacity: 0">空</i> 期：<span>'+date+'</span></p>'+
             '</div>'+
             '<div class="rightInfo">'+
               '<div class="money">'+

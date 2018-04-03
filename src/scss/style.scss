@@ -6,12 +6,6 @@
   @return ($n/75)+rem;
 }
 //使用外部字体
-@font-face
-{
-  font-family: PF;
-  src: url('pingfang.ttf'),
-  url('pingfang.ttf'); /* IE9+,可以是具体的实际链接 */
-}
 .grayBar{
   width: 100%;
   height: rem(10);
@@ -314,7 +308,12 @@ $fClr:#8d8d8f;//辅助色
   background-size: 100% 100%;
   margin: rem(140) auto rem(120) auto;
 }
-
+#userImg{
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ddd url("../images/default_user_pic.png") no-repeat center;
+  background-size: 100% 100%;
+}
 //个人中心页面
 .userCenterHead{
   position: relative;
@@ -324,11 +323,15 @@ $fClr:#8d8d8f;//辅助色
   .headTop{
     overflow: hidden;
     .userImg{
+      border-radius: 50%;
+      overflow: hidden;
       width: rem(100);
       height: rem(100);
       display: block;
       float: left;
       margin: rem(30) 0 rem(30) rem(30);
+      background: #ccc url("../images/default_user_pic.png") no-repeat center;
+      background-size: 100% 100%;
     }
     height: rem(160);
     position: relative;
@@ -817,7 +820,8 @@ $fClr:#8d8d8f;//辅助色
 .tableHeader{
   z-index: 8;
   width: 100%;
-  height: rem(100);
+  height: rem(80);
+  line-height: rem(80);
   overflow: hidden;
   background: $bgClr;
   position: fixed;
@@ -872,7 +876,7 @@ $fClr:#8d8d8f;//辅助色
         background-size: 100% 100%;
       }
       .rightInfo .money{
-        color: $priClr;
+        color:#CC6660;
       }
     }
     &.rch{
@@ -920,7 +924,7 @@ $fClr:#8d8d8f;//辅助色
         left: rem(45);
         line-height: rem(49);
         font-size: rem(36);
-        color: #454545;
+        color: #4FAC90;
       }
       .status{
         line-height: rem(40);
@@ -950,18 +954,18 @@ $fClr:#8d8d8f;//辅助色
       height: auto;
       &.add{
         .top .proType .profit{
-          background: $priClr;
+          background: #CC6660;
         }
         .top .money{
-          color: $priClr;
+          color:#CC6660;
         }
       }
       &.rde{
         .top .proType .profit{
-          background: #cc5656;
+          background: #4FAC90;
         }
         .top .money{
-          color: #454545;
+          color: #4FAC90;
         }
       }
       .top{
@@ -981,10 +985,15 @@ $fClr:#8d8d8f;//辅助色
             font-size: rem(20);
             color: #fff;
             width: rem(30);
-            height: rem(30);
-            line-height: rem(30);
+            height: rem(28);
+            vertical-align: middle;
+            line-height: rem(28);
             text-align: center;
             border-radius: 50%;
+            overflow: hidden;
+            margin-left: rem(4);
+            padding-top: rem(4);
+            margin-top: rem(-4);
             display: inline-block;
           }
         }
@@ -1056,11 +1065,40 @@ $fClr:#8d8d8f;//辅助色
 }
 //index
 .indexHead{
+  .recCashBtn{
+    position: absolute;
+    z-index: 7;
+    font-family: PF;
+    width: rem(230);
+    height: rem(40);
+    font-size: rem(24);
+    text-align: center;
+    font-weight: bold;
+    line-height: rem(40);
+    top: rem(89);
+    left: rem(300);
+    .btnItem{
+      border-radius: rem(5);
+      width: rem(110);
+      box-sizing: border-box;
+      &.rch{
+        border: 1px solid #CC6660;
+        color: #CC6660;
+        float: left;
+      }
+      &.cash{
+        border: 1px solid #4FAC90;
+        color: #4FAC90;
+        float: right;
+    }
+    }
+  }
   font-family: PF;
   width: 100%;
   height: rem(160);
   overflow: hidden;
   background: $bgClr;
+  position: relative;
   .con{
     position: relative;
     height: rem(104);
@@ -1083,7 +1121,11 @@ $fClr:#8d8d8f;//辅助色
         line-height: rem(54);
         .numCom{
           .showMoney,.hideMoney{
-            width: rem(140);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-weight: bold;
+            width: rem(180);
             display: inline-block;
           }
         }
@@ -1103,7 +1145,7 @@ $fClr:#8d8d8f;//辅助色
       .fundsMs{
         font-size: rem(30);
         color: #89898b;
-        line-height: rem(50);
+        line-height: rem(36);
       }
     }
     .toUc{
@@ -1168,6 +1210,7 @@ $fClr:#8d8d8f;//辅助色
       vertical-align: middle;
       height: 100%;
       .textInfo{
+        font-weight: bold;
         line-height: rem(42);
         overflow: hidden;
         height: rem(42);
@@ -1277,7 +1320,8 @@ $fClr:#8d8d8f;//辅助色
   font-family: PF;
   color: $fClr;
   font-size: rem(18);
-  width: rem(720);
+  width: rem(638);
+  text-align: left;
   margin: 0 auto;
 }
 .tipsAlert{
@@ -1330,7 +1374,7 @@ $fClr:#8d8d8f;//辅助色
     -webkit-transform: translateY(0);
   }
   width: 100%;
-  height: rem(772);
+  height: rem(742);
   position: fixed;
   left: 0;
   bottom: 0;
@@ -1444,7 +1488,7 @@ $fClr:#8d8d8f;//辅助色
         }
       }
       .oprBtn{
-        margin: rem(100) auto 0 auto;
+        margin: rem(60) auto 0 auto;
         width: rem(638);
         height: rem(68);
         line-height: rem(68);
@@ -1476,7 +1520,8 @@ $fClr:#8d8d8f;//辅助色
 .tableHeader{
   .listTitle{
     letter-spacing: rem(4);
-    line-height: rem(100);
+    line-height: rem(80);
+    vertical-align: middle;
     color: $priClr;
     font-size: rem(32);
     text-align: center;
@@ -1485,8 +1530,10 @@ $fClr:#8d8d8f;//辅助色
 }
 //当前持仓
 .nowChiCang{
+  box-sizing: border-box;
+  box-shadow: 0 0 6px 2px rgba(0,0,0,.2) inset;
   .closeCiChang{
-    position: fixed;
+    //position: fixed;
     left: 0;
     bottom: 0;
     height: rem(70);
@@ -1498,14 +1545,14 @@ $fClr:#8d8d8f;//辅助色
     text-align: center;
     width: 100%;
   }
-  position: fixed;
-  z-index: 19;
+  //position: fixed;
+  //z-index: 19;
   background: #fff;
   bottom: 0;
   left: 0;
-  height: rem(400);
+  max-height: rem(200);
   &.hide{
-    display: none;
+    //display: none;
   }
   width: 100%;
   overflow-y: auto;
@@ -1518,7 +1565,7 @@ $fClr:#8d8d8f;//辅助色
   }
   //max-height: rem(140);
   table{
-    margin-bottom: rem(90);
+    //margin-bottom: rem(90);
     width: 100%;
     td{
       width: 20%;
@@ -1527,12 +1574,14 @@ $fClr:#8d8d8f;//辅助色
       border: 1px solid #eee;
       box-sizing: border-box;
       font-size: rem(20);
-      .type.down{
-        color: #fff;
-        background: #cc6660;
+      .type_t{
+        color: #fff !important;
         border-radius: 3px;
         padding: rem(0) rem(8);
         &.up{
+          background: #cc6660;
+        }
+        &.down{
           background: #4fac90;
         }
       }
@@ -1546,6 +1595,7 @@ $fClr:#8d8d8f;//辅助色
   }
 }
 #order_list_icon{
+  display: none;
   position: fixed;
   z-index: 10;
   width: rem(60);

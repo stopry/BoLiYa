@@ -15,7 +15,7 @@ $(function () {
     $(".closeCiChang").css("left",left+'px');
     $(".tableHeader").css("left",left+'px');
     $(".areaList").css("left",left+'px');
-    $("#searchHistory").css("left",left+'px');
+    $(".week-alert").css("left",left+'px');
   }
   function setFont() {
     var _winW = $(window).width();
@@ -36,8 +36,20 @@ $(function () {
       })
     }
   }
+  // setFont();
+  // autoFooterHeader();
+  //微信pc浏览器样式
+  function WXPcStyle() {
+    var ua = window.navigator.userAgent.toLowerCase();//微信
+    var w = $(window).width();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'&&w>600){//微信
+      setFont();
+      autoFooterHeader();
+      // return false;
+    }
+  }
+  WXPcStyle();
   setHF();
-
 });
 apiHost = 'http://api.zjiayuan.com';
 //跳转脚本
@@ -68,7 +80,9 @@ function showTips(msg,cla) {
   $('#alertWeek').remove();
   var $alert = $('<div class="week-alert '+cla+'" id="alertWeek"></div>');
   $('body').append($alert);
-  if(isPc()){
+  var ua = window.navigator.userAgent.toLowerCase();//微信
+  var w = $(window).width();
+  if(isPc()||(ua.match(/MicroMessenger/i) == 'micromessenger'&&w>600)){
     var winWidth = $(window).width();
     var left = (winWidth-600)/2;
     $('#alertWeek').css('left',left+'px');

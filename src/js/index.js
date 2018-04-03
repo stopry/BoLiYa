@@ -8,7 +8,7 @@ GlobalselObj = null;
 var openDatas = {
   "amount": 1,//购买数量
   "buySell": "1",//买入卖出
-  "depositType": "0",//押金方式
+  "depositType": 0,//押金方式
   "goodsCode": "HSAG10",//商品码
   "goodsType": "HSAG",//商品类型
   "nowPrice": 0,//当前价格
@@ -19,7 +19,7 @@ function clearOpenData() {
   for(key in openDatas){
     openDatas[key]=null;
   }
-  openDatas.depositType = '0';//默认支付方式为合约定金
+  openDatas.depositType = 0;//默认支付方式为合约定金
   console.log(openDatas);
 }
 
@@ -125,6 +125,7 @@ function hideBuyBox() {
 //看涨看跌选择
 function changeBuyType() {
   $(".changeTable .item").click(function () {
+    return;
     $(this).addClass('active').siblings('.item').removeClass('active');
     var lookUpDown = $(this).index()?0:1;//买涨1  买跌 0
     openDatas.buySell = lookUpDown;
@@ -162,11 +163,11 @@ function ticketSel() {
     if(num>0){
       if(isSel){
         $(this).removeClass('active');
-        openDatas.depositType = '0';
+        openDatas.depositType = 0;
         GlobalselObj&&GlobalselObj.addClass('active');
       }else{
         $(this).addClass('active');
-        openDatas.depositType = '1';//用代金券交易
+        openDatas.depositType = 1;//用代金券交易
         var selObj = $('.earnestSel .selItem.active');
         GlobalselObj = selObj;
         selObj.removeClass('active');
@@ -202,6 +203,7 @@ function loadData() {
   getUserInfo();
   createChart(curPro,chartType);
   getIndexUserInfo();
+  getHoldList();
   setInterval(function () {
     getIndexUserInfo();
   },1000*5);
@@ -224,8 +226,10 @@ function createChart(proId, kType) {
 var curPro = 'HSAG';//商品类型 默认为黄金
 
 //更新图表
-function updateChart(){
-  indexInterval = setInterval(function () {
+function updateChart(bool){
+
+  if(bool){
+
     if(chartType=='ML'){//分时图
       ajaxHelper.get(getUrl('quotation/getTLine'),{goodsType:curPro},function (res) {
         if(res.success&&res.obj){
@@ -239,7 +243,28 @@ function updateChart(){
         }
       },false)
     }
-  },1000*5);
+  }else{
+    indexInterval = setInterval(function () {
+      if(chartType=='ML'){//分时图
+        var h = $(window).height();
+        var h1 = $('#t_top').height();
+        var h2 = $('#b_bot').height();
+        var ch = h-h1-h2-30;
+        chart.setChartHeight(ch-h*0.08);
+        ajaxHelper.get(getUrl('quotation/getTLine'),{goodsType:curPro},function (res) {
+          if(res.success&&res.obj){
+            chart.flush(res.obj);
+          }
+        },false)
+      }else{
+        ajaxHelper.get(getUrl('quotation/getKLine'),{goodsType:curPro,chartType:chartType},function (res) {
+          if(res.success&&res.obj){
+            chart.flush(res.obj);
+          }
+        },false)
+      }
+    },1000*5);
+  }
 }
 
 var proInfo = [];
@@ -306,20 +331,18 @@ function initBuyBox(goodsType) {
   openDatas.stopPoint = spList[0];
   openDatas.nowPrice = curProInfo.point;
   openDatas.amount = curProInfo.minLot;
-
-
-
   console.log(curProInfo);
 
 }
 
 //确认建仓？
 function conFirmTips() {
-  layer.confirm('确认建仓吗？', {
-    btn: ['确认'] //按钮
-  }, function () {
-    subOpenData();
-  });
+  subOpenData();
+  // layer.confirm('确认建仓吗？', {
+  //   btn: ['确认'] //按钮
+  // }, function () {
+  //   subOpenData();
+  // });
 }
 
 //提交建仓信息
@@ -332,6 +355,7 @@ function subOpenData() {
     }else{
       showTips('建仓成功','success');
       hideBuyBox();
+      getHoldList();
     }
   })
 }
@@ -382,8 +406,11 @@ function getHoldList() {
   ajaxHelper.get(getUrl('tran/position/getCurrPositionlist'),{goodsType:curPro},function (res) {
     if(!res.success){
       showTips(res.msg);
+      clearInterval(orderListInterval);
     }else{
+      updateChart(1);
       if(res.obj&&res.obj.length){
+        // $('.noList').hide();
         var html = '';
         for(var i = 0;i<res.obj.length;i++){
           var item = res.obj[i];
@@ -418,8 +445,14 @@ function getHoldList() {
             '    </tr>'
         }
         $('.nowChiCang table').html(html);
+        clearInterval(orderListInterval);
+        orderListInterval = setInterval(function () {
+          getHoldList();
+        },1000*5);
       }else{
-
+        clearInterval(orderListInterval);
+        $('.nowChiCang table').html('');
+        // $('.noList').show();
       }
     }
   },false)
@@ -427,11 +460,11 @@ function getHoldList() {
 
 //图表自适应屏幕高度
 function GlobalAutoChartM() {
-  var h = $(window).height();
-  var h1 = $('#t_top').height();
-  var h2 = $('#b_bot').height();
-  var ch = h-h1-h2-30;
-  chart.setChartHeight(ch-h*0.08);
+  // var h = $(window).height();
+  // var h1 = $('#t_top').height();
+  // var h2 = $('#b_bot').height();
+  // var ch = h-h1-h2-30;
+  // chart.setChartHeight(ch-h*0.08);
 }
 //获取用户信息
 function getUserInfo() {

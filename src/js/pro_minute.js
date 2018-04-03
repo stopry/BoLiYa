@@ -25,32 +25,53 @@ var MinuteChart = {
 
     minuteChart.isFirst = true;
 
+    minuteChart.h = '';
+
     minuteChart.buildOption = function () {
       minuteChart.option = {
+        backgroundColor:'#404244',
         animation: minuteChart.isFirst,
         grid: [{
           left: '1%',
           right: '1%',
-          top: '5%',
-          bottom:'5%',
-          // height: '249px'
+          top: '8%',
+          bottom:'2%',
+          height: minuteChart.h
         }],
         xAxis: {
-          scale: false,
+          scale: true,
           type: 'category',
           boundaryGap: false,
-          data: minuteChart.date
+          data: minuteChart.date,
+          axisLine: {
+            lineStyle: {
+              color: '#D5B272'
+            },
+          },
+          axisLabel: {
+            inside: true
+          },
+          axisTick: {
+            show: true,
+            inside:true
+          },
         },
         yAxis: {
           type: 'value',
-          position: 'right',
+          position: 'left',
           splitNumber: 4,
           axisTick: {
             show: false,
           },
           axisLine: {
             lineStyle: {
-              color: '#606093'
+              color: '#D5B272'
+            }
+          },
+          splitLine: {
+            show: true,
+            lineStyle:{
+              color:'#555'
             }
           },
           axisLabel: {
@@ -95,7 +116,7 @@ var MinuteChart = {
         axisPointer: {
           link: {xAxisIndex: 'all'},
           label: {
-            backgroundColor: '#777'
+            backgroundColor: '#E1B567'
           }
         },
         dataZoom: [{
@@ -159,12 +180,13 @@ var MinuteChart = {
     }
     //设置图表高度
     minuteChart.setChartHeight = function(h){
+      minuteChart.h = h;
       minuteChart.chart.setOption({
         grid:[{
           left: '1%',
           right: '1%',
-          top: '5%',
-          bottom:'5%',
+          top: '8%',
+          bottom:'2%',
           height: h
         }]
       });
@@ -213,27 +235,50 @@ var MinuteChart = {
       currChart = "m";
     }
 
+
+
     minuteChart.flush = function (retData) {
-      if (retData == null) {
+      if (!retData||retData == null||retData=={}) {
         return;
       }
-      var minuteTime = retData.minuteTime;
-      if (minuteTime != minuteChart.initTime) {
-        minuteChart.data = null;
-        minuteChart.isFirst = false;
-        minuteChart.isInit = false;
-        minuteChart.createChart();
-        return;
+      // var minuteTime = retData.tlTime;
+      // if (minuteTime != minuteChart.initTime) {
+      //   minuteChart.data = null;
+      //   minuteChart.isFirst = false;
+      //   minuteChart.isInit = false;
+      //   minuteChart.createChart();
+      //   return;
+      // }
+      // minuteChart.volumes[minuteChart.volumes.length - 1] = retData.tranVolume;
+      // minuteChart.data[minuteChart.data.length - 1] = retData.price;
+      // minuteChart.avgData[minuteChart.avgData.length - 1] = retData.average;
+      // minuteChart.option.series[0].data = retData.price;
+      // minuteChart.option.series[1].data = [[minuteChart.date[minuteChart.data.length - 1], minuteChart.data[minuteChart.data.length - 1], 1]];
+
+      var len = minuteChart.date.length;
+      var mTime = retData.tlTime.substr(8, 2) + ':' + retData.tlTime.substr(10, 2);
+      if (mTime == minuteChart.date[len - 1]) {
+        minuteChart.data.splice(len - 1, len - 1, retData.price);
+        minuteChart.avgData.splice(len - 1, len - 1, retData.avgPrice);
+      } else {
+        minuteChart.data.push(retData.price);
+        minuteChart.data.shift();
+
+        minuteChart.date.push(mTime);
+        minuteChart.date.shift();
+
+        minuteChart.avgData.push(retData.avgPrice);
+        minuteChart.avgData.shift();
       }
-      minuteChart.volumes[minuteChart.volumes.length - 1] = retData.tranVolume;
-      minuteChart.data[minuteChart.data.length - 1] = retData.price;
-      minuteChart.avgData[minuteChart.avgData.length - 1] = retData.average;
-      minuteChart.option.series[0].data = retData.price;
-      minuteChart.option.series[1].data = [[minuteChart.date[minuteChart.data.length - 1], minuteChart.data[minuteChart.data.length - 1], 1]];
-      minuteChart.chart.setOption({
-        series: minuteChart.option.series
-      });
-    }
+      minuteChart.option.xAxis.data = minuteChart.date;
+      minuteChart.option.series[0].data = minuteChart.data;
+      minuteChart.option.series[1].data[0] = [minuteChart.date[minuteChart.data.length - 1], minuteChart.data[minuteChart.data.length - 1], 1];
+      minuteChart.chart.setOption(minuteChart.option);
+
+      // minuteChart.chart.setOption({
+        // series: minuteChart.option.series
+      // });
+    };
 
     return minuteChart;
   }

@@ -54,11 +54,12 @@ var CandleChart = {
     }
     candleChart.buildOption = function () {
       candleChart.option = {
+        backgroundColor:'#404244',
         legend: {
           data: ['MA5', 'MA10', 'MA20'],
-          inactiveColor: '#777',
+          inactiveColor: '#aaa',
           textStyle: {
-            color: '#B6B6B6'
+            color: '#999'
           },
           top: 5,
         },
@@ -108,7 +109,7 @@ var CandleChart = {
           left: '1%',
           right: '1%',
           top: '8%',
-          bottom:'8%',
+          bottom:'2%',
           // height: '249px'
         }]
         ,
@@ -117,30 +118,42 @@ var CandleChart = {
           data: candleChart.data.categoryData,
           scale: true,
           axisLine: {
-            onZero: false
+            onZero: false,
+            lineStyle: {
+              color: '#D5B272'
+            }
           },
           splitLine: {
             show: false
           },
           axisTick: {
-            alignWithLabel: true
+            alignWithLabel: true,
+            show: true,
+            inside:true
           },
           axisLabel: {
             formatter: function (value, index) {
               return value.substr(5);
-            }
+            },
+            inside: true
           }
         }
         ,
         yAxis: {
           scale: true,
-          position: 'right',
+          position: 'left',
           axisTick: {
             show: false,
           },
           axisLine: {
             lineStyle: {
-              color: '#CCC'
+              color: '#D5B272'
+            }
+          },
+          splitLine: {
+            show: true,
+            lineStyle:{
+              color:'#555'
             }
           },
           axisLabel: {
@@ -163,10 +176,10 @@ var CandleChart = {
             data: candleChart.data.values,
             itemStyle: {
               normal: {
-                color: '#dd0125',
-                color0: '#01ddb6',
-                borderColor: '#dd0125',
-                borderColor0: '#01ddb6'
+                color: '#CC6660',
+                color0: '#4FAC90',
+                borderColor: '#CC6660',
+                borderColor0: '#4FAC90'
               }
             }
           },
@@ -235,7 +248,7 @@ var CandleChart = {
           left: '1%',
           right: '1%',
           top: '8%',
-          bottom:'8%',
+          bottom:'2%',
           height: h
         }]
       });
@@ -320,7 +333,6 @@ var CandleChart = {
     return candleChart;
   }
 };
-
 
 function fomat(str) {
   return str.substr(0, 4) + "/" + str.substr(4, 2) + "/" + str.substr(6, 2) + " " + str.substr(8, 2) + ":" + str.substr(10, 2);

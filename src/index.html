@@ -26,14 +26,19 @@
   <link href="./css/reset.css" rel="stylesheet">
   <link href="./css/style.css" rel="stylesheet">
   <script src="js/pro_candle.js"></script>
+  <script src="js/pro_minute.js"></script>
 </head>
 <body>
 
 <div class="box ovhd">
 <div id="t_top">
   <div class="indexHead">
+    <div class="recCashBtn">
+      <div class="btnItem rch feedBtn" onclick="openLocal('/html/recharge.html')">充值</div>
+      <div class="btnItem cash feedBtn" onclick="openLocal('/html/cash.html')">提现</div>
+    </div>
     <div class="con">
-      <img src="./images/logo.png" id="userImg" class="uImg feedBtn" alt="" style="background: #ccc;border-radius: 50%;overflow: hidden;" onclick="openLocal('/html/userCenter.html')">
+      <img src="" id="userImg" class="uImg feedBtn" alt="" onclick="openLocal('/html/userCenter.html')">
       <div class="fundsInfo">
         <div class="fundsNum ovhd">
           <div class="numCom fl ovhd"><span class="showMoney" id="all_money">0.00</span> <span class="hideMoney" style="display: none">****</span></div>
@@ -106,12 +111,82 @@
         <div class="flexItem feedBtn" id="60">60分钟K线</div>
       </div>
     </div>
+    <div class="w100 ovhd nowChiCang hide">
+      <table>
+        <!--<tr>-->
+          <!--<td>-->
+            <!--<span class="type_t type t down">看涨</span>-->
+            <!--<p class="proNmae_t b">提银剂</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">1</span>-->
+            <!--<p class="amountCon_t b">数量</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">3281</span>-->
+            <!--<p class="amountCon_t b">建仓价</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">10.00</span>-->
+            <!--<p class="amountCon_t b">定金</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">5</span>-->
+            <!--<p class="amountCon_t b">止盈止损</p>-->
+          <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td>-->
+            <!--<span class="type_t type t down">看涨</span>-->
+            <!--<p class="proNmae_t b">提银剂</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">1</span>-->
+            <!--<p class="amountCon_t b">数量</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">3281</span>-->
+            <!--<p class="amountCon_t b">建仓价</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">10.00</span>-->
+            <!--<p class="amountCon_t b">定金</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">5</span>-->
+            <!--<p class="amountCon_t b">止盈止损</p>-->
+          <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+          <!--<td>-->
+            <!--<span class="type_t type t down">看涨</span>-->
+            <!--<p class="proNmae_t b">提银剂</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">1</span>-->
+            <!--<p class="amountCon_t b">数量</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">3281</span>-->
+            <!--<p class="amountCon_t b">建仓价</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">10.00</span>-->
+            <!--<p class="amountCon_t b">定金</p>-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<span class="amountCon_t t">5</span>-->
+            <!--<p class="amountCon_t b">止盈止损</p>-->
+          <!--</td>-->
+        <!--</tr>-->
+      </table>
+    </div>
     <div class="idxOprBtn">
       <div class="btnItem lookUp feedBtn" onclick="showBuyBox(1);">看涨</div>
       <div class="btnItem lookDown feedBtn" onclick="showBuyBox(0)">看跌</div>
     </div>
     <div class="timeTips">
-      <p class="timeTCon tc">交易时间：周一~周五8:00~16:00周日4:30~7:00休市结算</p>
+      <p class="timeTCon">交易时间：周一~周五8:00~4:00周日4:30~7:00休市结算</p>
       <p class="timeTConWarm tl">温馨提示：投资有风险，入市需谨慎！</p>
     </div>
   </div>
@@ -185,8 +260,8 @@
   <img src="./images/order_list.png" alt="">
 </div>
 <!--当前持仓列表-->
-<div class="w100 ovhd nowChiCang hide">
-  <table>
+<!--<div class="w100 ovhd nowChiCang hide">-->
+  <!--<table>-->
     <!--<tr>-->
       <!--<td>-->
         <!--<span class="type_t type t down">看涨</span>-->
@@ -209,98 +284,10 @@
         <!--<p class="amountCon_t b">止盈止损</p>-->
       <!--</td>-->
     <!--</tr>-->
-    <!--<tr>-->
-      <!--<td>-->
-        <!--<span class="type_t type t down up">看跌</span>-->
-        <!--<p class="proNmae_t b">提银剂</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">1</span>-->
-        <!--<p class="amountCon_t b">数量</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">3281</span>-->
-        <!--<p class="amountCon_t b">建仓价</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">10.00</span>-->
-        <!--<p class="amountCon_t b">定金</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">5</span>-->
-        <!--<p class="amountCon_t b">止盈止损</p>-->
-      <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-      <!--<td>-->
-        <!--<span class="type_t type t down up">看跌</span>-->
-        <!--<p class="proNmae_t b">提银剂</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">1</span>-->
-        <!--<p class="amountCon_t b">数量</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">3281</span>-->
-        <!--<p class="amountCon_t b">建仓价</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">10.00</span>-->
-        <!--<p class="amountCon_t b">定金</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">5</span>-->
-        <!--<p class="amountCon_t b">止盈止损</p>-->
-      <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-      <!--<td>-->
-        <!--<span class="type_t type t down up">看跌</span>-->
-        <!--<p class="proNmae_t b">提银剂</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">1</span>-->
-        <!--<p class="amountCon_t b">数量</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">3281</span>-->
-        <!--<p class="amountCon_t b">建仓价</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">10.00</span>-->
-        <!--<p class="amountCon_t b">定金</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">5</span>-->
-        <!--<p class="amountCon_t b">止盈止损</p>-->
-      <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-      <!--<td>-->
-        <!--<span class="type_t type t down up">看跌</span>-->
-        <!--<p class="proNmae_t b">提银剂</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">1</span>-->
-        <!--<p class="amountCon_t b">数量</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">3281</span>-->
-        <!--<p class="amountCon_t b">建仓价</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">10.00</span>-->
-        <!--<p class="amountCon_t b">定金</p>-->
-      <!--</td>-->
-      <!--<td>-->
-        <!--<span class="amountCon_t t">5</span>-->
-        <!--<p class="amountCon_t b">止盈止损</p>-->
-      <!--</td>-->
-    <!--</tr>-->
-  </table>
-  <div class="feedBtn closeCiChang">关闭</div>
-  <div class="noList">您还没有任何持仓</div>
-</div>
+  <!--</table>-->
+  <!--<div class="feedBtn closeCiChang">关闭</div>-->
+  <!--<div class="noList">您还没有任何持仓</div>-->
+<!--</div>-->
 
 <!--加载小动画-->
 <div class="spinner" id="spinner">
