@@ -42,6 +42,9 @@ $(function () {
   function WXPcStyle() {
     var ua = window.navigator.userAgent.toLowerCase();//微信
     var w = $(window).width();
+    if(w>600){
+      $('body').addClass('body');
+    }
     if(ua.match(/MicroMessenger/i) == 'micromessenger'&&w>600){//微信
       setFont();
       autoFooterHeader();

@@ -146,10 +146,10 @@ var MinuteChart = {
               normal: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                   offset: 0,
-                  color: 'rgb(228, 189, 119)'
+                  color: 'rgba(228, 189, 119,1)'
                 }, {
                   offset: 1,
-                  color: 'rgb(249, 240, 225)'
+                  color: 'rgba(249, 240, 225,0)'
                 }])
               }
             },
