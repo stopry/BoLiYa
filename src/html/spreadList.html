@@ -21,17 +21,18 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/broker.css">
+  <script src="userCenter.js"></script>
 </head>
-<body style="background: #20212B">
+<body style="background: #4e5153">
 <div class="alertLayer"></div>
 <div class="ajaxLayer">
     <!--<div class="loadImgWrap">-->
         <!--<img src="../images/xl_load.gif" alt="">-->
     <!--</div>-->
 </div>
-<div style="background: #262834;height: 100%">
+<div style="background: #404244;height: 100%">
     <div class="backMoneyLink w100 ovhd myBackMoney">
-        <div class="backWrap w96 ovhd feedBtn" style="background: #262834">
+        <div class="backWrap w96 ovhd feedBtn" style="background: #404244">
             <img src="../images/personnum.png" class="customerIcon fl" alt="">
             <div class="leftSec fl">总人数<span class="red" id="cnt">0</span> 人</div>
             <div class="rightSec fr">
@@ -40,26 +41,29 @@
         </div>
     </div>
 
-    <div class="searchForm w96" style="background: #262834;height: 100%">
+    <div class="searchForm w96" style="background: #404244;height: 100%">
         <input type="text" class="searchTel disbl w100" placeholder="请输入手机号查询" style="color: #FBFCFD"/>
-        <button class="searchBtn feedBtn" style="background: #5C78C1">
+        <button class="searchBtn feedBtn" style="background: #D5B272">
             搜索
         </button>
+      <table class="tgTable">
+        <thead style="background: #565656;">
+        <tr class="Title">
+          <td>昵称</td>
+          <td>注册时间</td>
+        </tr>
+        </thead>
+        <tbody id="list" style="background: #404244;border-top:1px solid #20212B;">
+          <tr>
+            <td>22</td>
+            <td>22</td>
+          </tr>
+        </tbody>
+
+      </table>
     </div>
-    &nbsp;
 </div>
-<table class="tgTable">
-    <thead style="background: #262834;">
-    <tr class="Title">
-        <td>昵称</td>
-        <td>注册时间</td>
-    </tr>
-    </thead>
-    <tbody id="list" style="background: #262834;border-top:1px solid #20212B;">
 
-    </tbody>
-
-</table>
 
 <script src="../js/lib/zepto.js"></script>
 <script src="../js/lib/myModule.js"></script>

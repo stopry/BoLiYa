@@ -42,6 +42,6 @@ function exitLogIn() {
     btn: ['确认'] //按钮
   }, function () {
     oauth.clean();
-    openLocal('/html/login.html');
+    openLocal('/html/logIn.html');
   });
 }
