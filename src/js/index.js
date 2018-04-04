@@ -3,6 +3,7 @@ $(function () {
 });
 var orderListInterval = null;//刷新当前持仓定时器
 var indexInterval = null;//定时器
+var isFreshPage = true;
 GlobalselObj = null;
 //建仓信息
 var openDatas = {
@@ -22,19 +23,20 @@ function clearOpenData() {
   openDatas.depositType = 0;//默认支付方式为合约定金
   console.log(openDatas);
 }
-
+function showHoldList(){
+  $(".nowChiCang").show();
+  setHeight();
+}
+function hideHoldList() {
+  $(".nowChiCang").hide();
+  setHeight();
+}
 //页面初始化方法
 function init() {
   clipAni();
-  var h = $(window).height();
-  var h1 = $('#t_top').height();
-  var h2 = $('#b_bot').height();
-  var ch = h-h1-h2-30;
-  $('#charts').height(ch);
-
+  setHeight();
   clearOpenData();
   loadData();
-
   changeProType();
   changeChartType();
   objVerticalCenter('.tipsAlert');
@@ -132,7 +134,6 @@ function changeBuyType() {
   });
 }
 
-
 //合约定金选择
 function earnestSel(){
   $(document).on('click','.earnestSel .selItem',function () {
@@ -208,7 +209,13 @@ function loadData() {
     getIndexUserInfo();
   },1000*5);
 }
-
+function setHeight() {
+  var h = $(window).height();
+  var h1 = $('#t_top').height();
+  var h2 = $('#b_bot').height();
+  var ch = h-h1-h2-30;
+  $("#charts").height(ch);
+}
 var chart = null;
 var chartType = "ML";//默认分时图
 //k线图有  15  30  60
@@ -219,17 +226,19 @@ function createChart(proId, kType) {
     chart = CandleChart.createNew(proId, kType);//K线图
   }
   clearInterval(indexInterval);
+  setHeight();
   chart.createChart();
   updateChart();
   GlobalAutoChartM();
 }
-var curPro = 'HSAG';//商品类型 默认为黄金
+var curPro = 'HSAG';//商品类型 默认为
 
 //更新图表
 function updateChart(bool){
 
   if(bool){
-
+    clearInterval(indexInterval);
+    setHeight();
     if(chartType=='ML'){//分时图
       ajaxHelper.get(getUrl('quotation/getTLine'),{goodsType:curPro},function (res) {
         if(res.success&&res.obj){
@@ -244,13 +253,9 @@ function updateChart(bool){
       },false)
     }
   }else{
+    clearInterval(indexInterval);
     indexInterval = setInterval(function () {
       if(chartType=='ML'){//分时图
-        var h = $(window).height();
-        var h1 = $('#t_top').height();
-        var h2 = $('#b_bot').height();
-        var ch = h-h1-h2-30;
-        chart.setChartHeight(ch-h*0.08);
         ajaxHelper.get(getUrl('quotation/getTLine'),{goodsType:curPro},function (res) {
           if(res.success&&res.obj){
             chart.flush(res.obj);
@@ -347,17 +352,29 @@ function conFirmTips() {
 
 //提交建仓信息
 function subOpenData() {
-  layer.close(layer.index);
-  console.log(openDatas);
-  ajaxHelper.post(getUrl('tran/position/open'),openDatas,function (res) {
+  //layer.close(layer.index);
+  ajaxHelper.get(getUrl('tran/infoTimer/getInfoTimer'),{goodsType:curPro},function (res) {
     if(!res.success){
-      showTips(res.msg,'error');
+      showTips(res.msg);
     }else{
-      showTips('建仓成功','success');
-      hideBuyBox();
-      getHoldList();
+      var info = res.obj;
+      // console.log(info,'info');
+      openDatas.nowPrice = info.quotation.nowPrice;
+      // console.log(openDatas,'openDatas');
+      ajaxHelper.post(getUrl('tran/position/open'),openDatas,function (res) {
+        if(!res.success){
+          showTips(res.msg,'error');
+        }else{
+          showTips('建仓成功','success');
+          getUserInfo();
+          hideBuyBox();
+          getHoldList();
+          showHoldList();
+          createChart(curPro,chartType);
+        }
+      })
     }
-  })
+  });
 }
 
 //更新界面信息(取消)
@@ -375,8 +392,6 @@ function updatePageInfo(goodsType){
     }
   });
 };
-
-
 
 //获取商品信息
 function getProInfo(){
@@ -408,7 +423,7 @@ function getHoldList() {
       showTips(res.msg);
       clearInterval(orderListInterval);
     }else{
-      updateChart(1);
+      isFreshPage = true;
       if(res.obj&&res.obj.length){
         // $('.noList').hide();
         var html = '';
@@ -452,8 +467,11 @@ function getHoldList() {
       }else{
         clearInterval(orderListInterval);
         $('.nowChiCang table').html('');
-        // $('.noList').show();
+        hideHoldList();
+        chart.createChart();
       }
+      getUserInfo();
+      updateChart();
     }
   },false)
 }

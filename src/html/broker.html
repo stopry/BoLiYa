@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>经纪人中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <script src="../js/plugin/flexible.css.js"></script>
+    <script src="../js/plugin/flexible.ios.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/broker.css">
+</head>
+<body style="background: #20212B">
+<div style="background: #262834;color: #F8F8F8;font-size: 0.45rem;letter-spacing: 2px;text-align: center;height: 1.25rem;">
+    <div style="width: 50%;float: left;height: 1.2rem" onclick="location.href='./broker.html'">
+        <div style="border-bottom: solid 2px #F8F8F8;line-height: 1.2rem;width: 2.2rem;margin: 0 auto">推广详情</div>
+    </div>
+    <div style="width: 50%;float: left;height: 1.2rem" onclick="location.href='./myBackmoney.html'">
+        <div style="line-height: 1.2rem;width: 2.2rem;margin: 0 auto">我的返佣</div>
+    </div>
+</div>
+<div style="height: 3rem;background: #262834; margin-top: 10px;text-align: center;font-size: 0.45rem;line-height: 1rem;">
+    <div style="height: 3rem;border-right: 1px solid #20212B;width: 33%;float: left;padding-top: 0.5rem">
+        <p style="color: #C6C6C6">已结佣金</p>
+        <p style="color: #FFFFFF" id="brokerAmt">0.00</p>
+    </div>
+    <div style="height: 3rem;width: 33%;float: left;padding-top: 0.5rem">
+        <p style="color: #C6C6C6">未结佣金</p>
+        <p style="color: #FFFFFF" id="unBrokerAmt">0.00</p>
+    </div>
+    <div style="height: 3rem;border-left: 1px solid #20212B;width: 33%;float: left;padding-top: 0.5rem" onclick="location.href='./spreadList.html'">
+        <p style="color: #C6C6C6">我的用户</p>
+        <p style="color: #FFFFFF" id="mCnt">0人</p>
+    </div>
+</div>
+<div style="background: #262834;margin-top: 10px;height: 100%;text-align: center">
+    <p style="line-height: 0.7rem;font-size: 0.45rem;color:#C6C6C6">复制随机推广码给朋友</p>
+    <div style="text-align: center;line-height: 70px;font-size: 25px;color: #FFF;" id="tj_code">
+        00000
+    </div>
+    <div id="btn" data-clipboard-text="1"
+         style="height: 30px;color:#7BC7CB;font-size:12px;line-height:28px; text-align: center;width: 100%;border: solid 1px #7BC7CB;border-radius: 10px;width: 50%; margin:0 auto;">
+        点击复制
+    </div>
+    <div id="flushBtn"
+         style="height: 30px;color:#F2D39A;font-size:12px;line-height:28px; text-align: center;width: 100%;border: solid 1px #F2D39A;border-radius: 10px;width: 50%; margin:15px auto;">
+        点击刷新
+    </div>
+</div>
+<script src="../js/lib/zepto.js"></script>
+<script src="../js/lib/myModule.js"></script>
+<script src="../js/layer/layer.js"></script>.
+<script src="../js/global.js"></script>
+<script src="../js/clipboard.min.js"></script>
+<script>
+    $(function () {
+        ajaxHelper.get("/api/tran/broker/getBrokerInfo", {}, function (ret) {
+            if (ret.success) {
+                var data = ret.obj;
+                var brokerAmt = data.brokerAmt;
+                var unBrokerAmt = data.unBrokerAmt;
+                if (!brokerAmt) {
+                    brokerAmt = 0;
+                }
+                if (!unBrokerAmt) {
+                    unBrokerAmt = 0;
+                }
+
+                $('#nickname').html(decodeURI(data.nickname));
+                $('#brokerNo').html(data.brokerNo);
+                $('#hear').attr('src', data.hearimgUrl);
+                $('#totalAmt').html((brokerAmt + unBrokerAmt).toFixed(2));
+                $('#brokerAmt').html(brokerAmt.toFixed(2));
+                $('#unBrokerAmt').html(unBrokerAmt.toFixed(2));
+                $('#mCnt').html((!data.mCnt ? 0 : data.mCnt) + '人');
+            } else {
+                layer.open({
+                    content: ret.msg,
+                    btn: '知道了',
+                    yes: function (index) {
+                      openLocal('/html/login.html');
+                    }
+                });
+            }
+        });
+
+        getCode();
+        function getCode() {
+            ajaxHelper.get('/api/tran/broker/getTJCode', {}, function (ret) {
+                if (ret.success) {
+                    $('#tj_code').html(ret.obj);
+                    $("#btn").attr('data-clipboard-text', ret.obj);
+                } else {
+                    showTips('生成推广码失败，请刷新重试','warm');
+                }
+            });
+        }
+
+        $('#flushBtn').on('click', function () {
+            getCode();
+        });
+
+        var btn = document.getElementById('btn');
+        var clipboard = new Clipboard(btn);
+
+        clipboard.on('success', function (e) {
+            showTips('复制成功，分享给您的好友吧','success');
+        });
+
+        clipboard.on('error', function (e) {
+            console.log(e);
+        });
+    });
+</script>
+</body>
+</html>

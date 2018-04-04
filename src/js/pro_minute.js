@@ -30,13 +30,14 @@ var MinuteChart = {
     minuteChart.buildOption = function () {
       minuteChart.option = {
         backgroundColor:'#404244',
-        animation: minuteChart.isFirst,
+        // animation: minuteChart.isFirst,
+        animation: false,
         grid: [{
           left: '1%',
           right: '1%',
           top: '8%',
           bottom:'2%',
-          height: minuteChart.h
+          // height: minuteChart.h
         }],
         xAxis: {
           scale: true,
