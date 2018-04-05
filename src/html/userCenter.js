@@ -1,5 +1,5 @@
 
-
+var broker = 0;
 $(function () {
   init();
 });
@@ -28,6 +28,7 @@ function getUserInfo() {
       showTips(res.msg);
     }else{
       var obj = res.obj;
+      broker = obj.mType;
       $("#userImg").attr('src',obj.hearimgUrl);
       $("#all_money").html((obj.balance).toFixed(2));
       $("#keyong").html((obj.usableDeposit).toFixed(2));//可用保证金
@@ -44,4 +45,12 @@ function exitLogIn() {
     oauth.clean();
     openLocal('/html/logIn.html');
   });
+}
+
+function toBroker() {
+  if (broker == '2') {
+    openLocal('/html/broker.html')
+  } else {
+    showTips("您暂未成为经纪人,请联系客服",'warm');
+  }
 }
