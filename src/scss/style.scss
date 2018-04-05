@@ -1614,3 +1614,16 @@ $fClr:#8d8d8f;//辅助色
 .body{
   box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
 }
+.backHomeIcon{
+  position: absolute;
+  top: rem(18);
+  left: rem(26);
+  width: rem(50);
+  height: rem(50);
+  background: url("../images/home_icon.png") no-repeat center;
+  background-size: 100% 100%;
+  &.uc{
+    top: rem(80);
+    left: rem(671) !important;
+  }
+}

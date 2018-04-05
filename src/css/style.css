@@ -1526,3 +1526,15 @@ input:disabled, input[disabled] {
 
 .body {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); }
+
+.backHomeIcon {
+  position: absolute;
+  top: 0.24rem;
+  left: 0.34667rem;
+  width: 0.66667rem;
+  height: 0.66667rem;
+  background: url("../images/home_icon.png") no-repeat center;
+  background-size: 100% 100%; }
+  .backHomeIcon.uc {
+    top: 1.06667rem;
+    left: 8.94667rem !important; }

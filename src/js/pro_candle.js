@@ -296,6 +296,39 @@ var CandleChart = {
       if (data == null) {
         return;
       }
+
+      var len = candleChart.data.values.length;
+      var val = [];
+      val.push(data.openPrice) //开盘价
+      val.push(data.closePrice) //收盘价
+      val.push(data.lowPrice) //最低价
+      val.push(data.highPrice) //最高价
+
+      var klTime = fomat(data.klTime);
+      var oldKlTime = candleChart.data.categoryData[len - 1];
+
+      if (klTime == oldKlTime) {
+        candleChart.data.values.splice(len - 1, len - 1, val);
+      } else {
+        candleChart.data.values.push(val);
+        candleChart.data.values.shift();
+
+        candleChart.data.categoryData.push(klTime);
+        candleChart.data.categoryData.shift();
+      }
+      candleChart.option.series[0].data = candleChart.data.values;
+      //candleChart.option.series[0].markLine.data[0].yAxis = candleChart.data.values[candleChart.data.values.length - 1][1];
+      candleChart.option.series[1].data = candleChart.calculateMA(5);
+      candleChart.option.series[2].data = candleChart.calculateMA(10);
+      candleChart.option.series[3].data = candleChart.calculateMA(20);
+      // candleChart.chart.setOption({
+      //   series: candleChart.option.series
+      // });
+      candleChart.chart.setOption(
+        candleChart.option
+      );
+
+      /*
       var len = candleChart.data.values.length;
       var val = [];
       val.push(data.openPrice) //开盘价
@@ -313,6 +346,7 @@ var CandleChart = {
       candleChart.chart.setOption({
         series: candleChart.option.series
       });
+      */
     }
 
     candleChart.calculateMA = function (dayCount) {
