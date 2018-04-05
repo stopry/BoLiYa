@@ -810,8 +810,12 @@ $fClr:#8d8d8f;//辅助色
       height: rem(70);
       float: right;
       border-radius: rem(5);
-      background:$priClr url("../images/check.png") no-repeat center;
+      background:#ccc url("../images/check.png") no-repeat center;
       background-size: rem(36) auto;
+      &.chceked{
+        background:$priClr url("../images/check.png") no-repeat center;
+        background-size: rem(36) auto;
+      }
     }
     margin-bottom: rem(26);
   }

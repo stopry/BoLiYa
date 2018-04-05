@@ -275,6 +275,31 @@ function updateChart(bool){
 var proInfo = [];
 //获取主页用户信息 -用户展示
 function getIndexUserInfo(){
+  //商品涨跌信息展示 红绿箭头
+
+  ajaxHelper.get(getUrl('quotation/getKLine?goodsType=HSAG&chartType=15'),null,function (res) {
+    if(res.success){
+      var info = res.obj;
+      var upOrDown = info.closePrice-info.openPrice>=0;
+      if(upOrDown>0){
+        $("#Au").removeClass('down');
+      }else{
+        $("#Au").addClass('down');
+      }
+    }
+  },false);
+  ajaxHelper.get(getUrl('quotation/getKLine?goodsType=HSPE&chartType=15'),null,function (res) {
+    if(res.success){
+      var info = res.obj;
+      var upOrDown = info.closePrice-info.openPrice>=0;
+      if(upOrDown>0){
+        $("#Cu").removeClass('down');
+      }else{
+        $("#Cu").addClass('down');
+      }
+    }
+  },false);
+
   ajaxHelper.get(getUrl('tran/acct/getMianInfo'),null,function (res) {
     if(!res.success){
       showTips(res.msg);
@@ -289,16 +314,16 @@ function getIndexUserInfo(){
       $("#Au").attr('goodsType',Au.goodsType);
       $("#Cu").attr('goodsType',Cu.goodsType);
       $(".ticketNum").html(obj.userInfo.djj);
-      if(Au.upOrDown>0){
-        $("#Au").removeClass('down');
-      }else{
-        $("#Au").addClass('down');
-      }
-      if(Cu.upOrDown>0){
-        $("#Cu").removeClass('down');
-      }else{
-        $("#Cu").addClass('down');
-      }
+      // if(Au.upOrDown>0){
+      //   $("#Au").removeClass('down');
+      // }else{
+      //   $("#Au").addClass('down');
+      // }
+      // if(Cu.upOrDown>0){
+      //   $("#Cu").removeClass('down');
+      // }else{
+      //   $("#Cu").addClass('down');
+      // }
       var totalInfo = obj.totalInfo;
       $("#zuoshou").html(totalInfo.yeClosePrice);
       $("#jinkai").html(totalInfo.toOpenPrice);

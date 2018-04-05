@@ -50,9 +50,15 @@
   <div class="cashCenter ovhd rechargeCenter rechargeBot">
     <div class="wrap">
       <div class="tle">充值方式</div>
-      <div class="cashTypeSel w100 ovhd">
-        快捷支付
-        <div class="selIdon"></div>
+      <div id="per-list">
+        <div class="cashTypeSel w100 ovhd">
+          快捷支付
+          <div class="payType selIdon chceked feedBtn"></div>
+        </div>
+        <div class="cashTypeSel w100 ovhd">
+          快捷支付
+          <div class="payType selIdon feedBtn"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,9 +74,11 @@
 </div>
 
 <script src="../js/lib/zepto.js"></script>
+<script src="../js/lib/jquery.base64.js"></script>
 <script src="../js/layer/layer.js"></script>
 <script src="../js/lib/myModule.js"></script>
 <script src="../js/global.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="./recharge.js"></script>
 </body>
 </html>
