@@ -630,7 +630,8 @@ input:disabled, input[disabled] {
 .cashHeader {
   height: 2.66667rem;
   background: #404244;
-  text-align: center; }
+  text-align: center;
+  position: relative; }
   .cashHeader .allFunds {
     margin-top: 0.64rem; }
   .cashHeader .allFunds, .cashHeader .fundsDesc {

@@ -209,7 +209,10 @@ function subRecharge() {
         $.base64.utf8encode = true;
         var pGateWayReq = $.base64.btoa(encodeURI(ret.obj.pGateWayReq));
         var action = $.base64.btoa(ret.obj.action);
-        window.location.href = 'http://pay.kaikaiusa.com/ipsPay.html?pGateWayReq=' + pGateWayReq + '&action=' + action;
+        localStorage.setItem('pGateWayReq', pGateWayReq);
+        localStorage.setItem('action', action);
+        window.location.href = '/pay/ipspay.html'
+        // window.location.href = 'http://pay.kaikaiusa.com/ipsPay.html?pGateWayReq=' + pGateWayReq + '&action=' + action;
       } else {
         showTips(ret.msg);
       }
