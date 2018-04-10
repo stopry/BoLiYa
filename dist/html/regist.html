@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" style="background: #404244;">
+<head>
+  <meta charset="utf-8">
+  <title>伯利亚</title>
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit"/>
+  <meta name="force-rendering" content="webkit"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="full-screen" content="yes"/>
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="360-fullscreen" content="true"/>
+  <meta name="screen-orientation" content=""/>
+  <meta name="x5-orientation" content="">
+  <meta name="browsermode" content="application">
+  <meta name="x5-page-mode" content="app">
+  <script src="../js/plugin/flexible.css.js?v=121a71fac1"></script>
+  <script src="../js/plugin/flexible.ios.js?v=2f6d8ee4fc"></script>
+  <link href="../css/reset.css?v=0b5ec79ad1" rel="stylesheet">
+  <link href="../css/style.css?v=e3c2a884e5" rel="stylesheet">
+</head>
+<body style="background: #404244;">
+
+<div class="box ovhd">
+  <div class="registForm conWrap ovhd">
+    <div class="formInput blackBorder">
+      <div class="iptTitle">手机号</div>
+      <input class="iptCon" autocomplete="off" value="" type="text" id="mobile" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入手机号"/>
+    </div>
+    <div class="formInput blackBorder">
+      <div class="iptTitle">微信号</div>
+      <input class="iptCon" autocomplete="off" value="" type="text" id="wxAct" placeholder="请输入微信号"/>
+    </div>
+    <div class="formInput blackBorder">
+      <div class="iptTitle">密码</div>
+      <input class="iptCon" autocomplete="off" value="" type="password" id="password" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入登录密码"/>
+    </div>
+    <!--156Z9U6X99-->
+    <div class="formInput blackBorder">
+      <div class="iptTitle">推荐码</div>
+      <input class="iptCon" type="text" autocomplete="off" value="" id="prtCode" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入推荐码"/>
+    </div>
+    <div class="formInput blackBorder">
+      <div class="iptTitle">验证码</div>
+      <input class="iptCon" autocomplete="off" type="text" id="verCode" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入手验证码"/>
+      <div class="leftBtn feedBtn" id="getVerCode">获取验证码</div>
+    </div>
+    <div class="btn feedBtn registBtn" onclick="subData()">
+      立即注册
+    </div>
+    <div class="tipsArea">
+      <div class="clickBtn feedBtn" onclick="openLocal('/html/logIn.html')">去登录</div>
+    </div>
+    <div class="tipsArea">
+      <div class="clickBtnCen feedBtn">《用户协议》</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/lib/zepto.js?v=c8ba49926e"></script>
+<script src="../js/lib/myModule.js?v=7955b579f7"></script>
+<script src="../js/global.js?v=79e10487c8"></script>
+<script src="./regist.js?v=a1d9a098e0"></script>
+</body>
+</html>

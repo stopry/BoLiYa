@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>推广列表</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <script src="../js/plugin/flexible.css.js?v=121a71fac1"></script>
+    <script src="../js/plugin/flexible.ios.js?v=2f6d8ee4fc"></script>
+    <link rel="stylesheet" href="../css/reset.css?v=0b5ec79ad1">
+    <link rel="stylesheet" href="../css/style.css?v=e3c2a884e5">
+    <link rel="stylesheet" href="../css/broker.css?v=ec644968fc">
+  <script src="userCenter.js?v=8eeee0351a"></script>
+</head>
+<body style="background: #4e5153">
+<div class="alertLayer"></div>
+<div class="ajaxLayer">
+    <!--<div class="loadImgWrap">-->
+        <!--<img src="../images/xl_load.gif?v=7d721d3d05" alt="">-->
+    <!--</div>-->
+</div>
+<div style="background: #404244;height: 100%">
+    <div class="backMoneyLink w100 ovhd myBackMoney">
+        <div class="backWrap w96 ovhd feedBtn" style="background: #404244">
+            <img src="../images/personnum.png?v=f7e203dd4f" class="customerIcon fl" alt="">
+            <div class="leftSec fl">总人数<span class="red" id="cnt">0</span> 人</div>
+            <div class="rightSec fr">
+                <p class="rText fr"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="searchForm w96" style="background: #404244;height: 100%">
+        <input type="text" class="searchTel disbl w100" placeholder="请输入手机号查询" style="color: #FBFCFD"/>
+        <button class="searchBtn feedBtn" style="background: #D5B272">
+            搜索
+        </button>
+      <table class="tgTable">
+        <thead style="background: #565656;">
+        <tr class="Title">
+          <td>昵称</td>
+          <td>注册时间</td>
+        </tr>
+        </thead>
+        <tbody id="list" style="background: #404244;border-top:1px solid #20212B;">
+          <tr>
+            <td>22</td>
+            <td>22</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+</div>
+
+
+<script src="../js/lib/zepto.js?v=c8ba49926e"></script>
+<script src="../js/lib/myModule.js?v=7955b579f7"></script>
+<script src="../js/layer/layer.js?v=036b8006ef"></script>
+<script src="../js/layerUtil.js?v=85abd20f7b"></script>
+<script src="../js/global.js?v=79e10487c8"></script>
+<script>
+    $(function () {
+        load();
+
+        var mobileReg = /^1[3-9][\d]{9}$/;
+        $(".searchBtn").click(function () {
+            checkInput();
+        });
+        function checkInput() {
+            var _mobile = ($('.searchTel').val()).trim();
+            if (!mobileReg.test(_mobile)) {
+                showTips('请输入正确手机号','warm');
+                return;
+            }
+            load(_mobile);
+        }
+
+        function load(mobile) {
+            ajaxHelper.get('/api/tran/broker/getClient', {"mobile": mobile}, function (ret) {
+                if (ret.success) {
+                    if(ret.obj.list&&!ret.obj.list.length){
+                      showTips('没有任何数据')
+                    }
+                    var data = ret.obj.list;
+                    var cnt = ret.obj.cnt
+                    $('#cnt').html(cnt);
+                    var html = "";
+                    data.forEach(function (val, index, arr) {
+                        html += '<tr >';
+                        html += '   <td style="height: 34px">' + decodeURI(val.nickname) + '</td> ';
+                        html += '   <td>' + new Date(val.regTime).format('yyyy-MM-dd') + '</td>';
+                        html += '</tr>';
+                    });
+                    $('#list').html(html);
+                } else {
+                    showTips('网络异常','error');
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

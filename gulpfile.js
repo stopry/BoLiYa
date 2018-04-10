@@ -9,6 +9,74 @@ var browserSync = require('browser-sync').create();//创建本地服务器
 var sassPath = './src/scss';//scss文件路径
 var cssPath = './src/css';
 
+//添加版本号start
+var rev = require('gulp-rev');
+var revCollector = require('gulp-rev-collector');
+
+gulp.task('css',function(){
+return gulp.src('src/css/*.*')
+         .pipe(rev())
+         .pipe(gulp.dest('dist/css'))
+         .pipe(rev.manifest())
+         .pipe(gulp.dest('rev/css'))
+})      
+
+gulp.task('js',function(){
+return gulp.src("src/js/**/*.*")
+         .pipe(rev())
+         .pipe(gulp.dest("dist/js"))
+         .pipe(rev.manifest())
+         .pipe(gulp.dest('rev/js'))
+})
+// ,'src/html/*.html'
+gulp.task('htmlJs',function(){
+return gulp.src(["src/html/*.js"])
+          .pipe(rev())
+          .pipe(gulp.dest("dist/html"))
+          .pipe(rev.manifest())
+          .pipe(gulp.dest('rev/htmlJs'))
+})
+
+gulp.task('pay',function(){
+return gulp.src(["src/pay/**/*.*"])
+          .pipe(rev())
+          .pipe(gulp.dest("dist/pay"))
+          .pipe(rev.manifest())
+          .pipe(gulp.dest('rev/pay'))
+})
+
+gulp.task('payCode',function(){
+return gulp.src(["src/pay_scan_code/**/*.*"])
+          .pipe(rev())
+          .pipe(gulp.dest("dist/pay_scan_code"))
+          .pipe(rev.manifest())
+          .pipe(gulp.dest('rev/payCode'))
+})
+
+gulp.task('img',function(){
+return gulp.src(["src/image/**/*.*"])
+          .pipe(rev())
+          .pipe(gulp.dest("dist/image"))
+          .pipe(rev.manifest())
+          .pipe(gulp.dest('rev/img'))
+})
+
+gulp.task('imgs',function(){
+return gulp.src(["src/images/**/*.*"])
+          .pipe(rev())
+          .pipe(gulp.dest("dist/images"))
+          .pipe(rev.manifest())
+          .pipe(gulp.dest('rev/imgs'))
+})
+
+gulp.task('rev',['css','js','htmlJs','pay','payCode','img','imgs'],function(){
+return gulp.src(['rev/**/*.json','src/**/*.html'])
+         .pipe(revCollector({
+             replaceReved: true
+         })).pipe(gulp.dest('dist'))
+})
+//添加版本号end
+
 //编译scss文件
 gulp.task('sass',function(){
   gulp.src(sassPath+'/*.scss')

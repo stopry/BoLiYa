@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en"  style="background: #F0F0F0;">
+<head>
+  <meta charset="utf-8">
+  <title>提现</title>
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit"/>
+  <meta name="force-rendering" content="webkit"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="full-screen" content="yes"/>
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="360-fullscreen" content="true"/>
+  <meta name="screen-orientation" content=""/>
+  <meta name="x5-orientation" content="">
+  <meta name="browsermode" content="application">
+  <meta name="x5-page-mode" content="app">
+  <script src="../js/plugin/flexible.css.js?v=121a71fac1"></script>
+  <script src="../js/plugin/flexible.ios.js?v=2f6d8ee4fc"></script>
+  <link href="../css/reset.css?v=0b5ec79ad1" rel="stylesheet">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_5sqpn13tj0885mi.css">
+  <link href="../css/style.css?v=e3c2a884e5" rel="stylesheet">
+</head>
+<body style="background: #F0F0F0;">
+<div class="box ovhd" style="background: #fff">
+  <header class="cashHeader ovhd w10">
+    <div class="backHomeIcon feedBtn" onclick="openLocal('/index.html?v=e83ab7a872')"></div>
+    <div class="allFunds" id="keyong">0.00</div>
+    <div class="fundsDesc">可提现金额(¥)</div>
+  </header>
+  <div class="cashCenter ovhd">
+    <div class="wrap">
+      <div class="tle">提现金额</div>
+      <input class="input" type="text" id="money" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入提现金额"/>
+      <div class="tleBot">手续费 <span class="fee" id="fee">0.0</span>元</div>
+    </div>
+  </div>
+  <div class="grayBar"></div>
+  <div class="registForm conWrap ovhd resetPwd cash">
+    <div class="formInput borderBot">
+      <div class="iptTitle">银 行</div>
+      <div class="iptCon selCashBank" id="bankName">请选择银行</div>
+      <div class="bankLogo">
+        <img src="../images/bank_logo.png?v=73629a3386" id="bankLogo" alt="">
+      </div>
+    </div>
+    <div class="formInput borderBot">
+      <div class="iptTitle">省份城市</div> <!--confirmPwd-->
+      <div class="iptCon address toSelArea" id="address">
+        <div class="areaWrap fl">
+          <span class="provice" id="provice">省份</span>
+          <span class="city" id="city">城市</span>
+        </div>
+      </div>
+    </div>
+    <div class="formInput borderBot">
+      <div class="iptTitle">卡 号</div>
+      <input class="iptCon" id="cardNum" autocomplete="off"  onkeyup="formatBankNo(this)" onkeydown="formatBankNo(this)" type="text" placeholder="请输入银行卡号"/>
+    </div>
+    <div class="formInput borderBot">
+      <div class="iptTitle confirmPwd">持卡人姓名</div> <!--confirmPwd name-->
+      <input class="iptCon" type="text" autocomplete="off"  id="name" placeholder="请输入持卡人姓名"/>
+    </div>
+    <div class="formInput borderBot">
+      <div class="iptTitle">身份证号</div>
+      <input class="iptCon" autocomplete="off"  type="text" id="idCard" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入持卡人身份证号"/>
+    </div>
+    <div class="formInput borderBot">
+      <div class="iptTitle ">验证码</div> <!--confirmPwd-->
+      <input class="iptCon" id="verCode" autocomplete="off" type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " placeholder="请输入短信验证码"/>
+      <div class="leftBtn feedBtn" id="getVerCode">获取验证码</div>
+    </div>
+  </div>
+
+</div>
+<div class="bindMobile">
+  已验证手机号: <span class="mobile" id="bindMobile">138****8476</span>
+</div>
+<div class="btn feedBtn registBtn" id="confirm" STYLE="margin-top: 0">
+  立即提现
+</div>
+<div class="tipsArea" style="margin-bottom: 45px">
+  <div class="clickBtn feedBtn"></div>
+</div>
+
+<!--银行选择-->
+<div class="selBankBox" >
+  <div class="selBankWrap">
+    <div class="selBankList">
+
+    <div class="bankListItem feedBtn" >
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_1.png?v=a51d741b2d">
+      </div>
+      <div class="bankName fr">中国工商银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_2.png?v=1827d5f8c6">
+      </div>
+      <div class="bankName fr">中国农业银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_3.png?v=38df850bfb">
+      </div>
+      <div class="bankName fr">中国银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_4.png?v=1a80ae2358">
+      </div>
+      <div class="bankName fr">中国建设银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_5.png?v=d511e70982">
+      </div>
+      <div class="bankName fr">交通银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_6.png?v=d29d8ac141">
+      </div>
+      <div class="bankName fr">招商银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_7.png?v=53c61d9309">
+      </div>
+      <div class="bankName fr">广发银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_8.png?v=5bbab6e566">
+      </div>
+      <div class="bankName fr">光大银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_9.png?v=bad02e1505">
+      </div>
+      <div class="bankName fr">中国邮政储蓄银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_10.png?v=5be2bc726d">
+      </div>
+      <div class="bankName fr">上海浦东发展银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_11.png?v=280441cfc0">
+      </div>
+      <div class="bankName fr">华夏银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_12.png?v=db9809b572">
+      </div>
+      <div class="bankName fr">中国民生银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_13.png?v=d862199ba6">
+      </div>
+      <div class="bankName fr">平安银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_14.png?v=f408c636d7">
+      </div>
+      <div class="bankName fr">中信银行</div>
+    </div><div class="bankListItem feedBtn">
+      <div class="bankPic fl">
+        <img alt="" src="../images/bank_type_logo_15.png?v=7f6a6a42af">
+      </div>
+      <div class="bankName fr">兴业银行</div>
+    </div>
+
+    </div>
+  </div>
+  <div class="closeThis">
+    <img alt="" id="closeBtn" class="closeBtn feedBtn" src="../images/close_sel_bankcard.png?v=d7b7ae5327" style="opacity: 1;">
+  </div>
+</div>
+
+<!--//地址选择-->
+<!--省份列表-->
+<div class="w100 ovhd h100 areaList provList">
+  <div class="w100 tl listDesc">
+    请选择银行卡开户地所属省份
+  </div>
+  <div class="listWrap h100 w100">
+    <li class="listItem porel feedBtn">
+      <span>安徽</span>
+      <i class="icon iconfont icon-right"></i>
+    </li>
+  </div>
+  <div class="closeThis w100 tc cl_w waves">
+    返回上一个页面
+  </div>
+</div>
+<!--城市列表-->
+<div class="w100 ovhd h100 areaList cityList">
+  <div class="w100 tl listDesc">
+    请选择银行卡开户地所属城市
+  </div>
+  <div class="listWrap h100 w100">
+    <li class="listItem porel feedBtn">
+      <span>淮南</span>
+      <i class="icon iconfont icon-right"></i>
+    </li>
+  </div>
+  <div class="closeThis w100 tc cl_w waves">
+    返回上一个页面
+  </div>
+</div>
+<div style="display: none">
+  <select id="s_province" name="s_province"></select>
+  <select id="s_city" name="s_city" ></select>
+  <select id="s_county" name="s_county"></select>
+</div>
+<script src="../js/lib/zepto.js?v=c8ba49926e"></script>
+<script src="../js/layer/layer.js?v=036b8006ef"></script>
+<script src="../js/lib/myModule.js?v=7955b579f7"></script>
+<script src="../js/global.js?v=79e10487c8"></script>
+<script src="../js/plugin/area.js?v=9a7b0afeb9"></script>
+<script src="./cash.js?v=3ed5b1face"></script>
+</body>
+</html>

@@ -27,6 +27,7 @@
   <link href="./css/style.css" rel="stylesheet">
   <script src="js/pro_candle.js"></script>
   <script src="js/pro_minute.js"></script>
+  <script src="html/stockRecord.js"></script>
 </head>
 <body>
 
@@ -38,7 +39,7 @@
       <div class="btnItem cash feedBtn" onclick="openLocal('/html/cash.html')">提现</div>
     </div>
     <div class="con">
-      <img src="" id="userImg" class="uImg feedBtn" alt="" onclick="openLocal('/html/userCenter.html')">
+      <img src="./images/logo.png" id="userImg" class="uImg feedBtn" alt="" onclick="openLocal('/html/userCenter.html')">
       <div class="fundsInfo">
         <div class="fundsNum ovhd">
           <div class="numCom fl ovhd"><span class="showMoney" id="all_money">0.00</span> <span class="hideMoney" style="display: none">****</span></div>
@@ -57,19 +58,19 @@
   </div>
   <div class="chartTable">
     <div class="tableItem lCon active feedBtn" id="Au">
-      <div class="proName clip ani" id="hjbk">
+      <div class="proName clip" id="hjbk">
         <div class="textInfo">
           <span class="pName">黄金板块</span>
-          <span class="pInfo">25125</span>
+          <span class="pInfo">00000</span>
         </div>
         <i class="mInfo"></i>
       </div>
     </div>
     <div class="tableItem rCon feedBtn" id="Cu">
-      <div class="proName clip ani" id="tbk">
+      <div class="proName clip" id="tbk">
         <div class="textInfo">
           <span class="pName">铜板块</span>
-          <span class="pInfo">25125</span>
+          <span class="pInfo">00000</span>
         </div>
         <i class="mInfo"></i>
       </div>
@@ -80,19 +81,19 @@
       <tr>
         <td>
           昨收:
-          <span class="detail clip ani" style="display: inline-block" id="zuoshou">0</span>
+          <span class="detail clip" style="display: inline-block" id="zuoshou">0</span>
         </td>
         <td>
           今开:
-          <span class="detail clip ani" style="display: inline-block" id="jinkai">0</span>
+          <span class="detail clip" style="display: inline-block" id="jinkai">0</span>
         </td>
         <td>
           最高:
-          <span class="detail clip ani" style="display: inline-block" id="zuigao">0</span>
+          <span class="detail clip" style="display: inline-block" id="zuigao">0</span>
         </td>
         <td>
           最低:
-          <span class="detail clip ani" style="display: inline-block" id="zuidi">0</span>
+          <span class="detail clip" style="display: inline-block" id="zuidi">0</span>
         </td>
       </tr>
     </table>
@@ -186,7 +187,7 @@
       <div class="btnItem lookDown feedBtn" onclick="showBuyBox(0)">看跌</div>
     </div>
     <div class="timeTips">
-      <p class="timeTCon">交易时间：周一~周五8:00~4:00周日4:30~7:00休市结算</p>
+      <p class="timeTCon">交易时间：周一 ~ 周五8:00 ~ 4:00每日4:30~7:00休市结算</p>
       <p class="timeTConWarm tl">温馨提示：投资有风险，入市需谨慎！</p>
     </div>
   </div>

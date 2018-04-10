@@ -11,7 +11,10 @@ var registData = {
   verCode:''
 };
 
+
+
 function init() {
+  objVerticalCenter('.tipsAlert');
   var timer = 90;
   var interVal = null;
   $('#getVerCode').click(function () {

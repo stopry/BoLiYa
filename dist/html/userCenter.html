@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>用户中心</title>
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit"/>
+  <meta name="force-rendering" content="webkit"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="full-screen" content="yes"/>
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="360-fullscreen" content="true"/>
+  <meta name="screen-orientation" content=""/>
+  <meta name="x5-orientation" content="">
+  <meta name="browsermode" content="application">
+  <meta name="x5-page-mode" content="app">
+  <script src="../js/plugin/flexible.css.js?v=121a71fac1"></script>
+  <script src="../js/plugin/flexible.ios.js?v=2f6d8ee4fc"></script>
+  <link href="../css/reset.css?v=0b5ec79ad1" rel="stylesheet">
+  <link href="../css/style.css?v=e3c2a884e5" rel="stylesheet">
+  <link rel="stylesheet" href="../scss/style.scss">
+</head>
+<body style="background: #F0F0F0;">
+<div class="box ovhd">
+  <div class="userCenterHead">
+    <div class="headTop blackBorder">
+      <div class="backHomeIcon uc feedBtn" onclick="openLocal('/index.html?v=e83ab7a872')"></div>
+      <img src="" class="userImg feedBtn"  id="userImg" alt="">
+      <div class="allFunds">
+        <div class="fundsCon"><span class="showMoney" id="all_money">0.00</span> <span class="hideMoney" style="display: none">****</span> </div>
+        <div class="fundsDesc">总资产(￥)</div>
+      </div>
+      <div data-isShow="1" class="eyes feedBtn active"></div>
+    </div>
+    <div class="headBot">
+      <div class="botItem fl">
+        <p class="fCon">￥<span id="keyong">0.00</span></p>
+        <p class="fDesc">可用保证金</p>
+      </div>
+      <div class="botItem fr">
+        <p class="fCon">￥<span id="zhanyong">0.00</span></p>
+        <p class="fDesc">占用保证金</p>
+      </div>
+    </div>
+    <div class="tipsBanner feedBtn" onclick="toBroker();">
+      <div class="tipsCon">
+        成为经济人推广平台，赚取丰厚奖励~  >
+      </div>
+    </div>
+  </div>
+  <div class="userCenterCen ovhd">
+    <div class="oprArea">
+      <div class="item cashOpr fl feedBtn" onclick="openLocal('/html/cash.html')">
+        <div class="oprIocn fl">
+          <img src="../images/cash_icon.png?v=25dc0196fb" alt="">
+        </div>
+        <div class="oprDesc fl">提现</div>
+      </div>
+      <div class="item rchOpr fr feedBtn" onclick="openLocal('/html/recharge.html')">
+        <div class="oprIocn fl">
+          <img class="rIcon" src="../images/recharge.png?v=918dc01446" alt="">
+        </div>
+        <div class="oprDesc fl">充值</div>
+      </div>
+    </div>
+  </div>
+  <div class="userCenterBot">
+    <div class="selItem borderBot zjmx feedBtn" onclick="openLocal('/html/fundsDetail.html')">
+      资金明细
+      <img class="leftIcon" src="../images/more_icon.png?v=3ef4243396"/>
+    </div>
+    <div class="selItem borderBot cpjl feedBtn" onclick="openLocal('/html/stockRecord.html')">
+      操盘记录
+      <img class="leftIcon" src="../images/more_icon.png?v=3ef4243396"/>
+    </div>
+    <div class="selItem borderBot tgzq feedBtn"  onclick="toBroker()">
+      推广赚钱
+      <img class="leftIcon" src="../images/more_icon.png?v=3ef4243396"/>
+    </div>
+  </div>
+  <div class="userCenterBot">
+    <div class="selItem borderBot xgmm feedBtn" onclick="openLocal('/html/resetPwd.html')">
+      修改密码
+      <img class="leftIcon" src="../images/more_icon.png?v=3ef4243396"/>
+    </div>
+    <div class="selItem borderBot tcdl feedBtn" onclick="exitLogIn()">
+      退出登录
+      <img class="leftIcon" src="../images/more_icon.png?v=3ef4243396"/>
+    </div>
+  </div>
+</div>
+
+<script src="../js/lib/zepto.js?v=c8ba49926e"></script>
+<script src="../js/layer/layer.js?v=036b8006ef"></script>
+<script src="../js/lib/myModule.js?v=7955b579f7"></script>
+<script src="../js/global.js?v=79e10487c8"></script>
+<script src="./userCenter.js?v=8eeee0351a"></script>
+<script>
+
+</script>
+</body>
+</html>

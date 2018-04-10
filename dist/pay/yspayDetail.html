@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>银盛收银台</title>
+</head>
+<body>
+
+<div id="commit">
+
+</div>
+
+<script src="../js/lib/zepto.js?v=c8ba49926e"></script>
+<script src="../js/lib/myModule.js?v=7955b579f7"></script>
+<script src="../js/layer/layer.js?v=036b8006ef"></script>
+<script src="../js/layerUtil.js?v=85abd20f7b"></script>
+<script src="../js/global.js?v=79e10487c8?20170605"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    $(function () {
+        var amt = util.getQueryString('amt');
+        var payType = util.getQueryString('payType');
+
+        var recDatas = {
+            'amt': amt,
+            'type': payType,
+        }
+        ajaxHelper.get(getUrl('tran/pay/payByYSCheckstand'), recDatas, function (ret) {
+            if (ret.success) {
+                var html = ret.obj;
+                console.info(html);
+                $('#commit').html(html);
+            } else {
+                layerUtil.info(ret.msg);
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

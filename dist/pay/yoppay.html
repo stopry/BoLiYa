@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快捷支付</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <script src="../js/plugin/flexible.css.js?v=121a71fac1"></script>
+    <script src="../js/plugin/flexible.ios.js?v=2f6d8ee4fc"></script>
+    <link rel="stylesheet" href="../css/reset.css?v=0b5ec79ad1">
+    <!--<link rel="stylesheet" href="../css/style.css?v=e3c2a884e5">-->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body >
+<div class="per-top recharge" style="width: 100%;height: 800px;background: #21212B" id="frme">
+    <header style="background: #262834; color: #FEFEFD;font-size: 0.4515rem;padding: 0.2rem 0.3rem;font-weight: 900; text-align: center;">
+        <i class="backIcon feedBtn" style="float: left;" onclick="openLocal('/html/recharge.html')"></i>
+        <span style="margin-left: 0rem">快捷充值</span>
+    </header>
+    <iframe style="width: 100%;height: 800px;" frameborder="0" scrolling="no" id="iframeId"> </iframe>
+</div>
+<div id="commit"></div>
+<script src="../js/lib/zepto.js?v=c8ba49926e"></script>
+<script src="../js/lib/jquery.base64.js?v=20b1c2c863"></script>
+<script src="../js/lib/myModule.js?v=7955b579f7"></script>
+<script src="../js/plugin/layer_mobile/layer.js?v=79b7829af0"></script>
+<script src="../js/layerUtil_m.js?v=40ebe970f5"></script>
+<script src="../js/global.js?v=79e10487c8?20170605"></script>
+<script type="text/javascript">
+    $(function(){
+        $.base64.utf8encode = true;
+        var url = $.base64.btoa(localStorage.getItem('YOPPAY_url'));
+        var payUrl = localStorage.getItem('YOPPAY_payUrl');
+        $('#iframeId').attr('src',payUrl+'/yopPay.html?url='+url);
+    });
+</script>
+</body>
+
+</html>

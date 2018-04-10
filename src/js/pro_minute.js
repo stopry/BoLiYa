@@ -36,7 +36,7 @@ var MinuteChart = {
           left: '1%',
           right: '1%',
           top: '8%',
-          bottom:'2%',
+          bottom:'8%',
           // height: minuteChart.h
         }],
         xAxis: {
@@ -50,11 +50,11 @@ var MinuteChart = {
             },
           },
           axisLabel: {
-            inside: true
+            // inside: true
           },
           axisTick: {
             show: true,
-            inside:true
+            // inside:true
           },
         },
         yAxis: {
@@ -76,7 +76,8 @@ var MinuteChart = {
             }
           },
           axisLabel: {
-            inside: true
+            inside: true,
+            rotate:'50'
           },
           scale: true
         },
@@ -187,7 +188,7 @@ var MinuteChart = {
           left: '1%',
           right: '1%',
           top: '8%',
-          bottom:'2%',
+          bottom:'8%',
           height: h
         }]
       });

@@ -33,7 +33,7 @@ function hideHoldList() {
 }
 //页面初始化方法
 function init() {
-  clipAni();
+  // clipAni();
   setHeight();
   clearOpenData();
   loadData();
@@ -67,7 +67,7 @@ function init() {
     getHoldList();
     orderListInterval = setInterval(function () {
       getHoldList();
-    },1000*5);
+    },1000);
   });
   //关闭当前持仓
   $('.closeCiChang').click(function () {
@@ -207,7 +207,7 @@ function loadData() {
   getHoldList();
   setInterval(function () {
     getIndexUserInfo();
-  },1000*5);
+  },1000);
 }
 function setHeight() {
   var h = $(window).height();
@@ -268,7 +268,7 @@ function updateChart(bool){
           }
         },false)
       }
-    },1000*5);
+    },1000);
   }
 }
 
@@ -488,7 +488,7 @@ function getHoldList() {
         clearInterval(orderListInterval);
         orderListInterval = setInterval(function () {
           getHoldList();
-        },1000*5);
+        },1000);
       }else{
         clearInterval(orderListInterval);
         $('.nowChiCang table').html('');
@@ -500,6 +500,10 @@ function getHoldList() {
     }
   },false)
 }
+var clockTimer = 60;//冷却时间60s
+function clock() {
+
+};
 
 //图表自适应屏幕高度
 function GlobalAutoChartM() {
@@ -516,7 +520,7 @@ function getUserInfo() {
       showTips(res.msg);
     }else{
       var obj = res.obj;
-      $("#userImg").attr('src',obj.hearimgUrl);
+      //$("#userImg").attr('src',obj.hearimgUrl);
       $("#all_money").html((obj.balance).toFixed(2));
     }
   })
