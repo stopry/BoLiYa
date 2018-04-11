@@ -27,10 +27,27 @@
   <link href="./css/style.css" rel="stylesheet">
   <script src="js/pro_candle.js"></script>
   <script src="js/pro_minute.js"></script>
-  <script src="html/stockRecord.js"></script>
 </head>
 <body>
-
+<style>
+  #clock{
+    display: none;
+    font-size: 0.34rem;
+    color: #ccc;
+    text-align: right;
+    width: 3.5rem;
+    position: fixed;
+    z-index: 9;
+    top: 0.2rem;
+    right: 0.3rem;
+  }
+  #clock_timer{
+    color: #D5B272;
+  }
+</style>
+<div id="clock">
+  下单冷却倒计时: <span id="clock_timer">60</span>
+</div>
 <div class="box ovhd">
 <div id="t_top">
   <div class="indexHead">

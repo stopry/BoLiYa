@@ -83,6 +83,7 @@ function changeProType() {
     $(this).addClass('active').siblings('.tableItem').removeClass('active');
     var proType = $(this).attr('goodsType');
     curPro = proType;
+    updatePageInfo();
     createChart(curPro,chartType);
   });
 }
@@ -107,6 +108,10 @@ function hideTipsAlert() {
 }
 //显示购买弹框
 function showBuyBox(type){//type 看涨看跌
+  if(!canOpen){
+    showTips('下单冷却中！','warm');
+    return;
+  }
   openDatas.buySell = type;
   initBuyBox();
   showLayerBlack(1);
@@ -324,11 +329,12 @@ function getIndexUserInfo(){
       // }else{
       //   $("#Cu").addClass('down');
       // }
-      var totalInfo = obj.totalInfo;
-      $("#zuoshou").html(totalInfo.yeClosePrice);
-      $("#jinkai").html(totalInfo.toOpenPrice);
-      $("#zuigao").html(totalInfo.highPrice);
-      $("#zuidi").html(totalInfo.lowPrice);
+      // var totalInfo = obj.totalInfo;
+      // $("#zuoshou").html(totalInfo.yeClosePrice);
+      // $("#jinkai").html(totalInfo.toOpenPrice);
+      // $("#zuigao").html(totalInfo.highPrice);
+      // $("#zuidi").html(totalInfo.lowPrice);
+      updatePageInfo();
     }
   },false);
 };
@@ -339,7 +345,6 @@ function initBuyBox(goodsType) {
   $(".selArea.stopSel .selItem").eq(0).addClass('active').siblings('.selItem').removeClass('active');
   $("#nums").html(1);
   $("#selTicket").removeClass('active');
-
   var curProInfo;
   for(var i = 0;i<proInfo.length;i++){
     if(proInfo[i].goodsType==curPro){
@@ -347,15 +352,12 @@ function initBuyBox(goodsType) {
       break;
     }
   }
-
   var list = curProInfo.list;
   var spList = curProInfo.spList;
-
   for(var j = 0;j<list.length;j++){
     $(".selArea.earnestSel .selItem").eq(j).attr('id',list[j].code).html(list[j].clientDepositFee);
     $(".selArea.stopSel .selItem").eq(j).attr('id',spList[j]).html(spList[j]);
   }
-
   openDatas.goodsCode = list[0].code;
   openDatas.goodsType = curPro;
   openDatas.stopPoint = spList[0];
@@ -396,6 +398,7 @@ function subOpenData() {
           getHoldList();
           showHoldList();
           createChart(curPro,chartType);
+          _clocker.start();
         }
       })
     }
@@ -501,9 +504,44 @@ function getHoldList() {
   },false)
 }
 var clockTimer = 60;//冷却时间60s
-function clock() {
+var canOpen = true;//是否可以下单 不在冷却时间内
+var clockInterval = null;//clock定时器
+function Clock(el,timerEl) {
+  var _pro = Clock.prototype;
 
+  this.el = el;//页面上显示的ui;
+  this.timerEl = timerEl;//页面上显示的ui;
+  //开始冷却
+  this.start = function () {
+    // console.log(this.el);
+    (this.el).style.display = 'block';
+    clockTimer = 60;
+    canOpen = false;
+    var self = this;
+    this.timerEl.innerText = clockTimer;
+    clockInterval = setInterval(function () {
+      clockTimer--;
+      (self.timerEl).innerHTML = clockTimer;
+      // console.log(clockTimer);
+      if(clockTimer<=0){
+        clearInterval(clockInterval);
+        (self.timerEl).innerHTML = 0;
+        self.end();
+      }
+    },1000);
+  };
+  //结束冷却
+  this.end = function () {
+    this.el.style.display = 'none';
+    canOpen = true;//可以下单
+  };
+  // return _pro;
 };
+var _clocker = new Clock(
+  document.getElementById('clock'),
+  document.getElementById('clock_timer')
+);
+// _clocker.start();
 
 //图表自适应屏幕高度
 function GlobalAutoChartM() {
