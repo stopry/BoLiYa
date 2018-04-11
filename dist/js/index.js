@@ -1,6 +1,7 @@
 $(function () {
   init();
 });
+var canSet = true;//是否可重新设置图表
 var orderListInterval = null;//刷新当前持仓定时器
 var indexInterval = null;//定时器
 var isFreshPage = true;
@@ -33,7 +34,7 @@ function hideHoldList() {
 }
 //页面初始化方法
 function init() {
-  clipAni();
+  // clipAni();
   setHeight();
   clearOpenData();
   loadData();
@@ -67,7 +68,7 @@ function init() {
     getHoldList();
     orderListInterval = setInterval(function () {
       getHoldList();
-    },1000*5);
+    },1000);
   });
   //关闭当前持仓
   $('.closeCiChang').click(function () {
@@ -79,17 +80,31 @@ function init() {
 //商品类型切换
 function changeProType() {
   $(".chartTable .tableItem").click(function () {
+    canSet = true;
     if($(this).hasClass('active')) return;
     $(this).addClass('active').siblings('.tableItem').removeClass('active');
     var proType = $(this).attr('goodsType');
     curPro = proType;
+    if(curPro=='HSAG'){
+      $('#clock2').hide();
+      if(!canOpen){
+        $('#clock').show();
+      }
+    }else{
+      $('#clock').hide();
+      if(!canOpen2){
+        $('#clock2').show();
+      }
+    }
+    getHoldList();
+    updatePageInfo();
     createChart(curPro,chartType);
   });
 }
 //图表类型切换
 function changeChartType() {
   $(".charTypeSel .flexItem").click(function () {
-    if($(this).hasClass('active')) return;
+    // if($(this).hasClass('active')) return;
     $(this).addClass('active').siblings('.flexItem').removeClass('active');
     var cType = $(this).attr('id');
     chartType = cType;
@@ -107,6 +122,10 @@ function hideTipsAlert() {
 }
 //显示购买弹框
 function showBuyBox(type){//type 看涨看跌
+  // if(!canOpen){
+  //   showTips('下单冷却中！','warm');
+  //   return;
+  // }
   openDatas.buySell = type;
   initBuyBox();
   showLayerBlack(1);
@@ -207,7 +226,7 @@ function loadData() {
   getHoldList();
   setInterval(function () {
     getIndexUserInfo();
-  },1000*5);
+  },1000);
 }
 function setHeight() {
   var h = $(window).height();
@@ -231,7 +250,7 @@ function createChart(proId, kType) {
   updateChart();
   GlobalAutoChartM();
 }
-var curPro = 'HSAG';//商品类型 默认为
+var curPro = 'HSAG';//商品类型 默认为  HSPE 铜板块
 
 //更新图表
 function updateChart(bool){
@@ -268,7 +287,7 @@ function updateChart(bool){
           }
         },false)
       }
-    },1000*5);
+    },1000);
   }
 }
 
@@ -324,11 +343,12 @@ function getIndexUserInfo(){
       // }else{
       //   $("#Cu").addClass('down');
       // }
-      var totalInfo = obj.totalInfo;
-      $("#zuoshou").html(totalInfo.yeClosePrice);
-      $("#jinkai").html(totalInfo.toOpenPrice);
-      $("#zuigao").html(totalInfo.highPrice);
-      $("#zuidi").html(totalInfo.lowPrice);
+      // var totalInfo = obj.totalInfo;
+      // $("#zuoshou").html(totalInfo.yeClosePrice);
+      // $("#jinkai").html(totalInfo.toOpenPrice);
+      // $("#zuigao").html(totalInfo.highPrice);
+      // $("#zuidi").html(totalInfo.lowPrice);
+      updatePageInfo();
     }
   },false);
 };
@@ -339,7 +359,6 @@ function initBuyBox(goodsType) {
   $(".selArea.stopSel .selItem").eq(0).addClass('active').siblings('.selItem').removeClass('active');
   $("#nums").html(1);
   $("#selTicket").removeClass('active');
-
   var curProInfo;
   for(var i = 0;i<proInfo.length;i++){
     if(proInfo[i].goodsType==curPro){
@@ -347,15 +366,12 @@ function initBuyBox(goodsType) {
       break;
     }
   }
-
   var list = curProInfo.list;
   var spList = curProInfo.spList;
-
   for(var j = 0;j<list.length;j++){
     $(".selArea.earnestSel .selItem").eq(j).attr('id',list[j].code).html(list[j].clientDepositFee);
     $(".selArea.stopSel .selItem").eq(j).attr('id',spList[j]).html(spList[j]);
   }
-
   openDatas.goodsCode = list[0].code;
   openDatas.goodsType = curPro;
   openDatas.stopPoint = spList[0];
@@ -396,6 +412,12 @@ function subOpenData() {
           getHoldList();
           showHoldList();
           createChart(curPro,chartType);
+          if(curPro=='HSAG'){
+            _clocker.start();
+          }else{
+            _clocker2.start();
+          }
+
         }
       })
     }
@@ -461,6 +483,7 @@ function getHoldList() {
           var _class = item.buySell=='1'?'up':'down';
           var dj = item.depositType=='0'?item.depositFee:'交易券';
           var ys = item.financialGrossProfit>0?'止盈':'止损';
+          var ysP = item.stopProfitLoss;
           html+='<tr>' +
             '      <td>' +
             '        <span class="type_t type t '+_class+'">'+lookType+'</span>' +
@@ -479,16 +502,18 @@ function getHoldList() {
             '        <p class="amountCon_t b">定金</p>' +
             '      </td>' +
             '      <td>' +
-            '        <span class="amountCon_t t">'+ys+'</span>' +
+            '        <span class="amountCon_t t">'+ysP+'</span>' +
             '        <p class="amountCon_t b">止盈止损</p>' +
             '      </td>' +
             '    </tr>'
         }
         $('.nowChiCang table').html(html);
+        showHoldList();
+        reAdpChart();
         clearInterval(orderListInterval);
         orderListInterval = setInterval(function () {
           getHoldList();
-        },1000*5);
+        },1000);
       }else{
         clearInterval(orderListInterval);
         $('.nowChiCang table').html('');
@@ -499,6 +524,100 @@ function getHoldList() {
       updateChart();
     }
   },false)
+}
+var clockTimer = 30;//冷却时间60s
+var clockTimer2 = 30;//冷却时间60s
+var canOpen = true;//是否可以下单 不在冷却时间内
+var canOpen2 = true;//是否可以下单 不在冷却时间内
+var clockInterval = null;//clock定时器
+var clockInterval2 = null;//clock定时器
+function Clock(el,timerEl) {
+  var _pro = Clock.prototype;
+
+  this.el = el;//页面上显示的ui;
+  this.timerEl = timerEl;//页面上显示的ui;
+  //开始冷却
+  this.start = function () {
+    // console.log(this.el);
+    (this.el).style.display = 'block';
+    clockTimer = 30;
+    canOpen = false;
+    var self = this;
+    this.timerEl.innerText = clockTimer;
+    if(clockInterval){
+      clearInterval(clockInterval);
+    }
+    clockInterval = setInterval(function () {
+      clockTimer--;
+      (self.timerEl).innerHTML = clockTimer;
+      // console.log(clockTimer);
+      if(clockTimer<=0){
+        clearInterval(clockInterval);
+        (self.timerEl).innerHTML = 0;
+        self.end();
+      }
+    },1000);
+  };
+  //结束冷却
+  this.end = function () {
+    clearInterval(clockInterval);
+    this.el.style.display = 'none';
+    canOpen = true;//可以下单
+  };
+  // return _pro;
+};
+
+function Clock2(el,timerEl) {
+  var _pro = Clock2.prototype;
+
+  this.el = el;//页面上显示的ui;
+  this.timerEl = timerEl;//页面上显示的ui;
+  //开始冷却
+  this.start = function () {
+    // console.log(this.el);
+    (this.el).style.display = 'block';
+    clockTimer2 = 30;
+    canOpen2 = false;
+    var self = this;
+    this.timerEl.innerText = clockTimer2;
+    if(clockInterval2){
+      clearInterval(clockInterval2);
+    }
+    clockInterval2 = setInterval(function () {
+      clockTimer2--;
+      (self.timerEl).innerHTML = clockTimer2;
+      // console.log(clockTimer);
+      if(clockTimer2<=0){
+        clearInterval(clockInterval2);
+        (self.timerEl).innerHTML = 0;
+        self.end();
+      }
+    },1000);
+  };
+  //结束冷却
+  this.end = function () {
+    clearInterval(clockInterval2);
+    this.el.style.display = 'none';
+    canOpen2 = true;//可以下单
+  };
+  // return _pro;
+};
+var _clocker = new Clock(
+  document.getElementById('clock'),
+  document.getElementById('clock_timer')
+);
+
+var _clocker2 = new Clock2(
+  document.getElementById('clock2'),
+  document.getElementById('clock_timer2')
+);
+// _clocker.start();
+//重新自适应图标
+function reAdpChart(){
+  // console.log(canSet);
+  if(!canSet) return;
+  $('.charTypeSel .con .flexItem.active').trigger('click');
+  canSet = false;
 }
 
 //图表自适应屏幕高度
@@ -516,7 +635,7 @@ function getUserInfo() {
       showTips(res.msg);
     }else{
       var obj = res.obj;
-      $("#userImg").attr('src',obj.hearimgUrl);
+      //$("#userImg").attr('src',obj.hearimgUrl);
       $("#all_money").html((obj.balance).toFixed(2));
     }
   })

@@ -1207,7 +1207,8 @@ input:disabled, input[disabled] {
         background-size: 0.66667rem 0.66667rem; }
 
 #t_top {
-  background: #404244; }
+  background: #404244;
+  position: relative; }
 
 .indexProIndex {
   background: #fff;
@@ -1539,3 +1540,17 @@ input:disabled, input[disabled] {
   .backHomeIcon.uc {
     top: 1.06667rem;
     left: 8.94667rem !important; }
+
+#clock, #clock2 {
+  display: none;
+  font-size: 0.34rem;
+  color: #ccc;
+  text-align: right;
+  width: 3.5rem;
+  position: absolute;
+  z-index: 9;
+  top: 0.2rem;
+  right: 0.3rem; }
+
+#clock_timer, #clock_timer2 {
+  color: #D5B272; }

@@ -29,27 +29,14 @@
   <script src="js/pro_minute.js"></script>
 </head>
 <body>
-<style>
-  #clock{
-    display: none;
-    font-size: 0.34rem;
-    color: #ccc;
-    text-align: right;
-    width: 3.5rem;
-    position: fixed;
-    z-index: 9;
-    top: 0.2rem;
-    right: 0.3rem;
-  }
-  #clock_timer{
-    color: #D5B272;
-  }
-</style>
-<div id="clock">
-  下单冷却倒计时: <span id="clock_timer">60</span>
-</div>
 <div class="box ovhd">
 <div id="t_top">
+  <div id="clock">
+    下单冷却倒计时: <span id="clock_timer">30</span>
+  </div>
+  <div id="clock2">
+    下单冷却倒计时: <span id="clock_timer2">30</span>
+  </div>
   <div class="indexHead">
     <div class="recCashBtn">
       <div class="btnItem rch feedBtn" onclick="openLocal('/html/recharge.html')">充值</div>
@@ -212,7 +199,7 @@
 
 <div class="tipsAlert">
   <div class="con">
-    <img src="./images/clock_icon.png" class="linDang" alt="">
+    <img  src="./images/clock_icon.png" class="linDang" alt="">
     <img src="./images/close_icon.png" class="closeIcon feedBtn"  alt="">
     <div class="textCon">
       <p>

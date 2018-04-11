@@ -1,6 +1,7 @@
 $(function () {
   init();
 });
+var canSet = true;//是否可重新设置图表
 var orderListInterval = null;//刷新当前持仓定时器
 var indexInterval = null;//定时器
 var isFreshPage = true;
@@ -79,10 +80,23 @@ function init() {
 //商品类型切换
 function changeProType() {
   $(".chartTable .tableItem").click(function () {
+    canSet = true;
     if($(this).hasClass('active')) return;
     $(this).addClass('active').siblings('.tableItem').removeClass('active');
     var proType = $(this).attr('goodsType');
     curPro = proType;
+    if(curPro=='HSAG'){
+      $('#clock2').hide();
+      if(!canOpen){
+        $('#clock').show();
+      }
+    }else{
+      $('#clock').hide();
+      if(!canOpen2){
+        $('#clock2').show();
+      }
+    }
+    getHoldList();
     updatePageInfo();
     createChart(curPro,chartType);
   });
@@ -90,7 +104,7 @@ function changeProType() {
 //图表类型切换
 function changeChartType() {
   $(".charTypeSel .flexItem").click(function () {
-    if($(this).hasClass('active')) return;
+    // if($(this).hasClass('active')) return;
     $(this).addClass('active').siblings('.flexItem').removeClass('active');
     var cType = $(this).attr('id');
     chartType = cType;
@@ -108,10 +122,10 @@ function hideTipsAlert() {
 }
 //显示购买弹框
 function showBuyBox(type){//type 看涨看跌
-  if(!canOpen){
-    showTips('下单冷却中！','warm');
-    return;
-  }
+  // if(!canOpen){
+  //   showTips('下单冷却中！','warm');
+  //   return;
+  // }
   openDatas.buySell = type;
   initBuyBox();
   showLayerBlack(1);
@@ -236,7 +250,7 @@ function createChart(proId, kType) {
   updateChart();
   GlobalAutoChartM();
 }
-var curPro = 'HSAG';//商品类型 默认为
+var curPro = 'HSAG';//商品类型 默认为  HSPE 铜板块
 
 //更新图表
 function updateChart(bool){
@@ -398,7 +412,12 @@ function subOpenData() {
           getHoldList();
           showHoldList();
           createChart(curPro,chartType);
-          _clocker.start();
+          if(curPro=='HSAG'){
+            _clocker.start();
+          }else{
+            _clocker2.start();
+          }
+
         }
       })
     }
@@ -464,6 +483,7 @@ function getHoldList() {
           var _class = item.buySell=='1'?'up':'down';
           var dj = item.depositType=='0'?item.depositFee:'交易券';
           var ys = item.financialGrossProfit>0?'止盈':'止损';
+          var ysP = item.stopProfitLoss;
           html+='<tr>' +
             '      <td>' +
             '        <span class="type_t type t '+_class+'">'+lookType+'</span>' +
@@ -482,12 +502,14 @@ function getHoldList() {
             '        <p class="amountCon_t b">定金</p>' +
             '      </td>' +
             '      <td>' +
-            '        <span class="amountCon_t t">'+ys+'</span>' +
+            '        <span class="amountCon_t t">'+ysP+'</span>' +
             '        <p class="amountCon_t b">止盈止损</p>' +
             '      </td>' +
             '    </tr>'
         }
         $('.nowChiCang table').html(html);
+        showHoldList();
+        reAdpChart();
         clearInterval(orderListInterval);
         orderListInterval = setInterval(function () {
           getHoldList();
@@ -503,9 +525,12 @@ function getHoldList() {
     }
   },false)
 }
-var clockTimer = 60;//冷却时间60s
+var clockTimer = 30;//冷却时间60s
+var clockTimer2 = 30;//冷却时间60s
 var canOpen = true;//是否可以下单 不在冷却时间内
+var canOpen2 = true;//是否可以下单 不在冷却时间内
 var clockInterval = null;//clock定时器
+var clockInterval2 = null;//clock定时器
 function Clock(el,timerEl) {
   var _pro = Clock.prototype;
 
@@ -515,10 +540,13 @@ function Clock(el,timerEl) {
   this.start = function () {
     // console.log(this.el);
     (this.el).style.display = 'block';
-    clockTimer = 60;
+    clockTimer = 30;
     canOpen = false;
     var self = this;
     this.timerEl.innerText = clockTimer;
+    if(clockInterval){
+      clearInterval(clockInterval);
+    }
     clockInterval = setInterval(function () {
       clockTimer--;
       (self.timerEl).innerHTML = clockTimer;
@@ -532,8 +560,45 @@ function Clock(el,timerEl) {
   };
   //结束冷却
   this.end = function () {
+    clearInterval(clockInterval);
     this.el.style.display = 'none';
     canOpen = true;//可以下单
+  };
+  // return _pro;
+};
+
+function Clock2(el,timerEl) {
+  var _pro = Clock2.prototype;
+
+  this.el = el;//页面上显示的ui;
+  this.timerEl = timerEl;//页面上显示的ui;
+  //开始冷却
+  this.start = function () {
+    // console.log(this.el);
+    (this.el).style.display = 'block';
+    clockTimer2 = 30;
+    canOpen2 = false;
+    var self = this;
+    this.timerEl.innerText = clockTimer2;
+    if(clockInterval2){
+      clearInterval(clockInterval2);
+    }
+    clockInterval2 = setInterval(function () {
+      clockTimer2--;
+      (self.timerEl).innerHTML = clockTimer2;
+      // console.log(clockTimer);
+      if(clockTimer2<=0){
+        clearInterval(clockInterval2);
+        (self.timerEl).innerHTML = 0;
+        self.end();
+      }
+    },1000);
+  };
+  //结束冷却
+  this.end = function () {
+    clearInterval(clockInterval2);
+    this.el.style.display = 'none';
+    canOpen2 = true;//可以下单
   };
   // return _pro;
 };
@@ -541,7 +606,19 @@ var _clocker = new Clock(
   document.getElementById('clock'),
   document.getElementById('clock_timer')
 );
+
+var _clocker2 = new Clock2(
+  document.getElementById('clock2'),
+  document.getElementById('clock_timer2')
+);
 // _clocker.start();
+//重新自适应图标
+function reAdpChart(){
+  // console.log(canSet);
+  if(!canSet) return;
+  $('.charTypeSel .con .flexItem.active').trigger('click');
+  canSet = false;
+}
 
 //图表自适应屏幕高度
 function GlobalAutoChartM() {

@@ -23,10 +23,23 @@
   <script src="../js/plugin/flexible.css.js?v=121a71fac1"></script>
   <script src="../js/plugin/flexible.ios.js?v=2f6d8ee4fc"></script>
   <link href="../css/reset.css?v=0b5ec79ad1" rel="stylesheet">
-  <link href="../css/style.css?v=e3c2a884e5" rel="stylesheet">
+  <link href="../css/style.css?v=aec51d6bd3" rel="stylesheet">
 </head>
 <body style="background: #404244;">
-
+<div class="tipsAlert">
+  <div class="con">
+    <img src="../images/clock_icon.png?v=a414f3cdbf" class="linDang" alt="">
+    <img src="../images/close_icon.png?v=e4161cecab" class="closeIcon feedBtn" onclick="toggleLicense(false)"  alt="">
+    <div class="textCon">
+      <p>
+        用户协议
+      </p>
+      <p style="text-indent: 2em;">
+        用户协议，注册即表示同意此用户协议。
+      </p>
+    </div>
+  </div>
+</div>
 <div class="box ovhd">
   <div class="registForm conWrap ovhd">
     <div class="formInput blackBorder">
@@ -58,7 +71,7 @@
       <div class="clickBtn feedBtn" onclick="openLocal('/html/logIn.html')">去登录</div>
     </div>
     <div class="tipsArea">
-      <div class="clickBtnCen feedBtn">《用户协议》</div>
+      <!--<div class="clickBtnCen feedBtn" onclick="toggleLicense(true)">《用户协议》</div>-->
     </div>
   </div>
 
@@ -67,6 +80,6 @@
 <script src="../js/lib/zepto.js?v=c8ba49926e"></script>
 <script src="../js/lib/myModule.js?v=7955b579f7"></script>
 <script src="../js/global.js?v=79e10487c8"></script>
-<script src="./regist.js?v=a1d9a098e0"></script>
+<script src="./regist.js?v=4badb8fb3c"></script>
 </body>
 </html>

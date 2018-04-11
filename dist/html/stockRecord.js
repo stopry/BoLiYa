@@ -84,8 +84,8 @@ function init() {
         '<td>'+_openPrice+'</td>'+
         '</tr>'+
         '<tr>'+
-        '<td>平仓价：</td>'+
-        '<td>'+_closePrice+'</td>'+
+        '<td>平仓类型：</td>'+
+        '<td>'+_closeType+'</td>'+
         '</tr>'+
         '<tr class="dateInfo">'+
           '<td>创建时间：</td>'+
@@ -112,8 +112,8 @@ function init() {
         '<td>'+_dj+'</td>'+
         '</tr>'+
         '<tr>'+
-        '<td>平仓类型：</td>'+
-        '<td>'+_closeType+'</td>'+
+        '<td>平仓价：</td>'+
+        '<td>'+_closePrice+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>止盈止损点数：</td>'+

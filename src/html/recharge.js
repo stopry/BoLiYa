@@ -300,6 +300,7 @@ function getUserInfo() {
 };
 //获取充值列表
 function getPayList() {
+  // alert(Util.checkEquipment());
   if (Util.checkEquipment() == 'other') {
     way = "WEB";
     $('#pay_4').css('display', 'block');

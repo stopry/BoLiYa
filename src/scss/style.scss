@@ -1239,6 +1239,7 @@ $fClr:#8d8d8f;//辅助色
 }
 #t_top{
   background: #404244;
+  position: relative;
 }
 .indexProIndex{
   background: #fff;
@@ -1627,4 +1628,18 @@ $fClr:#8d8d8f;//辅助色
     top: rem(80);
     left: rem(671) !important;
   }
+}
+#clock,#clock2{
+  display: none;
+  font-size: 0.34rem;
+  color: #ccc;
+  text-align: right;
+  width: 3.5rem;
+  position: absolute;
+  z-index: 9;
+  top: 0.2rem;
+  right: 0.3rem;
+}
+#clock_timer,#clock_timer2{
+  color: #D5B272;
 }

@@ -56,10 +56,10 @@ var CandleChart = {
       candleChart.option = {
         backgroundColor:'#404244',
         legend: {
-          data: ['MA5', 'MA10', 'MA20'],
+          data: ['日K','MA5', 'MA10', 'MA20'],
           inactiveColor: '#aaa',
           textStyle: {
-            color: '#999'
+            color: '#D5B272'
           },
           top: 5,
         },
@@ -109,7 +109,7 @@ var CandleChart = {
           left: '1%',
           right: '1%',
           top: '8%',
-          bottom:'2%',
+          bottom:'8%',
           // height: '249px'
         }]
         ,
@@ -129,13 +129,13 @@ var CandleChart = {
           axisTick: {
             alignWithLabel: true,
             show: true,
-            inside:true
+            // inside:true
           },
           axisLabel: {
             formatter: function (value, index) {
               return value.substr(5);
             },
-            inside: true
+            // inside: true
           }
         }
         ,
@@ -157,7 +157,8 @@ var CandleChart = {
             }
           },
           axisLabel: {
-            inside: true
+            inside: true,
+            rotate:'50'
           },
           splitNumber: 4,
         },
@@ -187,17 +188,22 @@ var CandleChart = {
             name: 'MA5',
             type: 'line',
             data: candleChart.calculateMA(5),
-            smooth: false,
+            smooth: true,
+            //color:'#4043d7',
             lineStyle: {
               normal: {
                 opacity: 1,
-                width: 1
+                width: 1,
+                // color:'#4043d7'
               },
+              // color:'#4043d7'
             },
             itemStyle: {
               normal: {
                 opacity: 0,
-              }
+                // color:'#4043d7'
+              },
+              // color:'#4043d7'
             },
             hoverAnimation: false,
           },
@@ -209,7 +215,8 @@ var CandleChart = {
             lineStyle: {
               normal: {
                 opacity: 1,
-                width: 1
+                width: 1,
+                color:'#ff8811',
               },
             },
             itemStyle: {
@@ -224,10 +231,12 @@ var CandleChart = {
             type: 'line',
             data: candleChart.calculateMA(20),
             smooth: true,
+            // color:'#8b0db9',
             lineStyle: {
               normal: {
                 opacity: 1,
-                width: 1
+                width: 1,
+                // color:'#8b0db9',
               },
             },
             itemStyle: {
@@ -236,8 +245,7 @@ var CandleChart = {
               }
             },
             hoverAnimation: false,
-          },
-
+          }
         ]
       }
     }
@@ -248,7 +256,7 @@ var CandleChart = {
           left: '1%',
           right: '1%',
           top: '8%',
-          bottom:'2%',
+          bottom:'5%',
           height: h
         }]
       });

@@ -29,7 +29,7 @@ function getUserInfo() {
     }else{
       var obj = res.obj;
       broker = obj.mType;
-      $("#userImg").attr('src',obj.hearimgUrl);
+      // $("#userImg").attr('src',obj.hearimgUrl);
       $("#all_money").html((obj.balance).toFixed(2));
       $("#keyong").html((obj.usableDeposit).toFixed(2));//可用保证金
       $("#zhanyong").html((obj.useDeposit).toFixed(2));//占用保证金

@@ -1,7 +1,7 @@
 {
   "clipboard.min.js": "clipboard.min.js?v=1fc7e10d5a",
   "global.js": "global.js?v=79e10487c8",
-  "index.js": "index.js?v=9e72398ef8",
+  "index.js": "index.js?v=32735b16e9",
   "layer/layer.js": "layer/layer.js?v=036b8006ef",
   "layer/skin/default/icon-ext.png": "layer/skin/default/icon-ext.png?v=ba81b24c06",
   "layer/skin/default/icon.png": "layer/skin/default/icon.png?v=4062e90477",
@@ -35,6 +35,6 @@
   "plugin/upload/plupload.dev.js": "plugin/upload/plupload.dev.js?v=121f1b9295",
   "plugin/upload/plupload.full.min.js": "plugin/upload/plupload.full.min.js?v=a287188b53",
   "plugin/upload/plupload.min.js": "plugin/upload/plupload.min.js?v=38b8397870",
-  "pro_candle.js": "pro_candle.js?v=f2b2fac87d",
-  "pro_minute.js": "pro_minute.js?v=56b95e41b8"
+  "pro_candle.js": "pro_candle.js?v=2d5b246f3f",
+  "pro_minute.js": "pro_minute.js?v=6d46780b3a"
 }

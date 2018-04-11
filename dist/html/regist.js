@@ -11,7 +11,19 @@ var registData = {
   verCode:''
 };
 
+function toggleLicense(bool) {
+  if(bool){
+    showLayerBlack(1);
+    $(".tipsAlert").show();
+  }else{
+    showLayerBlack(!1);
+    $(".tipsAlert").hide();
+  }
+}
+
+
 function init() {
+  objVerticalCenter('.tipsAlert');
   var timer = 90;
   var interVal = null;
   $('#getVerCode').click(function () {

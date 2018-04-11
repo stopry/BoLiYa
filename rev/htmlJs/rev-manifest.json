@@ -2,9 +2,9 @@
   "cash.js": "cash.js?v=3ed5b1face",
   "fundsDetail.js": "fundsDetail.js?v=8058a303d8",
   "logIn.js": "logIn.js?v=444b5b14f2",
-  "recharge.js": "recharge.js?v=3f8b00c44e",
-  "regist.js": "regist.js?v=a1d9a098e0",
+  "recharge.js": "recharge.js?v=8f0f185faa",
+  "regist.js": "regist.js?v=4badb8fb3c",
   "resetPwd.js": "resetPwd.js?v=31bbf0fcda",
-  "stockRecord.js": "stockRecord.js?v=c9156fd2e0",
-  "userCenter.js": "userCenter.js?v=8eeee0351a"
+  "stockRecord.js": "stockRecord.js?v=01cdca7e3e",
+  "userCenter.js": "userCenter.js?v=8dfe589f42"
 }
