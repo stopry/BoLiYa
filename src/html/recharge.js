@@ -320,8 +320,9 @@ function getPayList() {
       serName = ret.obj.serName;
       var html = '';
       var initId = 0;
-      $.each(list, function (key, val) {
-        if (val.status == '1') {
+        $.each(list, function (key, val) {
+          var isShow = (way=='WEB'&&val.showWeb=='1')||(way=='WAP'&&val.showWap=='1');
+        if (val.status == '1'&&isShow) {
 
           html+='<div class="cashTypeSel w100 ovhd" style="background: url('+val.pic+') no-repeat left;background-size: 0.93333rem auto">' +
             val.name +

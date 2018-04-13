@@ -56,12 +56,38 @@ var CandleChart = {
       candleChart.option = {
         backgroundColor:'#404244',
         legend: {
-          data: ['日K','MA5', 'MA10', 'MA20'],
-          inactiveColor: '#aaa',
+          data: [
+            {
+              name:''
+            },
+            {
+              name:'MA5',
+              icon:"none",
+              textStyle:{
+                color:'#915bff',
+              }
+            },
+            {
+              name:'MA10',
+              icon:"none",
+              textStyle:{
+                color:"#ff8811"
+              }
+            },
+            {
+              name:'MA20',
+              icon:"none",
+              textStyle:{
+                color:'#3e58db'
+              }
+            }
+          ],
+          // inactiveColor: '#aaa',
           textStyle: {
-            color: '#D5B272'
+            color: '#D5B272',
+            background:'#ff0000'
           },
-          top: 5,
+          top: '-8',
         },
         tooltip: {
           trigger: 'axis',
@@ -84,9 +110,9 @@ var CandleChart = {
                 var data = value.data;
                 var color = "";
                 if (parseFloat(data[5]) < 0) {
-                  color = '#354D5E';
+                  color = '#ffff00';
                 } else if (parseFloat(data[5]) > 0) {
-                  color = '#D53A35';
+                  color = '#ff00ff';
                 }
                 str += "开盘价:" + data[1] + "<br>";
                 str += "收盘价:" + data[2] + "<br>";
@@ -106,7 +132,7 @@ var CandleChart = {
           }
         },
         grid: [{
-          left: '1%',
+          left: '15%',
           right: '1%',
           top: '8%',
           bottom:'8%',
@@ -157,8 +183,8 @@ var CandleChart = {
             }
           },
           axisLabel: {
-            inside: true,
-            rotate:'50'
+            // inside: true,
+            // rotate:'50'
           },
           splitNumber: 4,
         },
@@ -189,14 +215,13 @@ var CandleChart = {
             type: 'line',
             data: candleChart.calculateMA(5),
             smooth: true,
-            //color:'#4043d7',
+            color:'#915bff',
             lineStyle: {
               normal: {
                 opacity: 1,
                 width: 1,
-                // color:'#4043d7'
+                color:'#915bff'
               },
-              // color:'#4043d7'
             },
             itemStyle: {
               normal: {
@@ -212,6 +237,7 @@ var CandleChart = {
             type: 'line',
             data: candleChart.calculateMA(10),
             smooth: true,
+            color:'#ff8811',
             lineStyle: {
               normal: {
                 opacity: 1,
@@ -231,12 +257,12 @@ var CandleChart = {
             type: 'line',
             data: candleChart.calculateMA(20),
             smooth: true,
-            // color:'#8b0db9',
+            color:'#3e58db',
             lineStyle: {
               normal: {
                 opacity: 1,
                 width: 1,
-                // color:'#8b0db9',
+                color:'#3e58db',
               },
             },
             itemStyle: {
@@ -253,7 +279,7 @@ var CandleChart = {
     candleChart.setChartHeight = function(h){
       candleChart.chart.setOption({
         grid:[{
-          left: '1%',
+          left: '15%',
           right: '1%',
           top: '8%',
           bottom:'5%',

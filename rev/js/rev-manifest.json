@@ -35,6 +35,6 @@
   "plugin/upload/plupload.dev.js": "plugin/upload/plupload.dev.js?v=121f1b9295",
   "plugin/upload/plupload.full.min.js": "plugin/upload/plupload.full.min.js?v=a287188b53",
   "plugin/upload/plupload.min.js": "plugin/upload/plupload.min.js?v=38b8397870",
-  "pro_candle.js": "pro_candle.js?v=2d5b246f3f",
-  "pro_minute.js": "pro_minute.js?v=6d46780b3a"
+  "pro_candle.js": "pro_candle.js?v=686be5fa73",
+  "pro_minute.js": "pro_minute.js?v=ca9f941e6c"
 }

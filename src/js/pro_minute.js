@@ -33,7 +33,7 @@ var MinuteChart = {
         // animation: minuteChart.isFirst,
         animation: false,
         grid: [{
-          left: '1%',
+          left: '15%',
           right: '1%',
           top: '8%',
           bottom:'8%',
@@ -76,8 +76,8 @@ var MinuteChart = {
             }
           },
           axisLabel: {
-            inside: true,
-            rotate:'50'
+            // inside: true,
+            // rotate:'50'
           },
           scale: true
         },
@@ -185,7 +185,7 @@ var MinuteChart = {
       minuteChart.h = h;
       minuteChart.chart.setOption({
         grid:[{
-          left: '1%',
+          left: '15%',
           right: '1%',
           top: '8%',
           bottom:'8%',

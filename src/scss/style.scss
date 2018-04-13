@@ -1081,7 +1081,7 @@ $fClr:#8d8d8f;//辅助色
     font-weight: bold;
     line-height: rem(40);
     top: rem(89);
-    left: rem(300);
+    left: rem(140);
     .btnItem{
       border-radius: rem(5);
       width: rem(110);
@@ -1155,7 +1155,7 @@ $fClr:#8d8d8f;//辅助色
     }
     .toUc{
       float: right;
-      line-height: rem(104);
+      line-height: rem(124);
       font-size: rem(30);
       color: #89898b;
       text-align: right;
@@ -1631,13 +1631,14 @@ $fClr:#8d8d8f;//辅助色
 }
 #clock,#clock2{
   display: none;
-  font-size: 0.34rem;
+  font-size: 0.43rem;
+  font-weight: bold;
   color: #ccc;
   text-align: right;
   width: 3.5rem;
   position: absolute;
   z-index: 9;
-  top: 0.2rem;
+  top: 0.14rem;
   right: 0.3rem;
 }
 #clock_timer,#clock_timer2{

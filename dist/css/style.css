@@ -1090,7 +1090,7 @@ input:disabled, input[disabled] {
     font-weight: bold;
     line-height: 0.53333rem;
     top: 1.18667rem;
-    left: 4rem; }
+    left: 1.86667rem; }
     .indexHead .recCashBtn .btnItem {
       border-radius: 0.06667rem;
       width: 1.46667rem;
@@ -1145,7 +1145,7 @@ input:disabled, input[disabled] {
         line-height: 0.48rem; }
     .indexHead .con .toUc {
       float: right;
-      line-height: 1.38667rem;
+      line-height: 1.65333rem;
       font-size: 0.4rem;
       color: #89898b;
       text-align: right; }
@@ -1543,13 +1543,14 @@ input:disabled, input[disabled] {
 
 #clock, #clock2 {
   display: none;
-  font-size: 0.34rem;
+  font-size: 0.43rem;
+  font-weight: bold;
   color: #ccc;
   text-align: right;
   width: 3.5rem;
   position: absolute;
   z-index: 9;
-  top: 0.2rem;
+  top: 0.14rem;
   right: 0.3rem; }
 
 #clock_timer, #clock_timer2 {
